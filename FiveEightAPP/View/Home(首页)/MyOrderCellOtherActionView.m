@@ -105,7 +105,12 @@
         [self.delegate orderCellOtherActionItem:self.model];
     }
     
+    
+    
+    
     [self removeFromSuperview];
+    
+    
 }
 
 @end
