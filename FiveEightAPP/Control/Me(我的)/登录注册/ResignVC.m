@@ -128,6 +128,10 @@
         }];
         UITextField *fieldname = [self drawInputView:viewname andimage:@"login_icon_cell" andplatch:arrplatch[i]];
         [fieldname setTag:100+i];
+        if(i==3||i==4)
+        {
+            [fieldname setSecureTextEntry:YES];
+        }
         [arrFiled addObject:fieldname];
         if(_isbangding)
         {
@@ -266,7 +270,7 @@
 #pragma mark - 获取验证码
 - (void)requestVerityCodeBtnOnTouch:(UIButton*)btn {
     
-    UITextField *fieldphone = arrFiled[0];
+    UITextField *fieldphone = arrFiled[2];
     if (fieldphone.text.length<3)
     {
         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleaseMobile", nil)];

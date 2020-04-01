@@ -44,6 +44,7 @@
 		042FCE9E2432F7AC00C89528 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FCE8B2432F7AB00C89528 /* AFSecurityPolicy.m */; };
 		04425EE2243421A100944514 /* SmsProtoctFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 04425EE1243421A100944514 /* SmsProtoctFunction.m */; };
 		04425EE5243432EF00944514 /* LaunangeChangeAlterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04425EE4243432EF00944514 /* LaunangeChangeAlterView.m */; };
+		04425EE82434960000944514 /* MDBwebVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 04425EE72434960000944514 /* MDBwebVIew.m */; };
 		0472240C2431848200573F67 /* ApplyAgentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0472240B2431848200573F67 /* ApplyAgentVC.m */; };
 		04722410243197F600573F67 /* UserRenZhengVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0472240F243197F600573F67 /* UserRenZhengVC.m */; };
 		047224132431CCC500573F67 /* RegionalDataControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 047224122431CCC500573F67 /* RegionalDataControl.m */; };
@@ -491,6 +492,8 @@
 		04425EE1243421A100944514 /* SmsProtoctFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmsProtoctFunction.m; sourceTree = "<group>"; };
 		04425EE3243432EF00944514 /* LaunangeChangeAlterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunangeChangeAlterView.h; sourceTree = "<group>"; };
 		04425EE4243432EF00944514 /* LaunangeChangeAlterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunangeChangeAlterView.m; sourceTree = "<group>"; };
+		04425EE6243495FF00944514 /* MDBwebVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDBwebVIew.h; sourceTree = "<group>"; };
+		04425EE72434960000944514 /* MDBwebVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDBwebVIew.m; sourceTree = "<group>"; };
 		0472240A2431848200573F67 /* ApplyAgentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyAgentVC.h; sourceTree = "<group>"; };
 		0472240B2431848200573F67 /* ApplyAgentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyAgentVC.m; sourceTree = "<group>"; };
 		0472240E243197F600573F67 /* UserRenZhengVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserRenZhengVC.h; sourceTree = "<group>"; };
@@ -3063,6 +3066,8 @@
 		20FF03E123308FEF00C16750 /* H5 */ = {
 			isa = PBXGroup;
 			children = (
+				04425EE6243495FF00944514 /* MDBwebVIew.h */,
+				04425EE72434960000944514 /* MDBwebVIew.m */,
 				20FF03E723308FEF00C16750 /* WebViewVC.h */,
 				20FF03E423308FEF00C16750 /* WebViewVC.m */,
 				20FF03E323308FEF00C16750 /* WebViewVC.xib */,
@@ -3424,6 +3429,7 @@
 				204F51B0237158CC007D4B95 /* IQTextView.m in Sources */,
 				20FF03892330895F00C16750 /* LoginVC.m in Sources */,
 				203062A32328941E00A19E20 /* UILabel+MSLabelCtg.m in Sources */,
+				04425EE82434960000944514 /* MDBwebVIew.m in Sources */,
 				20306270232892EF00A19E20 /* UIScrollView+MJExtension.m in Sources */,
 				2030626E232892EF00A19E20 /* MJRefreshConst.m in Sources */,
 				042FCE982432F7AB00C89528 /* AFImageDownloader.m in Sources */,
@@ -3712,7 +3718,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5PH8LPTAUT;
+				DEVELOPMENT_TEAM = HXYUQGKLDR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FiveEightAPP/XiaoShunZiAPP/OpenSRC/Bugly-v2.4.7",
@@ -3768,7 +3774,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5PH8LPTAUT;
+				DEVELOPMENT_TEAM = HXYUQGKLDR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FiveEightAPP/XiaoShunZiAPP/OpenSRC/Bugly-v2.4.7",

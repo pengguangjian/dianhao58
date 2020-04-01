@@ -124,6 +124,10 @@
         }];
         UITextField *fieldname = [self drawInputView:viewname andimage:@"login_icon_cell" andplatch:arrplatch[i]];
         [fieldname setTag:100+i];
+        if(i==1 || i==2)
+        {
+            [fieldname setSecureTextEntry:YES];
+        }
         [arrField addObject:fieldname];
     }
     

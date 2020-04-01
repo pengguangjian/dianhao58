@@ -101,11 +101,13 @@
             [btitem setTag:j+i*4];
             viewlast = btitem;
             [btitem addTarget:self action:@selector(topBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-//            if(i*4+j==0)
-//            {
-//                btnowselect = btitem;
-//                [btnowselect setBackgroundColor:RGB(240, 30, 30)];
-//            }
+            if(i*4+j==0)
+            {
+                btnowselect = btitem;
+                [btnowselect setBackgroundColor:RGB(240, 30, 30)];
+                HomeLanMuModel *model = _modelSuper.arrson[btnowselect.tag];
+                _strid = model.did;
+            }
         }
         
     }

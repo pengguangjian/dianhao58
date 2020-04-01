@@ -17,7 +17,9 @@
 #import "HomeDetailContentModel.h"
 #import "MyOrderCellOtherActionView.h"
 
-@interface ContentDetailVC ()<CommentFloorHostCellDelegate,FESendCommentViewDelegate,MyOrderCellOtherActionViewDelegate>
+#import "MDBwebVIew.h"
+
+@interface ContentDetailVC ()<CommentFloorHostCellDelegate,FESendCommentViewDelegate,MyOrderCellOtherActionViewDelegate,MDBwebDelegate>
 {
     UIView *headerView;
     UIView *alignTopView;
@@ -197,7 +199,7 @@
     UIView *contactView= [[UIView alloc] init];
     [headerView addSubview:contactView];
     [contactView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(headerView).with.offset(0);
+        make.left.equalTo(self->headerView).with.offset(0);
         make.top.equalTo(topView.mas_bottom).with.offset(0);
 //        make.size.mas_equalTo(CGSizeMake(DEVICE_Width, 77+32));
         make.size.mas_equalTo(CGSizeMake(DEVICE_Width, 35+20));
@@ -209,44 +211,20 @@
     
     //发布内容
     NSString *content = modeldetail.content;
-    
-    UILabel *contentLabel = [[UILabel alloc]init];
-    contentLabel.text = content;
-    contentLabel.font = [UIFont systemFontOfSize:17];
-    contentLabel.textColor = COL1;
-//    [contentLabel setBackgroundColor:[UIColor redColor]];
-    contentLabel.numberOfLines = 0;
-    contentLabel.textAlignment = NSTextAlignmentLeft;
-    [headerView addSubview:contentLabel];
-    
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    // 行间距设置为8
-    [paragraphStyle  setLineSpacing:8];
-    NSMutableAttributedString  *contentAttr = [[NSMutableAttributedString alloc] initWithString:contentLabel.text];
-    [contentAttr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [contentLabel.text length])];
-    contentLabel.attributedText = contentAttr;
-
-    //计算高度
-    CGSize textSize = [contentLabel.text boundingRectWithSize:CGSizeMake(DEVICE_Width-32, CGFLOAT_MAX)
-                                                           options:NSStringDrawingUsesLineFragmentOrigin
-                                                        attributes:@{NSFontAttributeName:contentLabel.font}
-                                                           context:nil].size;
-    int row = (int)(textSize.height/17)-1;
-    if (row<0) {
-        row = 0;
-    }
-    float contentLabelHeight = textSize.height+8*row;
-
-    [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    MDBwebVIew *webview = [[MDBwebVIew alloc] init];
+    [webview setDelegate:self];
+    [headerView addSubview:webview];
+    [webview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->headerView).with.offset(16);
         make.top.equalTo(contactView.mas_bottom).with.offset(0);
-        make.size.mas_equalTo(CGSizeMake(DEVICE_Width-32, contentLabelHeight));
+        make.width.offset(DEVICE_Width-32);
+        make.height.offset(1);
     }];
+    [webview refreshHtml:content];
     
     
-    contentSizeHeight += contentLabelHeight;
     
-    alignTopView = contentLabel;
+    alignTopView = webview;
     
     photoArr = modeldetail.image;
     NSInteger index = 0;
@@ -270,7 +248,7 @@
     adContentLabel.textAlignment = NSTextAlignmentLeft;
     [headerView addSubview:adContentLabel];
     
-    NSMutableParagraphStyle *adParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     // 行间距设置为8
     [paragraphStyle  setLineSpacing:8];
     NSMutableAttributedString  *adContentAttr = [[NSMutableAttributedString alloc] initWithString:adContentLabel.text];
@@ -375,7 +353,7 @@
                 }];
                 
                 self->contentSizeHeight += imageViewheight;
-                self->headerView.height = contentSizeHeight;
+                self->headerView.height = self->contentSizeHeight;
                 [self.tableView reloadData];
             }
             
@@ -417,7 +395,7 @@
         }];
 //    }
 }
-
+#pragma mark - 图片点击
 - (void)tapGestureAction:(UITapGestureRecognizer *)tapGesture {
     
     UIView *v = [self.view viewWithTag:222];
@@ -441,7 +419,7 @@
         [v removeFromSuperview];
     }
 }
-
+#pragma mark - 拨打电话
 - (void)callPhoneBtnOnTouch:(id)sender {
     
     UIView *v = [self.view viewWithTag:222];
@@ -601,6 +579,20 @@
     
 }
 
+#pragma mark - MDBwebDelegate
+-(void)webViewDidFinishLoad:(float)h webview:(MDBwebVIew *)webView
+{
+    [webView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.offset(h);
+    }];
+    
+    contentSizeHeight+=h;
+    headerView.height = contentSizeHeight;
+    
+    [self.tableView reloadData];
+    
+}
+
 
 #pragma mark --评论相关
 
@@ -615,7 +607,7 @@
     [self getpinglunData];
     
 }
-
+#pragma mark - 获取评论列表
 -(void)getpinglunData
 {
     NSMutableDictionary *dicpush = [NSMutableDictionary new];
@@ -645,8 +637,7 @@
 }
 
 
-#pragma mark -
-///回复
+#pragma mark - ///回复
 -(void)huiFuSelectActionModel:(id)value
 {
     if ([User isNeedLogin]) {
@@ -693,7 +684,7 @@
     
     
 }
-
+#pragma mark - 删除评论
 -(void)orderCellOtherActionItem:(id)model
 {
     HomeDetailContentModel *models = model;
@@ -744,7 +735,7 @@
     
     
 }
-
+#pragma mark - 收藏 取消
 -(void)collectAction
 {
     if ([User isNeedLogin]) {
@@ -793,7 +784,7 @@
     }
     
 }
-
+#pragma mark - 拨打电话
 -(void)phoneAction
 {
     NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@", modeldetail.mobile];
