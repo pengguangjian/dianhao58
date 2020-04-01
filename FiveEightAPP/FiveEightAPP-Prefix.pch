@@ -1,0 +1,171 @@
+//
+//  FiveEightAPP-Prefix.pch
+//  FiveEight
+//
+//  Created by caochun on 2019/9/11.
+//  Copyright © 2019年 DianHao. All rights reserved.
+//
+
+#ifndef FiveEightAPP_Prefix_pch
+#define FiveEightAPP_Prefix_pch
+
+#import <AVFoundation/AVFoundation.h>
+
+#import "UIButton+Gradient.h"
+#import "UIImage+Gradient.h"
+#import "NSArray+Runtime.h"
+#import "NSDictionary+Runtime.h"
+#import "NSMutableArray+Runtime.h"
+#import "NSMutableDictionary+Runtime.h"
+#import "NSString+Extension.h"
+#import "UIView+Masonry_LJC.h"
+#import "UIImageView+WebCache.h"
+#import "UIView+Size.h"
+#import "UIButton+XSZ_FixMultiClick.h"
+#import "UIControl+Runtime.h"
+#import "UIButton+ImageTitleSpacing.h"
+#import "UIView+YBInputControl.h"
+#import "UITextView+Placeholder.h"
+#import "NSString+extend.h"
+#import "UINavigationController+MethodSwizzling.h"
+#import "NSBundle+UWUtils.h"
+
+#import "TPKeyboardAvoidingTableView.h"
+#import "TPKeyboardAvoidingScrollView.h"
+#import "TPKeyboardAvoidingCollectionView.h"
+#import "Util.h"
+#import "MSUtil.h"
+#import "HttpManager.h"
+#import "MJExtension.h"
+#import "Masonry.h"
+#import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
+#import "SVProgressHUD.h"
+#import "ResponseData.h"
+#import "AFNetworking.h"
+#import "User.h"
+#import "NetWorkManager.h"
+#import "AppDelegate.h"
+#import "MTA.h"
+#import "UWConfig.h"
+
+#import <StoreKit/StoreKit.h>
+
+//弱引用 weakSelf
+#define WEAK_SELF __weak typeof(self) weakSelf = self
+//强引用
+#define STRONG_SELF __strong typeof(self) strongSelf = weakSelf
+
+//RGB颜色
+#define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define GHRANDOMCOLOR RGBA(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), 1)
+#define RGB(r,g,b) RGBA(r, g, b, 1.0f)
+
+
+//RGB颜色
+#define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define GHRANDOMCOLOR RGBA(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), 1)
+#define RGB(r,g,b) RGBA(r, g, b, 1.0f)
+
+#define HEXCOLOR(col) [MSUtil colorWithHexString:col]
+
+#define SCREENPROPERTION DEVICE_Height/667.0f
+#define FIT_WIDTH(w) w * DEVICE_Width / 375.f
+
+#define DEFAULTCOLOR1 HEXCOLOR(@"4ce9b3")
+#define DEFAULTCOLOR2 HEXCOLOR(@"0cc4bd")
+
+#define NAVCOLOR  DEFAULTCOLOR2
+
+#define TABBARUNSELECTEDTINTCOLOR COL2
+#define TABBARSELECTEDTINTCOLOR DEFAULTCOLOR2
+
+#define COL1 HEXCOLOR(@"1a1a1a")
+#define COL2 HEXCOLOR(@"717e7d")
+#define COL3 HEXCOLOR(@"b9c3c2")
+#define COL4 RGBA(222, 222, 222, 1.0f)
+#define COL5 RGBA(252, 252, 254, 1.0f)
+#define COL6 RGBA(87, 92, 122, 1.0f)
+#define COL7 RGBA(78, 82, 105, 1.0f)
+#define COL8 RGBA(244, 244, 244, 1.0f)
+#define COL9 RGBA(40, 180, 73, 1.0f)
+#define COL10 RGBA(174, 178, 211, 1.0f)
+#define COL11 RGBA(230, 180, 16, 1.0f)
+
+
+#define COL21 RGBA(21, 201, 188, 1.0f)
+#define COL22 RGBA(61, 224, 181, 0.3f)
+
+#define DEFAULTGREENCOL RGBA(47, 189, 80, 1.0f)
+
+#define HIGHLIGHTCOL RGBA(255, 255, 255, 0.8)
+
+#define SEPARATORCOLOR HEXCOLOR(@"eaeaea")
+#define HEADBORDERCOLOR HEXCOLOR(@"f4f4f4")
+#define VIEWBGCOLOR HEXCOLOR(@"f7f7f7")
+
+#define DEFAULTSECTIONALIGNHEIGHT 10
+
+#define BLUECOLOR HEXCOLOR(@"25bbf9")
+#define REDCOLOR HEXCOLOR(@"f34b4b")
+#define ORANGECOLOR HEXCOLOR(@"ffae00")
+#define ORANGEREDCOLOR RGBA(252, 86, 56, 1.0f)
+#define PINKCOLOR RGBA(254, 212, 213, 1.0f)
+
+#define ONE_PAGE  10
+
+#define CLIENTSERVICE @"023-67191558"
+
+#define ONEDAY 24*60*60*3/24
+
+#if DEBUG
+//测试
+
+//#define METHOD_URLSTR  @"http://192.168.0.104/api/"
+//#define METHOD_URLSTR  @"http://api.alovn.com/api/"
+#define METHOD_URLSTR  @"http://local.dottp.com/api/"
+#define IMAGEPREFIX @"http://uatimage.xsztn.cn/"
+#define H5ADDR @"http://uatwap.xsztn.cn"
+
+#else
+//阿里云
+#define METHOD_URLSTR @"https://www.alovn.com/api/"
+#define IMAGEPREFIX @"https://image.xsztn.cn/"
+#define H5ADDR @"https://wap.xsztn.cn"
+
+#endif
+
+#define WITHOUTDATAVIEWTAG 10
+
+
+#define DEVICE_Width                    ([[UIScreen mainScreen] bounds].size.width)
+#define DEVICE_Height                   ([[UIScreen mainScreen] bounds].size.height)
+
+#define PHOTOPROPERTY DEVICE_Width*(9.0f/16.0f)
+
+#define ALOGDebug(...) NSLog(__VA_ARGS__)
+
+#define HUANXINPWD @"user"
+
+#define SUCCESS @"1"
+#define FAIL @"FAIL"
+#define UNLOGIN @"UNLOGIN"
+
+
+#define kHaveUnreadAtMessage    @"kHaveAtMessage"
+#define kAtYouMessage           1
+#define kAtAllMessage           2
+
+
+///选择的城市的信息
+#define SELECTCITYNAME @"selectcityname"
+#define SELECTCITYID @"selectcityid"
+
+
+#define SafeAreaTopHeight (DEVICE_Height >= 812.0 ? 88 : 64)
+#define SafeAreaBottomHomeHeight (DEVICE_Height >= 812.0 ? 34 : 0)
+
+/// 第一个参数是当下的控制器适配iOS11 一下的，第二个参数表示scrollview或子类
+#define AdjustsScrollViewInsetNever(controller,view) if(@available(iOS 11.0, *)) {view.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;} else if([controller isKindOfClass:[UIViewController class]]) {controller.automaticallyAdjustsScrollViewInsets = false;}
+
+#endif /* FiveEightAPP_Prefix_pch */

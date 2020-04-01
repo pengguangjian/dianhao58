@@ -1,0 +1,224 @@
+/*
+  Localizable.strings
+  FiveEightAPP
+
+  Created by caochun on 2019/9/24.
+  Copyright © 2019 DianHao. All rights reserved.
+*/
+
+//图片国际化
+"mainImage" = "mainImage_ch";
+//图片调用方法：NSLocalizedString(@"mainImage", nil)
+
+//文本国际化
+"mainText" = "Chinese";
+//文本调用方法：NSLocalizedString(@"mainText", nil);
+
+
+"pushCancle" = "上传失败";
+"shangchuanchenggong" = "上传成功";
+"networkCancle" = "网络错误";
+"pushSuccess" = "发布成功";
+"changeSuccess" = "修改成功";
+"submitSuccess" = "成功提交";
+"shanchu" = "删除";
+
+
+//Tabbar
+"Home" = "首页";
+"Find" = "发现";
+"Publish" = "发布";
+"Message" = "消息";
+"Me" = "我的";
+
+//登录界面
+"Login" = "登录";
+//////
+"quickLogin" = "快捷登录";
+"passwordLogin" = "密码登录";
+"pleaseMobile" = "请输入您的手机号";
+"pleaseCode" = "请输入验证码";
+"pleasePassWord" = "请输入密码";
+"getCode" = "获取验证码";
+"thirdLogin" = "第三方账号登录";
+"register" = "注册";
+"forgetPassword" = "忘记密码";
+"nickName" = "昵称";
+"pleaseEmail" = "请输入邮箱";
+"PleaseToPassWord" = "请再次输入密码";
+"chongxinhuoqu" = "重新获取";
+"chenggongqingqiuyanzm" = "成功请求验证码";
+"xiugaimima" = "修改密码";
+"queding" = "确定";
+"pleaseNewPassWord" = "请输入新密码";
+"pleaseNewToPassWord" = "两次新密码不一致";
+"yiyuedubtyalonxieyi" = "已阅读并同意协议《ALOVN使用协议及声明》";
+
+
+
+//我的界面
+"ImmediatelyLogin" = "立即登录";
+///////////
+"ImmediatelyLoginComtent" = "登录后享ALOVN优质服务";
+"mycollect" = "我的收藏";
+"publicHestory" = "发布历史";
+"regionalPartner" = "区域合伙人";
+"myCertification" = "我的认证";
+"feedback" = "意见反馈";
+"customerTelephone" = "客服电话";
+"setUp" = "setUp";
+
+
+/////
+//首页
+"pushPublic" = "发布";
+"zuixin" = "最新";
+"hotPlate" = "热门板块";
+"citiesOpened" = "已开通城市";
+"henei" = "河内";
+"zhaogongzuozhaofangz" = "找工作 找房子";
+"xuanzhechengshi" = "选择城市";
+"xuanzhediqu" = "选择地区";
+"quanbu" = "全部";
+"sousuo" = "搜索";
+
+
+////
+///详情
+"details" = "详情";
+"mobile" = "电话";
+"comments" = "评论";
+"comments2" = "条评论";
+"deleteComments" = "删除评论";
+"callUp" = "拨打电话";
+"collection" = "收藏";
+"cancel" = "取消";
+"send" = "发送";
+"pleaseComment" = "请输入评论";
+"collectionCancle" = "取消收藏";
+"huifu" = "回复";
+"detailCommentdetail" = "【联系时请说是ALOVN看到的,谢谢】添加ALOVN微信：p879176344，可免费发布租房、招聘、二手交易、生活服务等个人信息。 ALOVN官方授权账号，不信你去官网看:） 骗子仿得了我们的相貌，仿不了我们爱你的心，记得交易要谨慎哦";
+
+//////
+///发布
+"kuaijiefabu" = "快捷发布";
+"pleaseTitle" = "请输入标题";
+"selectType" = "选择类别";
+"pleaseSelectType" = "请选择类别";
+"selectArea" = "选择区域";
+"pleaseSelectArea" = "请选择区域";
+"pleaseInfoMessage" = "请输入信息描述";
+"addImage" = "添加图片";
+"contacts" = "联系人";
+"pleaceContacts" = "请输入联系人";
+"phone" = "手机";
+"yanzhengma" = "验证码";
+"shangchuantupianzhong" = "上传图片中";
+"tishi" = "提示";
+"zifugeshubunengdayu" = "字符个数不能大于50";
+"zifugeshubunengdayus2" = "字符个数不能大于20000";
+"yulan" = "预览";
+"zuiduoxuanzztupian" = "最多选择5张照片";
+"xiayibu" = "下一步";
+"yuantu" = "原图";
+
+
+//////
+///消息
+"systemMessage" = "系统消息";
+
+////
+///设置
+"personalInformation" = "个人信息";
+"securitySetting" = "安全设置";
+"currency" = "通用";
+"systemScore" = "喜欢ALOVN？去评分吧";
+"systemAbout" = "关于ALOVN";
+"loginOut" = "退出登录";
+"qingchuhuancun" = "清除缓存";
+"tuisongtongzhi" = "推送通知";
+"niquedingyaschcm" = "你确定要清除缓存吗?";
+"dengluima" = "登录密码";
+"xiugai" = "修改";
+"shiyongxieyijishengm" = "使用协议及声明";
+"qiehuanyuyan" = "切换语言";
+
+//////
+///个人信息
+"zhanghuygerenxinxi" = "账户与个人信息";
+"headImage" = "头像";
+"accountBinding" = "账号绑定";
+"unbound" = "未绑定";
+"bound" = "已绑定";
+"changeOk" = "确认修改";
+"setNickNameCountChar" = "昵称最多可设置16个字";
+"qingtianxiexinnicheng" = "请填写新昵称";
+"baomi" = "保密";
+"nan" = "男";
+"nv" = "女";
+"xuanzhexingbie" = "选择性别";
+"weishezhi" = "未设置";
+"shengri" = "生日";
+"xingbie" = "性别";
+"paizhao" = "拍照";
+"chongxiangcezhongxuanz" = "从相册中选择";
+"xuanzhetupian" = "选择图片";
+
+
+/////
+///区域合伙人
+"shenfqingalovnhehuoren" = "申请alovn区域合伙人";
+"applicationType" = "申请类型";
+"regionalPartner" = "区域合伙人";
+"applicationArea" = "申请地区";
+"pleaseSelectRegion" = "请选择地区";
+"pleaseWriteName" = "请填写您的姓名";
+"contactNumber" = "联系电话";
+"pleaseWriteEmail" = "请输入您的邮箱";
+"applyingPartner" = "申请合伙人";
+
+/////
+///我的认证
+"certificationCompleteEasier" = "*完成认证，发布更轻松";
+"personalAuthentication" = "个人认证";
+"eerchantCertification" = "企业/商家认证";
+"pleaseRealDataAuthentication" = "请输入你的真实资料用于认证";
+"certified" = "已认证";
+"submitted" = "已提交";
+"notPass" = "未通过";
+"realName" = "真实姓名";
+"pleaserealName" = "请输入您的真实姓名";
+"idNumber" = "身份证号";
+"pleaseidNumber" = "请输入您的身份证号";
+"frontIDCard" = "身份证正面";
+"reverseIDCard" = "身份证反面";
+"agreementConsent" = "我同意《ALOVN认证服务协议》";
+"confirmSubmission" = "确认提交";
+"pleaseServiceAgreement" = "请同意服务协议";
+"qingtianjiashenfenztup" = "请添加身份证图片";
+
+///
+"pleaseEnterpriseRealDataAuthentication" = "请输入企业真实资料用于认证";
+"enterpriseName" = "企业名称";
+"pleaseEnterpriseName" = "请输入企业名称";
+"enterpriseNumber" = "企业注册号";
+"noUnifiedCode" = "如无可填写统一社会信用代码";
+"legalName" = "法人姓名";
+"pleaseLegalName" = "请输入法人姓名";
+"legalNumber" = "法人身份证号";
+"pleaseLegalNumber" = "请输入法人身份证号";
+"legalFrontIDCard" = "法人身份证正面";
+"legalReverseIDCard" = "法人身份证反面";
+"businessPhoto" = "营业执照照片";
+"pleaseBusinessPhoto" = "请添加营业执照图片";
+"pleaseEnterpriseNumber" = "请输入企业注册号";
+
+
+////
+///意见反馈
+"phoneNumber" = "电话号码";
+"pleaseNumber" = "请输入联系电话";
+"pleaseOpinion" = "请输入您的意见反馈，最多不超过300个字…";
+"pleaseOpinion1" = "请输入您的意见反馈";
+"submission" = "提交";
+"submissionTips" = "*非常感谢您对我们提出的意见反馈，我们收到反馈信息，会第一时间处理！";

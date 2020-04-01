@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		9D9C10770A72F37DF50214C08234C037 /* ZaloSDK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 9A0CBF0DEC182E4938EF18D422A41FEA /* Build configuration list for PBXAggregateTarget "ZaloSDK" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = ZaloSDK;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		E486D59E1E097CA14258AD56463B24AC /* Pods-FiveEightAPP-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C60352545A240B9B53F7FBD63731BB9 /* Pods-FiveEightAPP-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05CFE778DD74A2EE990DBB51E9EF565E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D9C10770A72F37DF50214C08234C037;
+			remoteInfo = ZaloSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01A1E1735AF942375BD27C25783A143E /* ZaloSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZaloSDK.framework; path = ZaloSDK/Frameworks/ZaloSDK.framework; sourceTree = "<group>"; };
+		116E110D8C0FD8A14515926AF00FB618 /* libPods-FiveEightAPP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-FiveEightAPP.a"; path = "libPods-FiveEightAPP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		175619EBF2FD785B2475661334B44EFC /* Pods-FiveEightAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FiveEightAPP.debug.xcconfig"; sourceTree = "<group>"; };
+		1F285CDC2E316F472D9A2A4B5636EC53 /* ZaloSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZaloSDKCoreKit.framework; path = ZaloSDK/Frameworks/ZaloSDKCoreKit.framework; sourceTree = "<group>"; };
+		873B0ED485CFE08D7233726254CF8EFA /* Pods-FiveEightAPP-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FiveEightAPP-acknowledgements.plist"; sourceTree = "<group>"; };
+		9C2FB244E0A35246C52E2A5D4E8DDF75 /* Pods-FiveEightAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FiveEightAPP.release.xcconfig"; sourceTree = "<group>"; };
+		9C60352545A240B9B53F7FBD63731BB9 /* Pods-FiveEightAPP-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FiveEightAPP-dummy.m"; sourceTree = "<group>"; };
+		9CE1DCC67B4AF97E72A1DD91901109FB /* Pods-FiveEightAPP-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FiveEightAPP-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A8CFDE9E87C30B753718375FA0F082C2 /* ZaloSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZaloSDK.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CBE908C6420E81804D29C58FE9D92B07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1D037178733737C925689E2EF7FFBFEE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B56C95B1B70D73BFC634CDF4E3F85EBC /* ZaloSDK */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B56C95B1B70D73BFC634CDF4E3F85EBC /* ZaloSDK */ = {
+			isa = PBXGroup;
+			children = (
+				FE190C15F7F57078B9ABFFB132135D93 /* Frameworks */,
+				C5AFEFD507688C43F80C08DE0C7EE913 /* Support Files */,
+			);
+			name = ZaloSDK;
+			path = ZaloSDK;
+			sourceTree = "<group>";
+		};
+		C5AFEFD507688C43F80C08DE0C7EE913 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A8CFDE9E87C30B753718375FA0F082C2 /* ZaloSDK.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ZaloSDK";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				1D037178733737C925689E2EF7FFBFEE /* Pods */,
+				EAE35A02D8BD4CFADB856619F40610AA /* Products */,
+				F9DFD72592DF152473C8920298487362 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EAE35A02D8BD4CFADB856619F40610AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				116E110D8C0FD8A14515926AF00FB618 /* libPods-FiveEightAPP.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC6C1BF637594BD8D609C18F98D105DB /* Pods-FiveEightAPP */ = {
+			isa = PBXGroup;
+			children = (
+				9CE1DCC67B4AF97E72A1DD91901109FB /* Pods-FiveEightAPP-acknowledgements.markdown */,
+				873B0ED485CFE08D7233726254CF8EFA /* Pods-FiveEightAPP-acknowledgements.plist */,
+				9C60352545A240B9B53F7FBD63731BB9 /* Pods-FiveEightAPP-dummy.m */,
+				175619EBF2FD785B2475661334B44EFC /* Pods-FiveEightAPP.debug.xcconfig */,
+				9C2FB244E0A35246C52E2A5D4E8DDF75 /* Pods-FiveEightAPP.release.xcconfig */,
+			);
+			name = "Pods-FiveEightAPP";
+			path = "Target Support Files/Pods-FiveEightAPP";
+			sourceTree = "<group>";
+		};
+		F9DFD72592DF152473C8920298487362 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC6C1BF637594BD8D609C18F98D105DB /* Pods-FiveEightAPP */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		FE190C15F7F57078B9ABFFB132135D93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01A1E1735AF942375BD27C25783A143E /* ZaloSDK.framework */,
+				1F285CDC2E316F472D9A2A4B5636EC53 /* ZaloSDKCoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		693DD7511B1862EC361579162D670976 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FDD8CB98BB62A36511F7C915C793E755 /* Pods-FiveEightAPP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD1F2B754FE7344D24B5AB7CC69EDA70 /* Build configuration list for PBXNativeTarget "Pods-FiveEightAPP" */;
+			buildPhases = (
+				693DD7511B1862EC361579162D670976 /* Headers */,
+				974B63DD070C4499B08B59C087AADB0D /* Sources */,
+				CBE908C6420E81804D29C58FE9D92B07 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E6B1241D3C9CFCFB8B5A983161B34AD /* PBXTargetDependency */,
+			);
+			name = "Pods-FiveEightAPP";
+			productName = "Pods-FiveEightAPP";
+			productReference = 116E110D8C0FD8A14515926AF00FB618 /* libPods-FiveEightAPP.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = EAE35A02D8BD4CFADB856619F40610AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FDD8CB98BB62A36511F7C915C793E755 /* Pods-FiveEightAPP */,
+				9D9C10770A72F37DF50214C08234C037 /* ZaloSDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		974B63DD070C4499B08B59C087AADB0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E486D59E1E097CA14258AD56463B24AC /* Pods-FiveEightAPP-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2E6B1241D3C9CFCFB8B5A983161B34AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZaloSDK;
+			target = 9D9C10770A72F37DF50214C08234C037 /* ZaloSDK */;
+			targetProxy = 05CFE778DD74A2EE990DBB51E9EF565E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4BE66A09A74FD25164AAB3C2645B9B93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		699B79D34B8BC81647784DAEC0828739 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 175619EBF2FD785B2475661334B44EFC /* Pods-FiveEightAPP.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		74A5D45CBC7A99A2FB71413AAA782FF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8CFDE9E87C30B753718375FA0F082C2 /* ZaloSDK.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7EF7227D9B20A1D549000096ACCB23D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		AEB50F2026A4011825E8BAFF86DEEC1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C2FB244E0A35246C52E2A5D4E8DDF75 /* Pods-FiveEightAPP.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCD489AC92F685194EF0CCA33D8B129E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8CFDE9E87C30B753718375FA0F082C2 /* ZaloSDK.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EF7227D9B20A1D549000096ACCB23D7 /* Debug */,
+				4BE66A09A74FD25164AAB3C2645B9B93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A0CBF0DEC182E4938EF18D422A41FEA /* Build configuration list for PBXAggregateTarget "ZaloSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74A5D45CBC7A99A2FB71413AAA782FF9 /* Debug */,
+				BCD489AC92F685194EF0CCA33D8B129E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD1F2B754FE7344D24B5AB7CC69EDA70 /* Build configuration list for PBXNativeTarget "Pods-FiveEightAPP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				699B79D34B8BC81647784DAEC0828739 /* Debug */,
+				AEB50F2026A4011825E8BAFF86DEEC1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

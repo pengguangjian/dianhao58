@@ -1,0 +1,25 @@
+/* 
+  InfoPlist.strings
+  FiveEightAPP
+
+  Created by caochun on 2019/9/24.
+  Copyright © 2019 DianHao. All rights reserved.
+*/
+
+CFBundleDisplayName = "ALOVN";
+
+//请求权限国际化
+LSApplicationCategoryType = "使用您的位置为您指派附近技师。否则系统将使用默认地址为您指派技师！";
+NSAppleMusicUsageDescription = "58需要您的同意,才能访问媒体资料库";
+NSBluetoothPeripheralUsageDescription = "58需要您的同意,才能访问蓝牙";
+NSCalendarsUsageDescription = "58需要您的同意,才能访问日历";
+NSCameraUsageDescription = "打开相机功能，才能进行面对面下单二维码扫描";
+NSLocationAlwaysAndWhenInUseUsageDeion  = "使用您的位置为您获取附近信息。";
+NSLocationAlwaysAndWhenInUseUsageDescription  = "使用您的位置为您获取附近信息。";
+NSLocationAlwaysUsageDescription  = "使用您的位置为您获取附近信息。";
+NSLocationUsageDescription  = "使用您的位置为您获取附近信息。";
+NSLocationWhenInUseUsageDeion  = "使用您的位置为您获取附近信息。";
+NSLocationWhenInUseUsageDescription  = "使用您的位置为您获取附近信息。";
+NSMicrophoneUsageDescription  = "打字太累了吗，来尝试一下与小伙伴语音聊天吧！";
+NSPhotoLibraryAddUsageDescription  = "打开相册功能，允许58访问相册";
+NSPhotoLibraryUsageDescription  = "打开相册功能，允许58访问相册";
