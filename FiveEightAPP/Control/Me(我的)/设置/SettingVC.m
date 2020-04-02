@@ -29,8 +29,8 @@
     
     self.tableView.mj_header = nil;
     self.tableView.mj_footer = nil;
-    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 0.0001f)];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 0.0001f)];
+//    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 0.0001f)];
+//    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 0.0001f)];
     
     self.tableView.separatorColor = SEPARATORCOLOR;
     
@@ -162,17 +162,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //取消选中状态
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 0 || indexPath.section == 2) {
-        if ([User isNeedLogin]) {
-            LoginVC *loginVC = [[LoginVC alloc] initWithNibName:@"LoginVC" bundle:nil];
-            loginVC.hidesBottomBarWhenPushed = YES;
-            UINavigationController *loginNC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-            loginNC.modalPresentationStyle  = UIModalPresentationFullScreen;
-            [self presentViewController:loginNC animated:YES completion:nil];
-            return;
+    if (indexPath.section == 0) {
+        if(indexPath.row == 0 || indexPath.row == 1)
+        {
+            if ([User isNeedLogin]) {
+                LoginVC *loginVC = [[LoginVC alloc] initWithNibName:@"LoginVC" bundle:nil];
+                loginVC.hidesBottomBarWhenPushed = YES;
+                UINavigationController *loginNC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+                loginNC.modalPresentationStyle  = UIModalPresentationFullScreen;
+                [self presentViewController:loginNC animated:YES completion:nil];
+                return;
+            }
         }
+        
     }
     
     if (indexPath.section == 1 && indexPath.row == 0) {

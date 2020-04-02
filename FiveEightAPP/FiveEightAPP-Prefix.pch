@@ -118,8 +118,8 @@
 
 #define ONEDAY 24*60*60*3/24
 
-#if DEBUG
-//测试
+//#if DEBUG
+////测试
 
 //#define METHOD_URLSTR  @"http://192.168.0.104/api/"
 //#define METHOD_URLSTR  @"http://api.alovn.com/api/"
@@ -127,13 +127,13 @@
 #define IMAGEPREFIX @"http://uatimage.xsztn.cn/"
 #define H5ADDR @"http://uatwap.xsztn.cn"
 
-#else
-//阿里云
-#define METHOD_URLSTR @"https://www.alovn.com/api/"
-#define IMAGEPREFIX @"https://image.xsztn.cn/"
-#define H5ADDR @"https://wap.xsztn.cn"
-
-#endif
+//#else
+////阿里云
+//#define METHOD_URLSTR @"https://www.alovn.com/api/"
+//#define IMAGEPREFIX @"https://image.xsztn.cn/"
+//#define H5ADDR @"https://wap.xsztn.cn"
+//
+//#endif
 
 #define WITHOUTDATAVIEWTAG 10
 

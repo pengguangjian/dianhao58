@@ -59,6 +59,8 @@ static NSString *kLocalCellId = @"LocalImageCell";
     BOOL isloaddata;
     
     BOOL isuserinfo;
+    ///是否可以跳转
+    BOOL isPush;
     
 }
 @property (nonatomic,strong) FEHorizontalMenuView *typeMenuView;
@@ -105,16 +107,17 @@ static NSString *kLocalCellId = @"LocalImageCell";
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
     switch (status) {
     case AFNetworkReachabilityStatusUnknown:
-
-    NSLog(@"未识别的网络");
+        {
+            NSLog(@"未识别的网络");
             [self->_emptyView setHidden:NO];
-
+        }
     break;
 
     case AFNetworkReachabilityStatusNotReachable:
-
-    NSLog(@"不可达的网络(未连接)");
+        {
+           NSLog(@"不可达的网络(未连接)");
             [self->_emptyView setHidden:NO];
+        }
 
     break;
 
@@ -265,7 +268,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    isPush = YES;
     [Util setNavigationBar:self.navigationController.navigationBar andBackgroundColor:[UIColor whiteColor] andIsShowSplitLine:NO];
     [self setAddressButtonValue];
     
@@ -278,7 +281,6 @@ static NSString *kLocalCellId = @"LocalImageCell";
 - (void)viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
-
     [Util setNavigationBar:self.navigationController.navigationBar andBackgroundColor:[UIColor whiteColor] andIsShowSplitLine:YES];
 }
 
@@ -557,6 +559,8 @@ static NSString *kLocalCellId = @"LocalImageCell";
 #pragma mark - 搜索
 -(void)searchBtnOnTouch
 {
+    if(isPush==NO)return;
+    isPush=NO;
     HomeSearchVC *hvc = [[HomeSearchVC alloc] init];
     hvc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:hvc animated:YES];
@@ -566,6 +570,9 @@ static NSString *kLocalCellId = @"LocalImageCell";
 #pragma mark - 发布
 -(void)publishBtnOnTouch
 {
+    if(isPush==NO)return;
+    isPush=NO;
+    
     if ([User isNeedLogin]) {
         [Util LoginVC:YES];
         return;
@@ -585,6 +592,8 @@ static NSString *kLocalCellId = @"LocalImageCell";
 #pragma mark - 最新消息点击
 -(void)selectNewMessageIndex:(NSInteger)index
 {
+    if(isPush==NO)return;
+    isPush=NO;
     
     NSDictionary *dic = datacontrol.arrNewMessage[index];
     
@@ -648,6 +657,9 @@ static NSString *kLocalCellId = @"LocalImageCell";
 //    vc.oc = _oc;
 //    vc.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController pushViewController:vc animated:YES];
+    if(isPush==NO)return;
+    isPush=NO;
+    
     HomeLanMuModel *model = arrLanMu[index];
     HomeBanKuaiVC *hvc = [[HomeBanKuaiVC alloc] init];
     hvc.hidesBottomBarWhenPushed = YES;
@@ -707,6 +719,9 @@ static NSString *kLocalCellId = @"LocalImageCell";
 #pragma mark -- ZKCycleScrollView Delegate 滚动图
 - (void)cycleScrollView:(FECycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     
+    if(isPush==NO)return;
+    isPush=NO;
+    
     NSDictionary *dic = datacontrol.arrLunBoImage[index];
 //    WebViewVC *wvc = [[WebViewVC alloc] initWithTitle:<#(NSString *)#> andUrl:<#(NSString *)#>]
     NSLog(@"selected index: %@", dic);
@@ -733,6 +748,9 @@ static NSString *kLocalCellId = @"LocalImageCell";
 #pragma mark - 热门板块代理
 -(void)selectItemValue:(id)value
 {
+    if(isPush==NO)return;
+    isPush=NO;
+    
     NSDictionary *dic = value;
     HomeBanKuaiItemVC *bvc = [[HomeBanKuaiItemVC alloc] init];
     bvc.hidesBottomBarWhenPushed = YES;
@@ -744,6 +762,9 @@ static NSString *kLocalCellId = @"LocalImageCell";
 #pragma mark --- 城市选择
 
 - (void)cityBtnOnTouch {
+    
+    if(isPush==NO)return;
+    isPush=NO;
     
     OpenedCityVC *vc = [[OpenedCityVC alloc] initWithNibName:@"OpenedCityVC" bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
@@ -806,6 +827,19 @@ static NSString *kLocalCellId = @"LocalImageCell";
     NSDictionary *dataDic = @{@"lang":@"zh-cn"};
     [hm getRequetInterfaceData:dataDic withInterfaceName:@"frontend.channel/lists"];
     
+}
+
+- (MDBEmptyView *)emptyView{
+    if (!_emptyView) {
+        _emptyView = [[MDBEmptyView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height)];
+        [self.view addSubview:_emptyView];
+        _emptyView.remindStr = @"暂时还没有数据哦～";
+        _emptyView.hidden = YES;
+        [_emptyView setUserInteractionEnabled:YES];
+        UITapGestureRecognizer *tapemp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(initData)];
+        [_emptyView addGestureRecognizer:tapemp];
+    }
+    return _emptyView;
 }
 
 @end

@@ -17,12 +17,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2f-JK-XMX">
-                        <rect key="frame" x="5" y="7.5" width="40" height="35"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="u2f-JK-XMX">
+                        <rect key="frame" x="2" y="7.5" width="46" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="R1d-lk-W5W"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -41,8 +41,8 @@
                 <constraint firstItem="lzZ-Gv-UoE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="7e4-AM-NaT"/>
                 <constraint firstItem="u2f-JK-XMX" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="IVR-Mu-thy"/>
                 <constraint firstAttribute="trailing" secondItem="lzZ-Gv-UoE" secondAttribute="trailing" constant="4" id="Kcd-cj-1Ww"/>
-                <constraint firstItem="u2f-JK-XMX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Lcp-Ca-Cof"/>
-                <constraint firstAttribute="trailing" secondItem="u2f-JK-XMX" secondAttribute="trailing" constant="5" id="OM9-WG-Eyv"/>
+                <constraint firstItem="u2f-JK-XMX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="Lcp-Ca-Cof"/>
+                <constraint firstAttribute="trailing" secondItem="u2f-JK-XMX" secondAttribute="trailing" constant="2" id="OM9-WG-Eyv"/>
                 <constraint firstItem="u2f-JK-XMX" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="i2E-pe-rTn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>

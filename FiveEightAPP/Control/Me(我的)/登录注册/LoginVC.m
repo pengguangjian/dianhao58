@@ -783,8 +783,8 @@
     switch (sender.tag) {
         case 100:
             {///fb
-//                [self facebookLoginBtnOnTouch];
-                [self thirdLogin:1 withBindCode:@"sdkff2384234"];
+                [self facebookLoginBtnOnTouch];
+//                [self thirdLogin:1 withBindCode:@"sdkff2384234"];
             }
             break;
          case 101:
@@ -1175,7 +1175,7 @@
     if (code == ASAuthorizationErrorUnknown) { // 授权请求未知错误
         NSLog(@"Apple登录_授权请求未知错误");
         
-        [self thirdLogin:4 withBindCode:@"99435834345"];
+//        [self thirdLogin:4 withBindCode:@"99435834345"];
     } else if (code == ASAuthorizationErrorCanceled) { // 授权请求取消了
         NSLog(@"Apple登录_授权请求取消了");
     } else if (code == ASAuthorizationErrorInvalidResponse) { // 授权请求响应无效

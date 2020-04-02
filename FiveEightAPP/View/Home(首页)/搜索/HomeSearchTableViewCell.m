@@ -103,7 +103,7 @@
         [lbaddress mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(lbtitle);
             make.bottom.equalTo(lbother.mas_top);
-            make.width.offset(160);
+            make.right.equalTo(viewback.mas_right).offset(-150);
             make.height.offset(20);
         }];
         _lbaddress = lbaddress;
@@ -113,12 +113,12 @@
         UILabel *lbtime = [[UILabel alloc] init];
         [lbtime setTextColor:RGB(30, 30, 30)];
         [lbtime setTextAlignment:NSTextAlignmentRight];
-        [lbtime setFont:[UIFont systemFontOfSize:15]];
+        [lbtime setFont:[UIFont systemFontOfSize:13]];
         [viewback addSubview:lbtime];
         [lbtime mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(lbtitle);
             make.top.equalTo(lbaddress);
-            make.width.offset(160);
+            make.left.equalTo(lbaddress.mas_right);
             make.height.offset(20);
         }];
         _lbtime = lbtime;
@@ -176,7 +176,7 @@
         [_lbaddress setText:[NSString stringWithFormat:@"%@",model.area_name]];
     }
     
-    [_lbviews setText:[NSString stringWithFormat:@"%@%@",model.views,NSLocalizedString(@"comments2", nil)]];
+    [_lbviews setText:[NSString stringWithFormat:@"%d%@",model.views.intValue,NSLocalizedString(@"comments2", nil)]];
     
     [_imgvrz setImage:[UIImage imageNamed:@""]];
     if(model.authentication_status.intValue == 1)

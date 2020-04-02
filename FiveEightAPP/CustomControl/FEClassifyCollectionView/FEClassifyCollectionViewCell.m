@@ -19,6 +19,8 @@
     [self.classifyLabel.layer setBorderColor:RGB(200, 200, 200).CGColor];
     [self.classifyLabel.layer setBorderWidth:1];
     self.classifyLabel.height = 35;
+    self.classifyLabel.adjustsFontSizeToFitWidth = YES;
+    self.classifyLabel.minimumScaleFactor = 8;
     
     [self.redView.layer setMasksToBounds:YES];
     [self.redView.layer setCornerRadius:self.redView.width/2.f];
