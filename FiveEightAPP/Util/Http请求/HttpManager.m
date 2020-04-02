@@ -132,7 +132,6 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
     NSString *userSettingLanguage = [NSBundle currentLanguage];
     
     if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
-        [userSettingLanguage isEqualToString:@"en"]||
         [userSettingLanguage isEqualToString:@"vi"])) {
         userSettingLanguage = @"zh-Hans";
     }
@@ -349,7 +348,6 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
     NSString *userSettingLanguage = [NSBundle currentLanguage];
     
     if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
-        [userSettingLanguage isEqualToString:@"en"]||
         [userSettingLanguage isEqualToString:@"vi"])) {
         userSettingLanguage = @"zh-Hans";
     }

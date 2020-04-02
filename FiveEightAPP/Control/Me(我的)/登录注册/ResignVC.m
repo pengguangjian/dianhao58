@@ -13,6 +13,9 @@
 
 @interface ResignVC ()
 {
+    
+    UIScrollView *scvback;
+    
     UIButton *requestVerityCodeBtn;
     
     NSMutableArray *arrFiled;
@@ -28,14 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    if(_isbangding)
-    {
-        [self setNavigationBarTitle:NSLocalizedString(@"accountBinding", nil) leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
-    }
-    else
-    {
-        [self setNavigationBarTitle:NSLocalizedString(@"register", nil) leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
-    }
+    [self setNavigationBarTitle:NSLocalizedString(@"register", nil) leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
     
     
     self.navigationItem.hidesBackButton = YES;
@@ -75,14 +71,14 @@
         make.bottom.equalTo(self.view).with.offset(0);
     }];
     
-    UIScrollView *scvback = [[UIScrollView alloc] init];
-    [scvback setBackgroundColor:[UIColor clearColor]];
+    scvback = [[UIScrollView alloc] init];
+    [scvback setBackgroundColor:RGBA(0, 0, 0, 0)];
     [self.view addSubview:scvback];
     [scvback mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).with.offset(SafeAreaTopHeight);
-        make.left.equalTo(self.view).with.offset(0);
-        make.right.equalTo(self.view).with.offset(0);
-        make.bottom.equalTo(self.view).with.offset(0);
+        make.left.offset(0);
+        make.width.offset(DEVICE_Width);
+        make.top.offset(SafeAreaTopHeight);
+        make.height.offset(DEVICE_Height);
         
     }];
     
@@ -90,8 +86,8 @@
     logoImageView.image = [UIImage imageNamed:@"login_logo"];
     [scvback addSubview:logoImageView];
     [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).with.offset(SafeAreaTopHeight*SCREENPROPERTION);
-        make.centerX.equalTo(self.view);
+        make.top.offset(10);
+        make.centerX.equalTo(self->scvback);
         make.size.mas_equalTo(CGSizeMake(182/2.0, 172/2.0));
     }];
     
@@ -107,7 +103,9 @@
     [self drawInfoView:viewinfo];
     
     
-    
+    [scvback mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(viewinfo.mas_bottom);
+    }];
     
 }
 
@@ -133,13 +131,6 @@
             [fieldname setSecureTextEntry:YES];
         }
         [arrFiled addObject:fieldname];
-        if(_isbangding)
-        {
-            if(i==0)
-            {
-                [fieldname setText:_strnickname];
-            }
-        }
     }
     
     UIView *viewcode = [[UIView alloc] init];
@@ -225,7 +216,7 @@
     
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(userAgreementBtn.mas_bottom).offset(30);
+        make.bottom.equalTo(userAgreementBtn.mas_bottom).offset(50);
     }];
     view.layer.masksToBounds = YES;
     view.layer.cornerRadius = 4;
@@ -347,21 +338,9 @@
     [dicpush setObject:fieldpass.text forKey:@"password"];
     [dicpush setObject:fieldemail.text forKey:@"email"];
     [dicpush setObject:fieldphone.text forKey:@"mobile"];
-    
-    if(_isbangding)
-    {
-        [dicpush setObject:fieldcode.text forKey:@"smscode"];
-        [dicpush setObject:[_dicBangDing objectForKey:@"platform"] forKey:@"platform"];
-        [dicpush setObject:[_dicBangDing objectForKey:@"code"] forKey:@"code"];
-        [dicpush setObject:fieldname.text forKey:@"name"];
-        [self bangDingPush:dicpush];
-    }
-    else
-    {
-        [dicpush setObject:fieldname.text forKey:@"username"];
-        [dicpush setObject:fieldcode.text forKey:@"smscode"];
-        [self resignPushData:dicpush];
-    }
+    [dicpush setObject:fieldname.text forKey:@"username"];
+    [dicpush setObject:fieldcode.text forKey:@"smscode"];
+    [self resignPushData:dicpush];
     
     
 }
@@ -383,26 +362,6 @@
         }
     }];
 }
-
-///绑定提交数据
--(void)bangDingPush:(NSMutableDictionary *)dicpush
-{
-    [datacontrol otherLoginBangDingPushData:dicpush andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
-        if(state)
-        {
-            LoginUser *loginUser = [LoginUser mj_objectWithKeyValues:self->datacontrol.dicOtherLoginBD];
-            [loginUser saveUser];
-            //成功登录
-            [Util changeRootVC];
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:desc];
-        }
-    }];
-}
-
-
 #pragma mark - //倒计时时间
 - (void)toCountdown {
     __block int timeout = 59; //倒计时时间

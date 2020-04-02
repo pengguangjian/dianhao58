@@ -159,6 +159,39 @@
     
 }
 
+//判断账号是否存在
+-(void)phoneIsAccountPushData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back
+{
+    
+    if(view)
+    {
+        [GMDCircleLoader setOnView:view withTitle:nil animated:YES];
+    }
+    HttpManager *httpm = [HttpManager createHttpManager];
+    
+    [httpm postRequetInterfaceData:dicpush withInterfaceName:@"frontend.user/isNewUser" andresponseHandler:^(NSURLSessionDataTask *opration, id responceObjct, NSError *error) {
+       if(view)
+       {
+           [GMDCircleLoader hideFromView:view animated:YES];
+       }
+        BOOL state = NO;
+       NSString *describle = @"";
+       if (responceObjct==nil) {
+           describle = @"网络错误";
+       }else{
+           NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+           NSDictionary *dicAll=[str JSONValue];
+           describle = dicAll[@"msg"];
+           if ([[NSString nullToString:dicAll[@"code"]] intValue] == 1) {
+               self->_dicPhoneIs = [dicAll objectForKey:@"data"];
+               state = YES;
+           }
+       }
+       back(error,state,describle);
+    }];
+    
+}
+
 ///注册
 -(void)resignPushData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back
 {

@@ -11,7 +11,5 @@
 @interface LoginForgetPwdVC : BaseVC
 ///修改密码
 @property (nonatomic ,assign) BOOL ischangePassword;
-///绑定第三方账号
-
 
 @end

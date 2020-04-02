@@ -235,8 +235,19 @@
 // 使用feTabBarController 自定义的 选中代理
 - (void)feTabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     if (tabBarController.selectedIndex == 2){
+        if ([User isNeedLogin]) {
+            [Util LoginVC:YES];
+            return;
+        }
         [self rotationAnimation];
     }else {
+        if (tabBarController.selectedIndex == 3)
+        {
+            if ([User isNeedLogin]) {
+                [Util LoginVC:YES];
+                return;
+            }
+        }
         [self.tabBarCtrl.feTabbar.centerBtn.layer removeAllAnimations];
     }
 }

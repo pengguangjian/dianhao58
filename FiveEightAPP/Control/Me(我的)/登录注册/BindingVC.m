@@ -1,45 +1,44 @@
 //
-//  LoginForgetPwdVC.m
-//  XiaoShunZiAPP
+//  BindingVC.m
+//  FiveEightAPP
 //
-//  Created by Mac on 2018/6/13.
-//  Copyright © 2018年 XiaoShunZi. All rights reserved.
+//  Created by Mac on 2020/4/2.
+//  Copyright © 2020 DianHao. All rights reserved.
 //
 
-#import "LoginForgetPwdVC.h"
+#import "BindingVC.h"
 #import "LoginDataControl.h"
+#import "LoginUser.h"
 #import "SmsProtoctFunction.h"
 
-@interface LoginForgetPwdVC ()
+@interface BindingVC ()
 {
     UIButton *requestVerityCodeBtn;
-    LoginDataControl *datacontrol;
     
-    NSMutableArray *arrField;
+    NSMutableArray *arrFiled;
+    
+    LoginDataControl *datacontrol;
+    ///手机号是否存在
+    BOOL isphone;
     
 }
 @end
 
-@implementation LoginForgetPwdVC
+@implementation BindingVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [self setNavigationBarTitle:NSLocalizedString(@"accountBinding", nil) leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
     
-    if(_ischangePassword)
-    {
-        [self setNavigationBarTitle:NSLocalizedString(@"xiugaimima", nil) leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
-    }
-    else
-    {
-        [self setNavigationBarTitle:NSLocalizedString(@"forgetPassword", nil) leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
-    }
     
     self.navigationItem.hidesBackButton = YES;
     
     [self drawUI];
-    datacontrol=[LoginDataControl new];
+    
+    datacontrol = [LoginDataControl new];
+    
 }
 
 - (void)leftBtnOnTouch:(id)sender
@@ -103,8 +102,8 @@
     [self drawInfoView:viewinfo];
     
     
-    [scvback mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(viewinfo);
+    [scvback mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(viewinfo.mas_bottom);
     }];
     
 }
@@ -113,8 +112,8 @@
 -(void)drawInfoView:(UIView *)view
 {
     
-    NSArray *arrplatch = @[NSLocalizedString(@"pleaseMobile", nil),NSLocalizedString(@"pleasePassWord", nil),NSLocalizedString(@"PleaseToPassWord", nil)];
-    arrField = [NSMutableArray new];
+    NSArray *arrplatch = @[NSLocalizedString(@"pleaseMobile", nil),NSLocalizedString(@"nickName", nil),NSLocalizedString(@"pleaseEmail", nil),NSLocalizedString(@"pleasePassWord", nil),NSLocalizedString(@"PleaseToPassWord", nil)];
+    arrFiled = [NSMutableArray new];
     for(int i = 0 ; i < arrplatch.count; i++)
     {
         UIView *viewname = [[UIView alloc] init];
@@ -126,22 +125,35 @@
         }];
         UITextField *fieldname = [self drawInputView:viewname andimage:@"login_icon_cell" andplatch:arrplatch[i]];
         [fieldname setTag:100+i];
-        if(i==1 || i==2)
+        if(i==3||i==4)
         {
             [fieldname setSecureTextEntry:YES];
         }
-        [arrField addObject:fieldname];
+        [arrFiled addObject:fieldname];
+        if(_isbangding)
+        {
+            if(i==0)
+            {
+                [fieldname setText:_strnickname];
+            }
+        }
+        if(i>0)
+        {
+            [viewname setHidden:YES];
+        }
     }
     
     UIView *viewcode = [[UIView alloc] init];
     [view addSubview:viewcode];
     [viewcode mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(view);
-        make.top.offset(10+55*3);
+        make.top.offset(10+55*1);
         make.height.offset(55);
     }];
     UITextField *fieldCode = [self drawInputView:viewcode andimage:@"login_icon_code" andplatch:NSLocalizedString(@"pleaseCode", nil)];
-    [arrField addObject:fieldCode];
+    [arrFiled addObject:fieldCode];
+    
+    
     requestVerityCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [requestVerityCodeBtn addTarget:self action:@selector(requestVerityCodeBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
     requestVerityCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
@@ -168,7 +180,7 @@
     [shortcutLoginBtn addTarget:self action:@selector(resignBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
     shortcutLoginBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     [shortcutLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [shortcutLoginBtn setTitle:NSLocalizedString(@"queding", nil) forState:UIControlStateNormal];
+    [shortcutLoginBtn setTitle:NSLocalizedString(@"register", nil) forState:UIControlStateNormal];
     [shortcutLoginBtn setBackgroundColor:DEFAULTCOLOR2];
     [shortcutLoginBtn.layer setMasksToBounds:YES];
     [shortcutLoginBtn.layer setCornerRadius:5.0f];
@@ -182,13 +194,42 @@
         make.top.equalTo(viewcode.mas_bottom).offset(30);
     }];
     
+    
+    
+    
+    UILabel *protocolLabel = [[UILabel alloc] init];
+    protocolLabel.text = NSLocalizedString(@"yiyuedubtyalonxieyi", nil);
+    protocolLabel.numberOfLines = 0;
+    protocolLabel.textColor = COL3;
+    protocolLabel.font = [UIFont systemFontOfSize:12.0f];
+    [view addSubview:protocolLabel];
+    [protocolLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(shortcutLoginBtn.mas_bottom).with.offset(10);
+        make.left.equalTo(shortcutLoginBtn.mas_left);
+        make.right.equalTo(shortcutLoginBtn.mas_right);
+    }];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:protocolLabel.text];
+    [attrString addAttribute:NSForegroundColorAttributeName
+                       value:DEFAULTCOLOR2
+                       range:NSMakeRange(protocolLabel.text.length-14, 14)];///中文
+    protocolLabel.attributedText = attrString;
+    
+    UIButton *userAgreementBtn =[[UIButton alloc]init];
+    [userAgreementBtn addTarget:self action:@selector(userAgreementBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:userAgreementBtn];
+    [userAgreementBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(protocolLabel);
+        make.bottom.equalTo(protocolLabel);
+        make.left.equalTo(protocolLabel);
+        make.right.equalTo(protocolLabel);
+    }];
+    
+    
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(shortcutLoginBtn.mas_bottom).offset(30);
+        make.bottom.equalTo(userAgreementBtn.mas_bottom).offset(50);
     }];
     view.layer.masksToBounds = YES;
     view.layer.cornerRadius = 4;
-    
-    
 }
 
 -(UITextField *)drawInputView:(UIView *)view andimage:(NSString *)strimage andplatch:(NSString *)strplatch
@@ -229,7 +270,8 @@
 
 #pragma mark - 获取验证码
 - (void)requestVerityCodeBtnOnTouch:(UIButton*)btn {
-    UITextField *fieldphone = arrField[0];
+    
+    UITextField *fieldphone = arrFiled[0];
     if (fieldphone.text.length<3)
     {
         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleaseMobile", nil)];
@@ -239,7 +281,38 @@
     NSMutableDictionary *dicpush = [NSMutableDictionary new];
     [dicpush setObject:fieldphone.text forKey:@"mobile"];
 
-
+    [datacontrol phoneIsAccountPushData:dicpush andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
+       if(state)
+       {
+           if([[self->datacontrol.dicPhoneIs objectForKey:@"code"] intValue] == 1)
+           {///手机号已存在
+               self->isphone = YES;
+               
+           }
+           else
+           {
+               self->isphone = NO;
+               for(UITextField *field in self->arrFiled)
+               {
+                   [field.superview setHidden:NO];
+               }
+               UITextField *field = self->arrFiled.lastObject;
+               UIView *viewsupertemp = field.superview;
+               [viewsupertemp mas_updateConstraints:^(MASConstraintMaker *make) {
+                   make.top.offset(10+55*5);
+               }];
+           }
+           [self getCodeData:dicpush andsender:btn];
+       }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:desc];
+        }
+    }];
+    
+}
+-(void)getCodeData:(NSMutableDictionary *)dicpush andsender:(UIButton *)btn
+{
     [SmsProtoctFunction smsRegionalData:dicpush andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
         if(state)
         {
@@ -252,66 +325,97 @@
             [SVProgressHUD showErrorWithStatus:desc];
         }
     }];
+    
 }
 
-#pragma mark - 确定
+#pragma mark - 协议点击
+-(void)userAgreementBtnOnTouch
+{
+    
+}
+
+#pragma mark - 注册
 -(void)resignBtnOnTouch
 {
- 
-    UITextField *fieldphone = arrField[0];
-    UITextField *fieldpwd = arrField[1];
-    UITextField *fieldpwdnew = arrField[2];
-    UITextField *fieldcode= arrField[3];
+    UITextField *fieldphone = arrFiled[0];
+    UITextField *fieldname = arrFiled[1];
+    UITextField *fieldemail = arrFiled[2];
+    UITextField *fieldpass = arrFiled[3];
+    UITextField *fieldpassok = arrFiled[4];
+    UITextField *fieldcode = arrFiled[5];
     
-    if(fieldphone.text.length<3)
+    if([fieldphone.text stringByReplacingOccurrencesOfString:@" " withString:@""].length<1)
     {
         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleaseMobile", nil)];
         return;
     }
-    if(fieldpwd.text.length<6)
-    {
-        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleaseNewPassWord", nil)];
-        return;
-    }
-    if(![fieldpwdnew.text isEqualToString:fieldpwd.text])
-    {
-        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleaseNewToPassWord", nil)];
-        return;
-    }
-    if(fieldpwd.text.length<4)
+    
+    if([fieldcode.text stringByReplacingOccurrencesOfString:@" " withString:@""].length<1)
     {
         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleaseCode", nil)];
         return;
     }
     
-    NSMutableDictionary *dicpush = [NSMutableDictionary new];
-    [dicpush setObject:fieldphone.text forKey:@"mobile"];
-    [dicpush setObject:fieldpwd.text forKey:@"newpassword"];
-    [dicpush setObject:fieldcode.text forKey:@"smscode"];
-    
-    
-    [datacontrol resetpwdData:dicpush andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
+    if(isphone==NO)
+    {
+        if([fieldname.text stringByReplacingOccurrencesOfString:@" " withString:@""].length<1)
+        {
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"nickName", nil)];
+            return;
+        }
+        if([fieldemail.text stringByReplacingOccurrencesOfString:@" " withString:@""].length<1)
+        {
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleaseEmail", nil)];
+            return;
+        }
         
+        if([fieldpass.text stringByReplacingOccurrencesOfString:@" " withString:@""].length<1)
+        {
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleasePassWord", nil)];
+            return;
+        }
+        if(![fieldpass.text isEqualToString:fieldpassok.text])
+        {
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleaseNewToPassWord", nil)];
+            return;
+        }
+    }
+    
+    NSMutableDictionary *dicpush = [NSMutableDictionary new];
+    if(isphone==NO)
+    {
+        [dicpush setObject:fieldpass.text forKey:@"password"];
+        [dicpush setObject:fieldemail.text forKey:@"email"];
+        [dicpush setObject:fieldname.text forKey:@"name"];
+    }
+    [dicpush setObject:fieldphone.text forKey:@"mobile"];
+    [dicpush setObject:fieldcode.text forKey:@"smscode"];
+    [dicpush setObject:[_dicBangDing objectForKey:@"platform"] forKey:@"platform"];
+    [dicpush setObject:[_dicBangDing objectForKey:@"code"] forKey:@"code"];
+    
+    [self bangDingPush:dicpush];
+    
+    
+    
+}
+///绑定提交数据
+-(void)bangDingPush:(NSMutableDictionary *)dicpush
+{
+    [datacontrol otherLoginBangDingPushData:dicpush andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
         if(state)
         {
-            [self performSelector:@selector(showToast) withObject:nil/*可传任意类型参数*/ afterDelay:0.5];
-            [self.navigationController popViewControllerAnimated:YES];
+            LoginUser *loginUser = [LoginUser mj_objectWithKeyValues:self->datacontrol.dicOtherLoginBD];
+            [loginUser saveUser];
+            //成功登录
+            [Util changeRootVC];
         }
         else
         {
             [SVProgressHUD showErrorWithStatus:desc];
         }
-        
-        
     }];
 }
-- (void)showToast {
-    if(_ischangePassword)
-    {
-        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"changeSuccess", nil)];
-    }
-    
-}
+
 
 #pragma mark - //倒计时时间
 - (void)toCountdown {
@@ -356,5 +460,14 @@
 }
 
 
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

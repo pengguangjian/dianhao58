@@ -147,8 +147,8 @@
     [topView addSubview:imagvrz];
     [imagvrz mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(topView.mas_right).offset(-20);
-        make.top.equalTo(titleLabel.mas_top).offset(10);
-        make.size.sizeOffset(CGSizeMake(40, 40));
+        make.top.equalTo(titleLabel.mas_top);
+        make.size.sizeOffset(CGSizeMake(30, 30));
     }];
     if(modeldetail.authentication_status.intValue == 1)
     {

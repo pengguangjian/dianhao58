@@ -17,12 +17,16 @@
 #import "ResignVC.h"
 #import "LoginDataControl.h"
 #import "SmsProtoctFunction.h"
+#import "BindingVC.h"
 
 #import <ZaloSDK/ZaloSDK.h>
 #import <AuthenticationServices/AuthenticationServices.h>
 
 @interface LoginVC ()<MSNavSliderMenuDelegate,ASAuthorizationControllerDelegate>
 {
+    
+    UIScrollView *scvback;
+    
     MSNavSliderMenu *navSliderMenu;
     NSMutableDictionary  *listVCQueue;
     TPKeyboardAvoidingScrollView *contentScrollView;
@@ -133,15 +137,28 @@
         make.bottom.equalTo(self.view).with.offset(0);
     }];
     
+    
+
+    
+    scvback = [[UIScrollView alloc] init];
+    [scvback setBackgroundColor:RGBA(0, 0, 0, 0)];
+    [self.view addSubview:scvback];
+    [scvback mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.width.offset(DEVICE_Width);
+        make.top.offset(0);
+        make.height.offset(DEVICE_Height);
+    }];
+    
     UIImageView *logoImageView = [[UIImageView alloc] init];
     logoImageView.image = [UIImage imageNamed:@"login_logo"];
-    [self.view addSubview:logoImageView];
+    [scvback addSubview:logoImageView];
     [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).with.offset(SafeAreaTopHeight*SCREENPROPERTION);
-        make.centerX.equalTo(self.view);
+        make.top.offset(10);
+        make.centerX.equalTo(self->scvback);
         make.size.mas_equalTo(CGSizeMake(182/2.0, 172/2.0));
     }];
-
+    
     
     _menuType = MSNavSliderMenuTypeTitleOnly;
     [self initMSNavSliderMenu];
@@ -169,7 +186,7 @@
     model.sliderMenuTextColorForSelect = DEFAULTCOLOR2;
     model.autoSuitLineViewWithdForBtnTitle = YES;
     
-    navSliderMenu = [[MSNavSliderMenu alloc] initWithFrame:CGRectMake(20, SafeAreaTopHeight*SCREENPROPERTION+172/2.0+25*SCREENPROPERTION, DEVICE_Width-40, 45) andStyleModel:model andDelegate:self showType:self.menuType];
+    navSliderMenu = [[MSNavSliderMenu alloc] initWithFrame:CGRectMake(20, SafeAreaTopHeight*SCREENPROPERTION+132/2.0+25*SCREENPROPERTION, DEVICE_Width-40, 45) andStyleModel:model andDelegate:self showType:self.menuType];
     navSliderMenu.backgroundColor = [UIColor whiteColor];
     
     UIBezierPath *navSliderMenuMaskPath = [UIBezierPath bezierPathWithRoundedRect:navSliderMenu.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10,10)];
@@ -178,10 +195,10 @@
     navSliderMenuMaskLayer.path = navSliderMenuMaskPath.CGPath;
     navSliderMenu.layer.mask = navSliderMenuMaskLayer;
     
-    [self.view addSubview:navSliderMenu];
+    [scvback addSubview:navSliderMenu];
     
     // 用于滑动的滚动视图
-    contentScrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(20, SafeAreaTopHeight*SCREENPROPERTION+172/2.0+25*SCREENPROPERTION+45, navSliderMenu.width, 260)];
+    contentScrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(20, SafeAreaTopHeight*SCREENPROPERTION+132/2.0+25*SCREENPROPERTION+45, navSliderMenu.width, 260)];
     contentScrollView.contentSize = (CGSize){navSliderMenu.width*menuCount,contentScrollView.frame.size.height};
 //    contentScrollView.pagingEnabled = YES;
     contentScrollView.delegate      = self;
@@ -189,7 +206,7 @@
     [contentScrollView setBackgroundColor:[UIColor clearColor]];
     contentScrollView.showsHorizontalScrollIndicator = NO;
     
-    [self.view addSubview:contentScrollView];
+    [scvback addSubview:contentScrollView];
     
     [self addListVCWithIndex:0];
     [self addListVCWithIndex:1];
@@ -591,17 +608,16 @@
     descLabel.font = [UIFont systemFontOfSize:16];
     descLabel.text = NSLocalizedString(@"thirdLogin", nil);
     descLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:descLabel];
+    [scvback addSubview:descLabel];
     [descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.view);
-        make.top.equalTo(contentScrollView.mas_bottom).with.offset(30*SCREENPROPERTION);
-//        make.size.mas_equalTo(CGSizeMake(115, 16));
+        make.centerX.equalTo(self->contentScrollView);
+        make.top.equalTo(self->contentScrollView.mas_bottom).with.offset(20*SCREENPROPERTION);
         make.height.offset(16);
     }];
     
     UIView *leftView = [[UIView alloc] init];
     [leftView setBackgroundColor:DEFAULTCOLOR2];
-    [self.view addSubview:leftView];
+    [scvback addSubview:leftView];
     [leftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(descLabel);
         make.right.equalTo(descLabel.mas_left).with.offset(-5);
@@ -610,7 +626,7 @@
     
     UIView *rightView = [[UIView alloc] init];
     [rightView setBackgroundColor:DEFAULTCOLOR2];
-    [self.view addSubview:rightView];
+    [scvback addSubview:rightView];
     [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(descLabel);
         make.left.equalTo(descLabel.mas_right).with.offset(5);
@@ -620,10 +636,10 @@
     
     UIButton *btf = [[UIButton alloc] init];
     [btf setImage:[UIImage imageNamed:@"facebookLogin"] forState:UIControlStateNormal];
-    [self.view addSubview:btf];
+    [scvback addSubview:btf];
     [btf mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.sizeOffset(CGSizeMake(50, 50));
-        make.top.equalTo(descLabel.mas_bottom).offset(20);
+        make.top.equalTo(descLabel.mas_bottom).offset(15);
          make.left.offset(DEVICE_Width/2.0-60);
         
     }];
@@ -633,7 +649,7 @@
     
     UIButton *btzhiliao = [[UIButton alloc] init];
     [btzhiliao setImage:[UIImage imageNamed:@"zaloLogin"] forState:UIControlStateNormal];
-    [self.view addSubview:btzhiliao];
+    [scvback addSubview:btzhiliao];
     [btzhiliao mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.sizeOffset(CGSizeMake(50, 50));
         make.top.equalTo(btf);
@@ -646,13 +662,11 @@
     {
         ASAuthorizationAppleIDButton *loginBtn = [[ASAuthorizationAppleIDButton alloc]initWithAuthorizationButtonType:ASAuthorizationAppleIDButtonTypeSignIn authorizationButtonStyle:ASAuthorizationAppleIDButtonStyleWhiteOutline];
         [loginBtn addTarget:self action:@selector(signInWithApple) forControlEvents:UIControlEventTouchUpInside];
-        loginBtn.center = self.view.center;
-        loginBtn.bounds = CGRectMake(0, 0, 200, 40);
-        [self.view addSubview:loginBtn];
+        [scvback addSubview:loginBtn];
         [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.sizeOffset(CGSizeMake(200, 40));
             make.top.equalTo(btf.mas_bottom).offset(10);
-            make.centerX.equalTo(self.view);
+            make.centerX.equalTo(descLabel);
         }];
     }
     
@@ -660,18 +674,16 @@
     
     //获取系统语言
     NSArray *languages = [NSLocale preferredLanguages];
-    NSString *language = [languages objectAtIndex:0];
     
     NSString *userSettingLanguage = [NSBundle currentLanguage];
     
     if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
-        [userSettingLanguage isEqualToString:@"en"]||
         [userSettingLanguage isEqualToString:@"vi"])) {
         userSettingLanguage = @"zh-Hans";
     }
     
     NSArray *arrtitle = @[@"Tiếng Việt",@"中文"];//,@"English"
-    NSArray *arrname = @[@"vi",@"zh-Hans",@"en"];
+    NSArray *arrname = @[@"vi",@"zh-Hans"];
     languageArr  = [[NSMutableArray alloc] init];
     int i = 0;
     for(NSString *strtitle in arrtitle)
@@ -683,7 +695,7 @@
         [chineseBtn addTarget:self action:@selector(setAppLanguage:) forControlEvents:UIControlEventTouchUpInside];
         chineseBtn.tag = i;
         chineseBtn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-        [self.view addSubview:chineseBtn];
+        [scvback addSubview:chineseBtn];
         if ([userSettingLanguage isEqualToString:arrname[i]]) {
             [chineseBtn setSelected:YES];
         }
@@ -707,65 +719,17 @@
         
     }
     
-//    UIButton *chineseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [chineseBtn setTitle:@"中文" forState:UIControlStateNormal];
-//    [chineseBtn setTitleColor:ORANGEREDCOLOR forState:UIControlStateSelected];
-//    [chineseBtn setTitleColor:COL2 forState:UIControlStateNormal];
-//    [chineseBtn addTarget:self action:@selector(setAppLanguage:) forControlEvents:UIControlEventTouchUpInside];
-////    [chineseBtn setBackgroundColor:REDCOLOR];
-//    chineseBtn.tag = 1;
-//    chineseBtn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-//    [self.view addSubview:chineseBtn];
-//    [chineseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(btf.mas_bottom).with.offset(20);
-//        make.centerX.equalTo(btf);
-//        make.size.mas_equalTo(CGSizeMake(60, 20));
-//    }];
-//    if ([userSettingLanguage isEqualToString:@"zh-Hans"]) {
-//        [chineseBtn setSelected:YES];
-//    }
-//
-//    UIButton *vietnameseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [vietnameseBtn setTitle:@"Tiếng Việt" forState:UIControlStateNormal];
-//    [vietnameseBtn setTitleColor:ORANGEREDCOLOR forState:UIControlStateSelected];
-//    [vietnameseBtn setTitleColor:COL2 forState:UIControlStateNormal];
-//    [vietnameseBtn addTarget:self action:@selector(setAppLanguage:) forControlEvents:UIControlEventTouchUpInside];
-////    [vietnameseBtn setBackgroundColor:REDCOLOR];
-//    vietnameseBtn.tag = 2;
-//    vietnameseBtn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-//    [self.view addSubview:vietnameseBtn];
-//    [vietnameseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.equalTo(chineseBtn.mas_left).with.offset(-1);
-//        make.centerY.equalTo(chineseBtn);
-//        make.size.mas_equalTo(CGSizeMake(70, 20));
-//    }];
-//    if ([userSettingLanguage isEqualToString:@"vi"]) {
-//        [vietnameseBtn setSelected:YES];
-//    }
-//
-//    UIButton *englishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [englishBtn setTitle:@"English" forState:UIControlStateNormal];
-//    [englishBtn setTitleColor:ORANGEREDCOLOR forState:UIControlStateSelected];
-//    [englishBtn setTitleColor:COL2 forState:UIControlStateNormal];
-//    [englishBtn addTarget:self action:@selector(setAppLanguage:) forControlEvents:UIControlEventTouchUpInside];
-////    [englishBtn setBackgroundColor:REDCOLOR];
-//    englishBtn.tag = 3;
-//    englishBtn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-//    [self.view addSubview:englishBtn];
-//    [englishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(chineseBtn.mas_right).with.offset(1);
-//        make.centerY.equalTo(chineseBtn);
-//        make.size.mas_equalTo(CGSizeMake(60, 20));
-//    }];
-//    if ([userSettingLanguage isEqualToString:@"en"]) {
-//        [englishBtn setSelected:YES];
-//    }
-//
-//    languageArr  = [[NSMutableArray alloc] init];
-//    [languageArr addObject:chineseBtn];
-//    [languageArr addObject:vietnameseBtn];
-//    [languageArr addObject:englishBtn];
-    
+    [scvback mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (@available(iOS 13.0, *))
+        {
+            make.bottom.equalTo(btf.mas_bottom).with.offset(110);
+        }
+        else
+        {
+            make.bottom.equalTo(btf.mas_bottom).with.offset(60);
+        }
+        
+    }];
     
 }
 
@@ -819,8 +783,8 @@
     switch (sender.tag) {
         case 100:
             {///fb
-                [self facebookLoginBtnOnTouch];
-                
+//                [self facebookLoginBtnOnTouch];
+                [self thirdLogin:1 withBindCode:@"sdkff2384234"];
             }
             break;
          case 101:
@@ -1113,6 +1077,22 @@
         if(state)
         {
             NSDictionary *dicdata = self->datacontrol.dicOtherLogin;
+            if(type == 4)
+            {
+                if([[dicdata objectForKey:@"userinfo"] isKindOfClass:[NSDictionary class]])
+                {
+                    LoginUser *loginUser = [LoginUser mj_objectWithKeyValues:[dicdata objectForKey:@"userinfo"] ];
+                    [loginUser saveUser];
+                    //成功登录
+                    [Util changeRootVC];
+                }
+                else
+                {
+                    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"networkCancle", nil)];
+                }
+                return;
+            }
+            
             if([[dicdata objectForKey:@"code"] intValue] == 1)
             {
                 if([[dicdata objectForKey:@"userinfo"] isKindOfClass:[NSDictionary class]])
@@ -1124,7 +1104,7 @@
                 }
                 else
                 {
-                    ResignVC *rvc = [[ResignVC alloc] init];
+                    BindingVC *rvc = [[BindingVC alloc] init];
                     NSDictionary *dictemp = @{@"code":[dicpush objectForKey:@"code"],@"platform":[dicpush objectForKey:@"platform"]};
                     rvc.isbangding = YES;
                     rvc.dicBangDing = dictemp;
@@ -1134,7 +1114,7 @@
             }
             else
             {
-                ResignVC *rvc = [[ResignVC alloc] init];
+                BindingVC *rvc = [[BindingVC alloc] init];
                 NSDictionary *dictemp = @{@"code":[dicpush objectForKey:@"code"],@"platform":[dicpush objectForKey:@"platform"]};
                 rvc.isbangding = YES;
                 rvc.dicBangDing = dictemp;
@@ -1194,6 +1174,8 @@
     NSInteger code = error.code;
     if (code == ASAuthorizationErrorUnknown) { // 授权请求未知错误
         NSLog(@"Apple登录_授权请求未知错误");
+        
+        [self thirdLogin:4 withBindCode:@"99435834345"];
     } else if (code == ASAuthorizationErrorCanceled) { // 授权请求取消了
         NSLog(@"Apple登录_授权请求取消了");
     } else if (code == ASAuthorizationErrorInvalidResponse) { // 授权请求响应无效

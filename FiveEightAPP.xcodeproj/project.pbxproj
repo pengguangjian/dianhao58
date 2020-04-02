@@ -45,6 +45,7 @@
 		04425EE2243421A100944514 /* SmsProtoctFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 04425EE1243421A100944514 /* SmsProtoctFunction.m */; };
 		04425EE5243432EF00944514 /* LaunangeChangeAlterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04425EE4243432EF00944514 /* LaunangeChangeAlterView.m */; };
 		04425EE82434960000944514 /* MDBwebVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 04425EE72434960000944514 /* MDBwebVIew.m */; };
+		04512EB7243580AC0077B682 /* BindingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04512EB6243580AC0077B682 /* BindingVC.m */; };
 		0472240C2431848200573F67 /* ApplyAgentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0472240B2431848200573F67 /* ApplyAgentVC.m */; };
 		04722410243197F600573F67 /* UserRenZhengVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0472240F243197F600573F67 /* UserRenZhengVC.m */; };
 		047224132431CCC500573F67 /* RegionalDataControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 047224122431CCC500573F67 /* RegionalDataControl.m */; };
@@ -494,6 +495,8 @@
 		04425EE4243432EF00944514 /* LaunangeChangeAlterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunangeChangeAlterView.m; sourceTree = "<group>"; };
 		04425EE6243495FF00944514 /* MDBwebVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDBwebVIew.h; sourceTree = "<group>"; };
 		04425EE72434960000944514 /* MDBwebVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDBwebVIew.m; sourceTree = "<group>"; };
+		04512EB5243580AB0077B682 /* BindingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindingVC.h; sourceTree = "<group>"; };
+		04512EB6243580AC0077B682 /* BindingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindingVC.m; sourceTree = "<group>"; };
 		0472240A2431848200573F67 /* ApplyAgentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyAgentVC.h; sourceTree = "<group>"; };
 		0472240B2431848200573F67 /* ApplyAgentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyAgentVC.m; sourceTree = "<group>"; };
 		0472240E243197F600573F67 /* UserRenZhengVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserRenZhengVC.h; sourceTree = "<group>"; };
@@ -2994,6 +2997,8 @@
 				20FF03832330895F00C16750 /* LoginForgetPwdVC.xib */,
 				040560ED242DE8AD0077AA91 /* ResignVC.h */,
 				040560EE242DE8AD0077AA91 /* ResignVC.m */,
+				04512EB5243580AB0077B682 /* BindingVC.h */,
+				04512EB6243580AC0077B682 /* BindingVC.m */,
 				040560F0242DE8C20077AA91 /* LoginDataControl.h */,
 				040560F1242DE8C20077AA91 /* LoginDataControl.m */,
 			);
@@ -3384,6 +3389,7 @@
 				047224162431D02A00573F67 /* ApplyAgentDataControl.m in Sources */,
 				203062A82328941E00A19E20 /* NullSafe.m in Sources */,
 				20FCD7DB23405B840057CDC0 /* MSSheetView.m in Sources */,
+				04512EB7243580AC0077B682 /* BindingVC.m in Sources */,
 				20FF03B223308BC300C16750 /* WebViewJavascriptBridgeBase.m in Sources */,
 				20FF03E923308FEF00C16750 /* WebViewVC.m in Sources */,
 				040560EC242DE6DE0077AA91 /* PersonalInfoDataControl.m in Sources */,

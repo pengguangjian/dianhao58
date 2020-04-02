@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , retain) NSDictionary *dicOtherLogin;
 @property (nonatomic , retain) NSDictionary *dicOtherLoginBD;
 @property (nonatomic , retain) NSDictionary *dicLoginPhone;
+@property (nonatomic , retain) NSDictionary *dicPhoneIs;
 ///登录
 -(void)loginPushData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back;
 ///第三方登录
@@ -23,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///手机号登录
 -(void)loginPhonePushData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back;
+
+//判断账号是否存在
+-(void)phoneIsAccountPushData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back;
 
 ///第三方绑定
 -(void)otherLoginBangDingPushData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back;

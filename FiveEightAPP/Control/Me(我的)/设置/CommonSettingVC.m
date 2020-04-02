@@ -150,7 +150,6 @@
             NSString *userSettingLanguage = [NSBundle currentLanguage];
             
             if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
-                [userSettingLanguage isEqualToString:@"en"]||
                 [userSettingLanguage isEqualToString:@"vi"])) {
                 userSettingLanguage = @"zh-Hans";
             }
@@ -158,13 +157,9 @@
             {
                 cell.detailTextLabel.text = [NSString stringWithFormat:@"中文"];
             }
-            else if([userSettingLanguage isEqualToString:@"vi"])
-            {
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"Tiếng Việt"];
-            }
             else
             {
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"English"];
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"Tiếng Việt"];
             }
             
             
