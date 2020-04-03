@@ -64,7 +64,7 @@
         }
         else if (i==2)
         {
-            [fielditem setKeyboardType:UIKeyboardTypeEmailAddress];
+            [fielditem setKeyboardType:UIKeyboardTypeASCIICapable];
         }
         viewlast = viewitem;
     }

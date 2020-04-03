@@ -71,7 +71,7 @@
     saveBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     [saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [saveBtn setTitle:NSLocalizedString(@"changeOk", nil) forState:UIControlStateNormal];
-    [saveBtn setBackgroundColor:DEFAULTCOLOR2];
+    [saveBtn setBackgroundColor:RGB(234, 58, 60)];
     [saveBtn.layer setMasksToBounds:YES];
     [saveBtn.layer setCornerRadius:5.0f];
     saveBtn.xsz_acceptEventInterval = 1;

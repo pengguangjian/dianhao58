@@ -335,11 +335,13 @@
     UIButton *btcollect = [[UIButton alloc] init];
     [btcollect setBackgroundColor:RGB(234, 58, 60)];
     [btcollect setTitle:NSLocalizedString(@"collection", nil) forState:UIControlStateNormal];
+    [btcollect setImage:[UIImage imageNamed:@"collect_no"] forState:UIControlStateNormal];
     if(strcollect.intValue == 1)
     {
         [btcollect setTitle:NSLocalizedString(@"collectionCancle", nil) forState:UIControlStateNormal];
+        [btcollect setImage:[UIImage imageNamed:@"collect_yes"] forState:UIControlStateNormal];
     }
-    [btcollect setImage:[UIImage imageNamed:@"collect_no"] forState:UIControlStateNormal];
+    
     [btcollect setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btcollect.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [btcollect.layer setCornerRadius:3];
@@ -799,7 +801,15 @@
         }
         else
         {
-            [SVProgressHUD showErrorWithStatus:desc];
+            if(desc.length==0)
+            {
+                [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"networkCancle", nil)];
+            }
+            else
+            {
+               [SVProgressHUD showErrorWithStatus:desc];
+            }
+            
         }
     }];
     
@@ -827,6 +837,7 @@
             {
                 self->strcollect = @"0";
                 [self->_btcollect setTitle:NSLocalizedString(@"collection", nil) forState:UIControlStateNormal];
+                [self->_btcollect setImage:[UIImage imageNamed:@"collect_no"] forState:UIControlStateNormal];
             }
             else
             {
@@ -844,6 +855,7 @@
                 
                  [self->_btcollect setTitle:NSLocalizedString(@"collectionCancle", nil) forState:UIControlStateNormal];
                 self->strcollect = @"1";
+                [self->_btcollect setImage:[UIImage imageNamed:@"collect_yes"] forState:UIControlStateNormal];
             }
             else
             {

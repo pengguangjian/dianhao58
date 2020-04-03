@@ -85,7 +85,7 @@
     if (section == 0) {
         return 3;
     } else if (section == 1) {
-        return 2;
+        return 5;
     } else {
         return 1;
     }
@@ -205,7 +205,8 @@
         {
             NSArray *arrurl = @[@"",@"frontend.page/terms",@"frontend.page/disclaimer",@"frontend.page/merchant",@"frontend.page/registration"];
             NSArray *arrtemp = textArr[indexPath.section];
-            WebViewVC *wvc = [[WebViewVC alloc] initWithTitle:arrtemp[indexPath.row] initWithTitle:arrurl[indexPath.row]];
+//            WebViewVC *wvc = [[WebViewVC alloc] initWithTitles:arrtemp[indexPath.row] initWithTitle:arrurl[indexPath.row]];
+            WebViewVC *wvc = [[WebViewVC alloc] initLoadRequest:arrtemp[indexPath.row] initWithTitle:arrurl[indexPath.row]];
             
             [self.navigationController pushViewController:wvc animated:YES];
             

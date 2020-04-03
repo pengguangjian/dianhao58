@@ -108,6 +108,11 @@
         if(i==1 || i==2)
         {
             [fieldname setSecureTextEntry:YES];
+            [fieldname setKeyboardType:UIKeyboardTypeASCIICapable];
+        }
+        else if (i==0)
+        {
+            [fieldname setKeyboardType:UIKeyboardTypeNumberPad];
         }
         [arrField addObject:fieldname];
     }
@@ -121,7 +126,7 @@
     }];
     UITextField *fieldCode = [self drawInputView:viewcode andimage:@"login_icon_code" andplatch:NSLocalizedString(@"pleaseCode", nil)];
     [arrField addObject:fieldCode];
-    
+    [fieldCode setKeyboardType:UIKeyboardTypeNumberPad];
     
     requestVerityCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [requestVerityCodeBtn addTarget:self action:@selector(requestVerityCodeBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
@@ -172,7 +177,6 @@
     Field.clearButtonMode = UITextFieldViewModeWhileEditing;
     Field.leftViewMode = UITextFieldViewModeAlways;
     Field.placeholder = strplatch;
-    Field.keyboardType = UIKeyboardTypeNumberPad;
     [view addSubview:Field];
     [Field mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(0);

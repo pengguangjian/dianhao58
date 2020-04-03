@@ -84,7 +84,7 @@
     return self;
 }
 
-- (instancetype)initWithTitle:(NSString *)title andLoadUrl:(NSString *)urlString
+- (instancetype)initLoadRequest:(NSString *)title initWithTitle:(NSString *)urlString
 {
     
     self = [super init];
@@ -130,7 +130,13 @@
             [datacontrl loadUrlData:[NSDictionary new] andurl:urlString andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
                 if(state)
                 {
-                    [webView loadHTMLString:[NSString nullToString:[datacontrl.dicdata objectForKey:@"content"]] baseURL:nil];
+                    
+                    NSString *headerString = @"<header><meta name='viewport' content='width=device-width-30, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></header>";
+                    
+                    NSString *description_bigfont=[NSString stringWithFormat:@"<html>%@</html>",[NSString nullToString:[datacontrl.dicdata objectForKey:@"content"]]];
+                    
+                    description_bigfont = [headerString stringByAppendingString:description_bigfont];
+                    [self->webView loadHTMLString:description_bigfont baseURL:nil];
                 }
                 else
                 {

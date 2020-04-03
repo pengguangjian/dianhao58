@@ -98,14 +98,7 @@
         
         
     }
-    else if (indexPath.row == 3)
-    {
-        [cell.valueTextField setKeyboardType:UIKeyboardTypeNumberPad];
-    }
-    else if (indexPath.row == 4)
-    {
-        [cell.valueTextField setKeyboardType:UIKeyboardTypeEmailAddress];
-    }
+    
     
     
     cell.descLabel.text = [textArr objectAtIndex:indexPath.row];
@@ -119,7 +112,14 @@
     } else {
         cell.valueTextField.enabled = YES;
     }
-    
+    if (indexPath.row == 3)
+    {
+        [cell.valueTextField setKeyboardType:UIKeyboardTypeNumberPad];
+    }
+    else if (indexPath.row == 4)
+    {
+        [cell.valueTextField setKeyboardType:UIKeyboardTypeASCIICapable];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
