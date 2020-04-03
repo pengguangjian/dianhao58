@@ -74,7 +74,7 @@
         viewback = [[UIView alloc] init];
         [self.view addSubview:viewback];
         [viewback mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
+            make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(SafeAreaTopHeight, 0, 0, 0));
         }];
     }
     else
@@ -82,62 +82,46 @@
         [viewback removeAllSubviews];
     }
     
+    UIView *viewline = [[UIView alloc] init];
+    [viewline setBackgroundColor:RGB(234, 234, 234)];
+    [viewback addSubview:viewline];
+    [viewline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self->viewback);
+        make.height.offset(3);
+    }];
     
     UILabel *lbtoptishi = [[UILabel alloc] init];
     [lbtoptishi setText:NSLocalizedString(@"certificationCompleteEasier", nil)];
-    [lbtoptishi setTextColor:RGB(50, 50, 50)];
+    [lbtoptishi setTextColor:RGB(20, 20, 20)];
     [lbtoptishi setTextAlignment:NSTextAlignmentLeft];
-    [lbtoptishi setFont:[UIFont systemFontOfSize:14]];
+    [lbtoptishi setFont:[UIFont systemFontOfSize:16]];
     [viewback addSubview:lbtoptishi];
     [lbtoptishi mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(15);
-        make.top.offset(SafeAreaTopHeight+10);
-        make.right.equalTo(viewback).offset(-15);
-        make.height.offset(20);
-    }];
-    
-    UIView *viewcenter = [[UIView alloc] init];
-    [viewcenter.layer setMasksToBounds:YES];
-    [viewcenter.layer setCornerRadius:3];
-    [viewcenter.layer setBorderColor:RGB(200, 200, 200).CGColor];
-    [viewcenter.layer setBorderWidth:1];
-    [viewback addSubview:viewcenter];
-    [viewcenter mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(lbtoptishi);
-        make.top.equalTo(lbtoptishi.mas_bottom).offset(60);
-        make.height.offset(300);
-    }];
-    
-    UILabel *lbname = [[UILabel alloc] init];
-    [lbname setTextAlignment:NSTextAlignmentCenter];
-    [lbname setTextColor:RGB(30, 30, 30)];
-    [lbname setText:@"ALOVN"];
-    [lbname setFont:[UIFont systemFontOfSize:18]];
-    [lbname setBackgroundColor:[UIColor whiteColor]];
-    [lbname.layer setMasksToBounds:YES];
-    [lbname.layer setCornerRadius:40];
-    [lbname.layer setBorderColor:RGB(200, 200, 200).CGColor];
-    [lbname.layer setBorderWidth:1];
-    [viewback addSubview:lbname];
-    [lbname mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(viewcenter);
-        make.centerY.equalTo(viewcenter.mas_top);
-        make.size.sizeOffset(CGSizeMake(80, 80));
+        make.top.offset(20);
+        make.right.equalTo(self->viewback).offset(-15);
+        make.height.offset(30);
     }];
     
     NSArray *arrname = @[NSLocalizedString(@"personalAuthentication", nil),NSLocalizedString(@"eerchantCertification", nil)];
     NSArray *arrstate = @[[NSString nullToString:[dicSa objectForKey:@"people_attestation_state"]],[NSString nullToString:[dicSa objectForKey:@"business_attestation_state"]]];
+    NSArray *arrimage = @[@"woderenz_geren",@"woderenz_shangjia"];
     
     for(int i = 0 ; i < arrname.count; i++)
     {
         UIView *viewitem = [[UIView alloc] init];
-        [viewcenter addSubview:viewitem];
+        [viewitem.layer setBorderColor:RGB(234, 234, 234).CGColor];
+        [viewitem.layer setBorderWidth:1];
+        [viewitem.layer setMasksToBounds:YES];
+        [viewitem.layer setCornerRadius:2];
+        [viewback addSubview:viewitem];
         [viewitem mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(viewcenter);
+            make.left.offset(10);
+            make.right.equalTo(self->viewback).offset(-10);
             make.height.offset(45);
-            make.top.offset(30+55*i);
+            make.top.offset(60+55*i);
         }];
-        [self drawItemView:viewitem andimage:@"" andname:arrname[i] andisrenz:arrstate[i]];
+        [self drawItemView:viewitem andimage:arrimage[i] andname:arrname[i] andisrenz:arrstate[i]];
         [viewitem setTag:i];
         if([arrstate[i] intValue] == 0||[arrstate[i] intValue] == 3)
         {
@@ -154,7 +138,6 @@
 {
     UIImageView *imagev = [[UIImageView alloc] init];
     [imagev setImage:[UIImage imageNamed:strimage]];
-    [imagev setBackgroundColor:[UIColor grayColor]];
     [view addSubview:imagev];
     [imagev mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.sizeOffset(CGSizeMake(25, 25));
@@ -189,7 +172,7 @@
             [lbrenz setText:NSLocalizedString(@"notPass", nil)];
         }
         
-        [lbrenz setFont:[UIFont systemFontOfSize:15]];
+        [lbrenz setFont:[UIFont systemFontOfSize:12]];
         [view addSubview:lbrenz];
         [lbrenz mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(view);
@@ -200,8 +183,7 @@
     else
     {
         UIImageView *imagevrz = [[UIImageView alloc] init];
-        [imagevrz setImage:[UIImage imageNamed:strimage]];
-        [imagevrz setBackgroundColor:[UIColor grayColor]];
+        [imagevrz setImage:[UIImage imageNamed:@"ic_stat_left_s"]];
         [view addSubview:imagevrz];
         [imagevrz mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.sizeOffset(CGSizeMake(15, 15));
@@ -211,15 +193,15 @@
         
     }
     
-    UIView *viewline = [[UIView alloc] init];
-    [viewline setBackgroundColor:RGB(240, 240, 240)];
-    [view addSubview:viewline];
-    [viewline mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(15);
-        make.right.equalTo(view).offset(-15);
-        make.bottom.equalTo(view);
-        make.height.offset(1);
-    }];
+//    UIView *viewline = [[UIView alloc] init];
+//    [viewline setBackgroundColor:RGB(240, 240, 240)];
+//    [view addSubview:viewline];
+//    [viewline mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.offset(15);
+//        make.right.equalTo(view).offset(-15);
+//        make.bottom.equalTo(view);
+//        make.height.offset(1);
+//    }];
     
 }
 

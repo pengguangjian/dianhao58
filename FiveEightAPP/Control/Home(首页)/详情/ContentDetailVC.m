@@ -39,6 +39,8 @@
     
     MyOrderCellOtherActionView *cellOtherActionView;
     
+    UIView *viewnavline;
+    
 }
 
 @property (nonatomic , retain) UIButton *btcollect;
@@ -59,6 +61,22 @@
     datacontrol = [ContentDetailDatacontrol new];
     [self getContentData];
     [self loadFirstData];
+    
+    viewnavline = [[UIView alloc] init];
+    [viewnavline setBackgroundColor:RGB(240, 240, 240)];
+    [self.navigationController.navigationBar addSubview:viewnavline];
+    [viewnavline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.navigationController.navigationBar);
+        make.height.offset(1);
+    }];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [viewnavline removeFromSuperview];
+    
 }
 
 - (void)leftBtnOnTouch:(id)sender
@@ -117,7 +135,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = modeldetail.title;
+    titleLabel.text = [NSString stringWithFormat:@"     %@",modeldetail.title];
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = COL1;
     titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -146,9 +164,9 @@
     [imagvrz setImage:[UIImage imageNamed:@""]];
     [topView addSubview:imagvrz];
     [imagvrz mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(topView.mas_right).offset(-20);
+        make.left.equalTo(titleLabel);
         make.top.equalTo(titleLabel.mas_top);
-        make.size.sizeOffset(CGSizeMake(30, 30));
+        make.size.sizeOffset(CGSizeMake(16, 16));
     }];
     if(modeldetail.authentication_status.intValue == 1)
     {
@@ -159,6 +177,15 @@
         [imagvrz setImage:[UIImage imageNamed:@"qiyerenzhengSuccess"]];
     }
     
+    UIImageView *imageaddress = [[UIImageView alloc] init];
+    [imageaddress setImage:[UIImage imageNamed:@"addressgraw.png"]];
+    [imageaddress setContentMode:UIViewContentModeScaleAspectFit];
+    [topView addSubview:imageaddress];
+    [imageaddress mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(titleLabel);
+        make.top.equalTo(publishTimeLabel.mas_bottom).offset(8);
+        make.size.sizeOffset(CGSizeMake(12, 12));
+    }];
     
     UILabel *publishCityLabel = [[UILabel alloc]init];
     if(modeldetail.city_name.length>0)
@@ -179,7 +206,7 @@
     publishCityLabel.textAlignment = NSTextAlignmentLeft;
     [topView addSubview:publishCityLabel];
     [publishCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(topView).with.offset(16);
+        make.left.equalTo(imageaddress.mas_right).with.offset(6);
         make.top.equalTo(publishTimeLabel.mas_bottom).with.offset(8);
         make.size.mas_equalTo(CGSizeMake(DEVICE_Width-32, 12));
     }];
@@ -201,11 +228,11 @@
     [contactView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->headerView).with.offset(0);
         make.top.equalTo(topView.mas_bottom).with.offset(0);
-//        make.size.mas_equalTo(CGSizeMake(DEVICE_Width, 77+32));
         make.size.mas_equalTo(CGSizeMake(DEVICE_Width, 35+20));
     }];
     
-    [self addContactView:[NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"mobile", nil),[Util getConcealPhoneNumber:modeldetail.mobile]] withAlignTop:20 withSuperView:contactView];
+    [self addContactView:[NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"mobile", nil),modeldetail.mobile] andname:[NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"contacts", nil),modeldetail.contact] withAlignTop:20 withSuperView:contactView];
+    
     
     contentSizeHeight += 35+20;//77+32;
     
@@ -288,38 +315,58 @@
 ///底部绘制
 -(void)drawbottomView:(UIView *)view
 {
-    UIButton *btpinglun = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 50, view.height)];
-    [btpinglun setTitle:NSLocalizedString(@"comments", nil) forState:UIControlStateNormal];
-    [btpinglun setTitleColor:RGB(200, 200, 200) forState:UIControlStateNormal];
-    [btpinglun.titleLabel setFont:[UIFont systemFontOfSize:13]];
-    [btpinglun setImage:[UIImage imageNamed:@"ic_order_n"] forState:UIControlStateNormal];
-    [btpinglun layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleTop imageTitleSpace:3];
-    [btpinglun addTarget:self action:@selector(pinLunAction) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:btpinglun];
     
-    UIButton *btcollect = [[UIButton alloc] initWithFrame:CGRectMake(view.width-80, 5, 70, 40)];
-    [btcollect setBackgroundColor:RGB(30, 30, 240)];
-    [btcollect setTitle:NSLocalizedString(@"collection", nil) forState:UIControlStateNormal];
-    if(strcollect.intValue == 1)
-    {
-        [btcollect setTitle:NSLocalizedString(@"collectionCancle", nil) forState:UIControlStateNormal];
-    }
-    [btcollect setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btcollect.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [btcollect.layer setCornerRadius:3];
-    [btcollect addTarget:self action:@selector(collectAction) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:btcollect];
-    _btcollect = btcollect;
     
-    UIButton *btphone = [[UIButton alloc] initWithFrame:CGRectMake(btcollect.left-80, btcollect.top, btcollect.width, btcollect.height)];
-    [btphone setBackgroundColor:RGB(30, 30, 240)];
+    UIButton *btphone = [[UIButton alloc] init];
+    [btphone setBackgroundColor:RGB(234, 58, 60)];
     [btphone setTitle:NSLocalizedString(@"callUp", nil) forState:UIControlStateNormal];
     [btphone setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btphone.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [btphone.layer setCornerRadius:3];
     [btphone addTarget:self action:@selector(phoneAction) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:btphone];
+    [btphone mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(15);
+        make.top.offset(5);
+        make.bottom.equalTo(view).offset(-5);
+        make.width.equalTo(@70);
+    }];
     
+    UIButton *btcollect = [[UIButton alloc] init];
+    [btcollect setBackgroundColor:RGB(234, 58, 60)];
+    [btcollect setTitle:NSLocalizedString(@"collection", nil) forState:UIControlStateNormal];
+    if(strcollect.intValue == 1)
+    {
+        [btcollect setTitle:NSLocalizedString(@"collectionCancle", nil) forState:UIControlStateNormal];
+    }
+    [btcollect setImage:[UIImage imageNamed:@"collect_no"] forState:UIControlStateNormal];
+    [btcollect setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btcollect.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [btcollect.layer setCornerRadius:3];
+    [btcollect addTarget:self action:@selector(collectAction) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btcollect];
+    [btcollect mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(btphone.mas_right).offset(10);
+        make.top.offset(5);
+        make.bottom.equalTo(view).offset(-5);
+        make.width.equalTo(@70);
+    }];
+    [btcollect layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleLeft imageTitleSpace:3];
+    _btcollect = btcollect;
+    
+    UIButton *btpinglun = [[UIButton alloc] init];
+    [btpinglun setTitle:NSLocalizedString(@"comments", nil) forState:UIControlStateNormal];
+    [btpinglun setTitleColor:RGB(180, 180, 180) forState:UIControlStateNormal];
+    [btpinglun.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [btpinglun setImage:[UIImage imageNamed:@"pinglunbuttonimage"] forState:UIControlStateNormal];
+    [btpinglun addTarget:self action:@selector(pinLunAction) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btpinglun];
+    [btpinglun mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(view).offset(-15);
+        make.top.bottom.equalTo(view);
+        make.width.offset(50);
+    }];
+    [btpinglun layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleTop imageTitleSpace:3];
 }
 
 - (void)addImageView:(NSString*)urlStr withTag:(NSUInteger)index{
@@ -363,36 +410,57 @@
     
 }
 
-- (void)addContactView:(NSString*)text withAlignTop:(float)top withSuperView:(UIView*)superView {
+- (void)addContactView:(NSString*)textphone andname:(NSString *)name withAlignTop:(float)top withSuperView:(UIView*)superView {
+    
+    UILabel *contactNameLabel = [[UILabel alloc]init];
+    contactNameLabel.text = name;
+    contactNameLabel.font = [UIFont systemFontOfSize:14];
+    contactNameLabel.textColor = COL1;
+    contactNameLabel.textAlignment = NSTextAlignmentLeft;
+    [superView addSubview:contactNameLabel];
+    [contactNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(superView).with.offset(16);
+        make.top.equalTo(superView).with.offset(top);
+        make.size.mas_equalTo(CGSizeMake(DEVICE_Width-32, 15));
+    }];
+    NSMutableAttributedString *nameAttrString = [[NSMutableAttributedString alloc] initWithString:name];
+    [nameAttrString addAttribute:NSForegroundColorAttributeName
+                            value:ORANGEREDCOLOR
+                            range:NSMakeRange(0, 4)];
+    contactNameLabel.attributedText = nameAttrString;
+    
     
     UILabel *contactLabel = [[UILabel alloc]init];
-    contactLabel.text = text;
-    contactLabel.font = [UIFont systemFontOfSize:15];
+    contactLabel.text = textphone;
+    contactLabel.font = [UIFont systemFontOfSize:14];
     contactLabel.textColor = COL1;
     contactLabel.textAlignment = NSTextAlignmentLeft;
     [superView addSubview:contactLabel];
     [contactLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(superView).with.offset(16);
-        make.top.equalTo(superView).with.offset(top);
+        make.top.equalTo(contactNameLabel.mas_bottom).with.offset(5);
         make.size.mas_equalTo(CGSizeMake(DEVICE_Width-32, 15));
     }];
-    NSMutableAttributedString *phoneAttrString = [[NSMutableAttributedString alloc] initWithString:text];
+    NSMutableAttributedString *phoneAttrString = [[NSMutableAttributedString alloc] initWithString:textphone];
     [phoneAttrString addAttribute:NSForegroundColorAttributeName
                             value:ORANGEREDCOLOR
                             range:NSMakeRange(0, 3)];
     contactLabel.attributedText = phoneAttrString;
     
+    
+    
+    
     ////NSLocalizedString(@"callUp", nil)
 //    if ([text rangeOfString: @"电话"].location != NSNotFound) {
-        UIButton *callPhoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [callPhoneBtn setImage:[UIImage imageNamed:@"login_icon_cell"] forState:UIControlStateNormal];
-        [callPhoneBtn addTarget:self action:@selector(callPhoneBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
-        [superView addSubview:callPhoneBtn];
-        [callPhoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(superView).with.offset(-40);
-            make.top.equalTo(superView).with.offset(top-(30-15)/2.0f);
-            make.size.mas_equalTo(CGSizeMake(30, 30));
-        }];
+//        UIButton *callPhoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [callPhoneBtn setImage:[UIImage imageNamed:@"login_icon_cell"] forState:UIControlStateNormal];
+//        [callPhoneBtn addTarget:self action:@selector(callPhoneBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
+//        [superView addSubview:callPhoneBtn];
+//        [callPhoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.equalTo(superView).with.offset(-40);
+//            make.top.equalTo(superView).with.offset(top-(30-15)/2.0f);
+//            make.size.mas_equalTo(CGSizeMake(30, 30));
+//        }];
 //    }
 }
 #pragma mark - 图片点击
@@ -451,9 +519,8 @@
     [sendCommentView show];
     
 }
-
-#pragma mark - tableView代理方法
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+////删除评论弹框消失
+-(void)dismisshanchupinglun
 {
     [UIView animateWithDuration:0.3 animations:^{
         [self->cellOtherActionView setHeight:0];
@@ -461,6 +528,12 @@
         [self->cellOtherActionView removeFromSuperview];
         self->cellOtherActionView = nil;
     }];
+}
+
+#pragma mark - tableView代理方法
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self dismisshanchupinglun];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -644,6 +717,8 @@
         [Util LoginVC:YES];
         return;
     }
+    [self dismisshanchupinglun];
+    
     HomeDetailContentModel *model = value;
     FESendCommentView *sendCommentView = [FESendCommentView sharedView:NSLocalizedString(@"pleaseComment", nil)];
     sendCommentView.delegate = self;
@@ -665,12 +740,7 @@
     
     if(cellOtherActionView)
     {
-        [UIView animateWithDuration:0.3 animations:^{
-            [self->cellOtherActionView setHeight:0];
-        } completion:^(BOOL finished) {
-            [self->cellOtherActionView removeFromSuperview];
-            self->cellOtherActionView = nil;
-        }];
+        [self dismisshanchupinglun];
         
         return;
     }
@@ -742,7 +812,7 @@
         [Util LoginVC:YES];
         return;
     }
-    
+    [self dismisshanchupinglun];
     [_btcollect setUserInteractionEnabled:NO];
     
     NSMutableDictionary *dicpush = [NSMutableDictionary new];
@@ -787,11 +857,14 @@
 #pragma mark - 拨打电话
 -(void)phoneAction
 {
+    [self dismisshanchupinglun];
+    
     NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@", modeldetail.mobile];
-    /// 防止iOS 10及其之后，拨打电话系统弹出框延迟出现
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
-    });
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+//    /// 防止iOS 10及其之后，拨打电话系统弹出框延迟出现
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+//    });
     
 }
 

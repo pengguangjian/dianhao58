@@ -35,8 +35,6 @@
     SSDKUser *ssdkUser;
     UIButton *requestVerityCodeBtn;
     
-    UIButton *countryCodeBtn;
-    
     NSMutableArray *languageArr;
     
     LoginDataControl *datacontrol;
@@ -117,31 +115,8 @@
 - (void)initView {
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    UIImageView *bgImageView = [[UIImageView alloc] init];
-    bgImageView.image = [UIImage imageNamed:@"login_bg"];
-    [self.view addSubview:bgImageView];
-    [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).with.offset(SafeAreaTopHeight+36);
-        make.centerX.equalTo(self.view);
-        make.size.mas_equalTo(CGSizeMake(DEVICE_Width, 35));
-    }];
-    
-    UIView *bgView = [[UIView alloc] init];
-    bgView.backgroundColor = HEXCOLOR(@"f5fdfd");
-    [self.view addSubview:bgView];
-    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(bgImageView.mas_bottom).with.offset(0);
-        make.left.equalTo(self.view).with.offset(0);
-        make.right.equalTo(self.view).with.offset(0);
-        make.bottom.equalTo(self.view).with.offset(0);
-    }];
-    
-    
-
-    
     scvback = [[UIScrollView alloc] init];
-    [scvback setBackgroundColor:RGBA(0, 0, 0, 0)];
+
     [self.view addSubview:scvback];
     [scvback mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -151,12 +126,12 @@
     }];
     
     UIImageView *logoImageView = [[UIImageView alloc] init];
-    logoImageView.image = [UIImage imageNamed:@"login_logo"];
+    logoImageView.image = [UIImage imageNamed:@"log_log"];
     [scvback addSubview:logoImageView];
     [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(10);
         make.centerX.equalTo(self->scvback);
-        make.size.mas_equalTo(CGSizeMake(182/2.0, 172/2.0));
+        make.size.mas_equalTo(CGSizeMake(140/2.0, 140/2.0));
     }];
     
     
@@ -181,12 +156,12 @@
     
     model.lineHeight = 2;
     model.titleLableFont = [UIFont systemFontOfSize:16];
-    model.menuWidth = ((double)DEVICE_Width-40) / menuCount;
+    model.menuWidth = ((double)DEVICE_Width) / menuCount;
     model.menuHorizontalSpacing = 0.0f;
-    model.sliderMenuTextColorForSelect = DEFAULTCOLOR2;
+    model.sliderMenuTextColorForSelect = RGB(234, 58, 60);
     model.autoSuitLineViewWithdForBtnTitle = YES;
     
-    navSliderMenu = [[MSNavSliderMenu alloc] initWithFrame:CGRectMake(20, SafeAreaTopHeight*SCREENPROPERTION+132/2.0+25*SCREENPROPERTION, DEVICE_Width-40, 45) andStyleModel:model andDelegate:self showType:self.menuType];
+    navSliderMenu = [[MSNavSliderMenu alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight*SCREENPROPERTION+122/2.0+15*SCREENPROPERTION, DEVICE_Width, 45) andStyleModel:model andDelegate:self showType:self.menuType];
     navSliderMenu.backgroundColor = [UIColor whiteColor];
     
     UIBezierPath *navSliderMenuMaskPath = [UIBezierPath bezierPathWithRoundedRect:navSliderMenu.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10,10)];
@@ -198,7 +173,7 @@
     [scvback addSubview:navSliderMenu];
     
     // 用于滑动的滚动视图
-    contentScrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(20, SafeAreaTopHeight*SCREENPROPERTION+132/2.0+25*SCREENPROPERTION+45, navSliderMenu.width, 260)];
+    contentScrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight*SCREENPROPERTION+122/2.0+15*SCREENPROPERTION+45, navSliderMenu.width, 250)];
     contentScrollView.contentSize = (CGSize){navSliderMenu.width*menuCount,contentScrollView.frame.size.height};
 //    contentScrollView.pagingEnabled = YES;
     contentScrollView.delegate      = self;
@@ -270,29 +245,6 @@
     bgViewMaskLayer.path = bgViewMaskPath.CGPath;
     bgView.layer.mask = bgViewMaskLayer;
     
-    UIImageView *phoneImageView = [[UIImageView alloc] init];
-    phoneImageView.image = [UIImage imageNamed:@"login_icon_cell"];
-    [bgView addSubview:phoneImageView];
-    [phoneImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(bgView).with.offset(30);
-        make.left.equalTo(bgView).with.offset(20);
-        make.size.mas_equalTo(CGSizeMake(16, 16));
-    }];
-    
-    countryCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [countryCodeBtn addTarget:self action:@selector(countryCodeBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
-    [countryCodeBtn setTitle:@"+86" forState:UIControlStateNormal];
-    [countryCodeBtn setBackgroundColor:VIEWBGCOLOR];
-    [countryCodeBtn setTitleColor:COL2 forState:UIControlStateNormal];
-    countryCodeBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    [countryCodeBtn.layer setBorderColor:VIEWBGCOLOR.CGColor];
-    [countryCodeBtn.layer setCornerRadius:5.0f];
-    [bgView addSubview:countryCodeBtn];
-    [countryCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(phoneImageView.mas_right).with.offset(10);
-        make.centerY.mas_equalTo(phoneImageView);
-        make.size.mas_equalTo(CGSizeMake(60, 40));
-    }];
     
     UITextField *phoneTextField = [[UITextField alloc] init];
     phoneTextField.font = [UIFont systemFontOfSize:15];
@@ -306,8 +258,8 @@
 //    [phoneTextField addTarget:self action:@selector(phoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [bgView addSubview:phoneTextField];
     [phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(phoneImageView);
-        make.left.equalTo(self->countryCodeBtn.mas_right).with.offset(10);
+        make.top.offset(30);
+        make.left.equalTo(bgView).with.offset(20);
         make.right.equalTo(bgView).with.offset(-20);
         make.height.mas_equalTo(@40);
     }];
@@ -320,37 +272,27 @@
     [phoneTextFieldBelowLine mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.equalTo(phoneTextField.mas_bottom).with.offset(5);
-        make.left.equalTo(self->countryCodeBtn.mas_left);
+        make.left.equalTo(phoneTextField.mas_left);
         make.right.equalTo(phoneTextField.mas_right);
         
         make.height.mas_equalTo(@0.5);
     }];
     
     
-    UIImageView *verityImageView = [[UIImageView alloc] init];
-    verityImageView.image = [UIImage imageNamed:@"login_icon_code"];
-    [bgView addSubview:verityImageView];
-    [verityImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(phoneImageView.mas_bottom).with.offset(40);
-        make.left.equalTo(bgView).with.offset(20);
-        make.size.mas_equalTo(CGSizeMake(16, 16));
-    }];
-    
-    
     requestVerityCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [requestVerityCodeBtn addTarget:self action:@selector(requestVerityCodeBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
-    requestVerityCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-    requestVerityCodeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"getCode", nil)];
-    NSRange strRange = {0,[attrStr length]};
-    [attrStr addAttribute:NSForegroundColorAttributeName value:DEFAULTCOLOR2 range:strRange];
-    [requestVerityCodeBtn.layer setBorderColor:DEFAULTCOLOR2.CGColor];
-    [requestVerityCodeBtn setAttributedTitle:attrStr forState:UIControlStateNormal];
+    requestVerityCodeBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+//    requestVerityCodeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [requestVerityCodeBtn setTitle:NSLocalizedString(@"getCode", nil) forState:UIControlStateNormal];
+    [requestVerityCodeBtn setBackgroundColor:RGB(234, 58, 60)];
+    [requestVerityCodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [requestVerityCodeBtn.layer setCornerRadius:3];
+    [requestVerityCodeBtn.layer setMasksToBounds:YES];
     [bgView addSubview:requestVerityCodeBtn];
     [requestVerityCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(bgView).with.offset(-25);
-        make.centerY.mas_equalTo(verityImageView);
-        make.size.mas_equalTo(CGSizeMake(100, 40));
+        make.top.equalTo(phoneTextFieldBelowLine.mas_bottom).with.offset(20);
+        make.size.mas_equalTo(CGSizeMake(100, 35));
     }];
     
     
@@ -365,8 +307,8 @@
 //    [verityCodeTextField addTarget:self action:@selector(verityCodeTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [bgView addSubview:verityCodeTextField];
     [verityCodeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(verityImageView);
-        make.left.equalTo(verityImageView.mas_right).with.offset(10);
+        make.centerY.mas_equalTo(self->requestVerityCodeBtn);
+        make.left.equalTo(phoneTextField);
         make.right.equalTo(self->requestVerityCodeBtn.mas_left).with.offset(-10);
         make.height.mas_equalTo(@40);
     }];
@@ -384,49 +326,21 @@
     }];
     
     
-    UILabel *protocolLabel = [[UILabel alloc] init];
-//    protocolLabel.text = @"提示：未注册账号的手机，登录时将自动注册，且代表您已同意《58使用协议及声明》";
-    protocolLabel.numberOfLines = 0;
-    protocolLabel.textColor = COL3;
-    protocolLabel.font = [UIFont systemFontOfSize:12.0f];
-    [bgView addSubview:protocolLabel];
-    [protocolLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(pwdTextFieldBelowLine.mas_bottom).with.offset(10);
-        make.left.equalTo(phoneImageView.mas_left);
-        make.right.equalTo(phoneTextFieldBelowLine.mas_right);
-    }];
-//    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:protocolLabel.text];
-//    [attrString addAttribute:NSForegroundColorAttributeName
-//                       value:DEFAULTCOLOR2
-//                       range:NSMakeRange(protocolLabel.text.length-11, 11)];
-//    protocolLabel.attributedText = attrString;
-    
-    UIButton *userAgreementBtn =[[UIButton alloc]init];
-    [userAgreementBtn addTarget:self action:@selector(userAgreementBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
-    [bgView addSubview:userAgreementBtn];
-    [userAgreementBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(protocolLabel);
-        make.bottom.equalTo(protocolLabel);
-        make.left.equalTo(protocolLabel);
-        make.right.equalTo(protocolLabel);
-    }];
-    
-    
     UIButton *shortcutLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [shortcutLoginBtn addTarget:self action:@selector(shortcutLoginBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
     shortcutLoginBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     [shortcutLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [shortcutLoginBtn setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
-    [shortcutLoginBtn setBackgroundColor:DEFAULTCOLOR2];
+    [shortcutLoginBtn setBackgroundColor:RGB(234, 58, 60)];
     [shortcutLoginBtn.layer setMasksToBounds:YES];
     [shortcutLoginBtn.layer setCornerRadius:5.0f];
-    shortcutLoginBtn.xsz_acceptEventInterval = 1;
-    [shortcutLoginBtn gradientButtonWithSize:CGSizeMake(DEVICE_Width-80, 50) colorArray:@[(id)DEFAULTCOLOR1,(id)DEFAULTCOLOR2] percentageArray:@[@(0.18),@(1)] gradientType:GradientFromLeftToRight];
+//    shortcutLoginBtn.xsz_acceptEventInterval = 1;
+//    [shortcutLoginBtn gradientButtonWithSize:CGSizeMake(DEVICE_Width-80, 50) colorArray:@[(id)DEFAULTCOLOR1,(id)DEFAULTCOLOR2] percentageArray:@[@(0.18),@(1)] gradientType:GradientFromLeftToRight];
     [bgView addSubview:shortcutLoginBtn];
     [shortcutLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(bgView).with.offset(-30);
-        make.left.equalTo(phoneImageView.mas_left);
-        make.right.equalTo(phoneTextFieldBelowLine.mas_right);
+        make.bottom.equalTo(bgView).with.offset(-10);
+        make.left.offset(30);
+        make.right.equalTo(bgView).offset(-30);
         make.height.mas_equalTo(@50);
     }];
     
@@ -447,34 +361,22 @@
     bgViewMaskLayer.path = bgViewMaskPath.CGPath;
     bgView.layer.mask = bgViewMaskLayer;
     
-    UIImageView *phoneImageView = [[UIImageView alloc] init];
-    phoneImageView.image = [UIImage imageNamed:@"login_icon_cell"];
-    [bgView addSubview:phoneImageView];
-    [phoneImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(bgView).with.offset(30);
-        make.left.equalTo(bgView).with.offset(20);
-        make.size.mas_equalTo(CGSizeMake(16, 16));
-    }];
     
     UITextField *phoneTextField = [[UITextField alloc]init];
     phoneTextField.font = [UIFont systemFontOfSize:15];
     phoneTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-//    phoneTextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 15, 0)];
     phoneTextField.leftViewMode = UITextFieldViewModeAlways;
     phoneTextField.placeholder = NSLocalizedString(@"pleaseMobile", nil);
     phoneTextField.tag = 100;
-//    phoneTextField.delegate = self;
     phoneTextField.keyboardType = UIKeyboardTypeNumberPad;
-//    [phoneTextField addTarget:self action:@selector(phoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [bgView addSubview:phoneTextField];
     [phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(phoneImageView);
-        make.left.equalTo(phoneImageView.mas_right).with.offset(10);
+        make.top.equalTo(bgView).with.offset(30);
+        make.left.equalTo(bgView).with.offset(20);
         make.right.equalTo(bgView).with.offset(-20);
         make.height.mas_equalTo(@40);
     }];
-    
-//    [phoneTextField becomeFirstResponder];
+
     
     UIView *phoneTextFieldBelowLine = [[UIView alloc]init];
     phoneTextFieldBelowLine.backgroundColor = SEPARATORCOLOR;
@@ -488,35 +390,6 @@
         make.height.mas_equalTo(@0.5);
     }];
     
-    
-    UIImageView *pwdImageView = [[UIImageView alloc] init];
-    pwdImageView.image = [UIImage imageNamed:@"login_icon_password"];
-    [bgView addSubview:pwdImageView];
-    [pwdImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(phoneImageView.mas_bottom).with.offset(40);
-        make.left.equalTo(bgView).with.offset(20);
-        make.size.mas_equalTo(CGSizeMake(16, 16));
-    }];
-    
-    
-    UIButton *showOrHiddenPwdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [showOrHiddenPwdBtn addTarget:self action:@selector(showOrHiddenPwdBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *showOrHiddenPwdImage = [UIImage imageNamed:@"login_password_hide"];
-    //UIImageRenderingModeAlwaysOriginal这个枚举值是声明这张图片要按照原来的样子显示，不需要渲染成其他颜色
-    showOrHiddenPwdImage = [showOrHiddenPwdImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    //setImage 是会渲染的
-    [showOrHiddenPwdBtn setImage:showOrHiddenPwdImage forState:UIControlStateNormal];
-    showOrHiddenPwdImage = [UIImage imageNamed:@"login_password_hide"];
-    showOrHiddenPwdImage = [showOrHiddenPwdImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [showOrHiddenPwdBtn setImage:showOrHiddenPwdImage forState:UIControlStateHighlighted];
-    [bgView addSubview:showOrHiddenPwdBtn];
-    
-    [showOrHiddenPwdBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(bgView).with.offset(-25);
-        make.centerY.mas_equalTo(pwdImageView);
-        make.size.mas_equalTo(CGSizeMake(40, 40));
-    }];
-    
     UITextField *pwdTextField = [[UITextField alloc]init];
     pwdTextField.font = [UIFont systemFontOfSize:15];
     pwdTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -524,13 +397,10 @@
     pwdTextField.placeholder = NSLocalizedString(@"pleasePassWord", nil);
     pwdTextField.tag = 101;
     pwdTextField.secureTextEntry = YES;
-//    [phoneTextField addTarget:self action:@selector(pwdTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [bgView addSubview:pwdTextField];
     [pwdTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(pwdImageView);
-        make.left.equalTo(pwdImageView.mas_right).with.offset(10);
-        make.right.equalTo(showOrHiddenPwdBtn.mas_left).with.offset(-10);
-        make.height.mas_equalTo(@40);
+        make.top.equalTo(phoneTextField.mas_bottom).offset(30);
+        make.left.right.height.equalTo(phoneTextField);
     }];
     
     UIView *pwdTextFieldBelowLine = [[UIView alloc]init];
@@ -541,53 +411,24 @@
         make.top.equalTo(pwdTextField.mas_bottom).with.offset(5);
         make.left.equalTo(pwdTextField.mas_left);
         make.right.equalTo(phoneTextFieldBelowLine.mas_right);
-        
         make.height.mas_equalTo(@0.5);
     }];
-    
-    UIButton *forgetPwdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [forgetPwdBtn addTarget:self action:@selector(forgetPwdBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
-    forgetPwdBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    [forgetPwdBtn setTitleColor:DEFAULTCOLOR2 forState:UIControlStateNormal];
-    [forgetPwdBtn setTitle:[NSString stringWithFormat:@"%@？", NSLocalizedString(@"forgetPassword", nil)] forState:UIControlStateNormal];
-    [bgView addSubview:forgetPwdBtn];
-    [forgetPwdBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.equalTo(pwdTextFieldBelowLine.mas_bottom).with.offset(5);
-        make.right.equalTo(phoneTextFieldBelowLine.mas_right);
-        make.height.mas_equalTo(@20);
-        make.width.mas_equalTo(@90);
-    }];
-    
-    
-    UIButton *btresign = [[UIButton alloc] init];
-    [btresign setTitle:NSLocalizedString(@"register", nil) forState:UIControlStateNormal];
-    [btresign setTitleColor:DEFAULTCOLOR2 forState:UIControlStateNormal];
-    [btresign.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [bgView addSubview:btresign];
-    [btresign mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(bgView).offset(20);
-        make.top.height.equalTo(forgetPwdBtn);
-    }];
-    [btresign addTarget:self action:@selector(resignAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     
     UIButton *pwdLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [pwdLoginBtn addTarget:self action:@selector(pwdLoginBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
     pwdLoginBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     [pwdLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [pwdLoginBtn setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
-    [pwdLoginBtn setBackgroundColor:DEFAULTCOLOR2];
+    [pwdLoginBtn setBackgroundColor:RGB(234, 58, 60)];
     [pwdLoginBtn.layer setMasksToBounds:YES];
     [pwdLoginBtn.layer setCornerRadius:5.0f];
-    pwdLoginBtn.xsz_acceptEventInterval = 1;
-    [pwdLoginBtn gradientButtonWithSize:CGSizeMake(DEVICE_Width-80, 50) colorArray:@[(id)DEFAULTCOLOR1,(id)DEFAULTCOLOR2] percentageArray:@[@(0.18),@(1)] gradientType:GradientFromLeftToRight];
+//    pwdLoginBtn.xsz_acceptEventInterval = 1;
+//    [pwdLoginBtn gradientButtonWithSize:CGSizeMake(DEVICE_Width-80, 50) colorArray:@[(id)DEFAULTCOLOR1,(id)DEFAULTCOLOR2] percentageArray:@[@(0.18),@(1)] gradientType:GradientFromLeftToRight];
     [bgView addSubview:pwdLoginBtn];
     [pwdLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(bgView).with.offset(-30);
-        make.left.equalTo(phoneImageView.mas_left);
-        make.right.equalTo(phoneTextFieldBelowLine.mas_right);
+        make.bottom.equalTo(bgView).with.offset(-10);
+        make.left.offset(30);
+        make.right.equalTo(bgView).offset(-30);
         make.height.mas_equalTo(@50);
     }];
     
@@ -603,34 +444,70 @@
     
     float p = SCREENPROPERTION;
     
+    
+    UIButton *forgetPwdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [forgetPwdBtn addTarget:self action:@selector(forgetPwdBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
+    forgetPwdBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+    [forgetPwdBtn setTitleColor:RGB(130, 130, 130) forState:UIControlStateNormal];
+    [forgetPwdBtn setTitle:[NSString stringWithFormat:@"%@？", NSLocalizedString(@"forgetPassword", nil)] forState:UIControlStateNormal];
+    [scvback addSubview:forgetPwdBtn];
+    [forgetPwdBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self->contentScrollView.mas_bottom);
+        make.right.offset(DEVICE_Width/2.0-20);
+        make.height.mas_equalTo(@25);
+    }];
+    
+    UIView *viewlines = [[UIView alloc] init];
+    [viewlines setBackgroundColor:RGB(180, 180, 180)];
+    [scvback addSubview:viewlines];
+    [viewlines mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(forgetPwdBtn.mas_right).offset(20);
+        make.top.equalTo(forgetPwdBtn).offset(5);
+        make.size.sizeOffset(CGSizeMake(1, 10));
+    }];
+    
+    UIButton *btresign = [[UIButton alloc] init];
+    [btresign setTitle:NSLocalizedString(@"lijiregister", nil) forState:UIControlStateNormal];
+    [btresign setTitleColor:RGB(130, 130, 130) forState:UIControlStateNormal];
+    [btresign.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [scvback addSubview:btresign];
+    [btresign mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(viewlines).offset(20);
+        make.top.height.equalTo(forgetPwdBtn);
+    }];
+    [btresign addTarget:self action:@selector(resignAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     UILabel *descLabel = [[UILabel alloc] init];
-    descLabel.textColor = DEFAULTCOLOR2;
-    descLabel.font = [UIFont systemFontOfSize:16];
+    descLabel.textColor = RGB(50, 50, 50);
+    descLabel.font = [UIFont systemFontOfSize:13];
     descLabel.text = NSLocalizedString(@"thirdLogin", nil);
     descLabel.textAlignment = NSTextAlignmentCenter;
     [scvback addSubview:descLabel];
     [descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self->contentScrollView);
-        make.top.equalTo(self->contentScrollView.mas_bottom).with.offset(20*SCREENPROPERTION);
+        make.top.equalTo(btresign.mas_bottom).offset(30);
         make.height.offset(16);
     }];
     
     UIView *leftView = [[UIView alloc] init];
-    [leftView setBackgroundColor:DEFAULTCOLOR2];
+    [leftView setBackgroundColor:RGB(240, 240, 240)];
     [scvback addSubview:leftView];
     [leftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(descLabel);
-        make.right.equalTo(descLabel.mas_left).with.offset(-5);
-        make.size.mas_equalTo(CGSizeMake(50, 1));
+        make.right.equalTo(descLabel.mas_left).with.offset(-10);
+        make.left.offset(30);
+        make.height.offset(1);
     }];
     
     UIView *rightView = [[UIView alloc] init];
-    [rightView setBackgroundColor:DEFAULTCOLOR2];
+    [rightView setBackgroundColor:RGB(240, 240, 240)];
     [scvback addSubview:rightView];
     [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(descLabel);
-        make.left.equalTo(descLabel.mas_right).with.offset(5);
-        make.size.mas_equalTo(CGSizeMake(50, 1));
+        make.left.equalTo(descLabel.mas_right).with.offset(10);
+        make.right.equalTo(self->contentScrollView).offset(-30);
+        make.height.offset(1);
     }];
     
     
@@ -742,29 +619,18 @@
         if(timeout<=0){ //倒计时结束，关闭
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"getCode", nil)];
-                NSRange strRange = {0,[attrStr length]};
-                
-                [attrStr addAttribute:NSForegroundColorAttributeName value:DEFAULTCOLOR2 range:strRange];
-                [requestVerityCodeBtn.layer setBorderColor:DEFAULTCOLOR2.CGColor];
-                [requestVerityCodeBtn setAttributedTitle:attrStr forState:UIControlStateNormal];
-                requestVerityCodeBtn.userInteractionEnabled = YES;
+                NSString *title = [NSString stringWithFormat:@"%@",NSLocalizedString(@"getCode", nil)];
+                [self->requestVerityCodeBtn setTitle:title forState:UIControlStateNormal];
+                self->requestVerityCodeBtn.userInteractionEnabled = YES;
             });
         }else{
-            //            int minutes = timeout / 60;
-            
             int seconds = timeout % 120;
             NSString *strTime = [NSString stringWithFormat:@"%d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
 
                 NSString *title = [NSString stringWithFormat:@"%@s%@",strTime,NSLocalizedString(@"chongxinhuoqu", nil)];
-                NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:title];
-                NSRange strRange = {0,[attrStr length]};
-                [attrStr addAttribute:NSForegroundColorAttributeName value:RGB(153, 153, 153) range:strRange];
-                [requestVerityCodeBtn.layer setBorderColor:RGB(153, 153, 153).CGColor];
-                [requestVerityCodeBtn setAttributedTitle:attrStr forState:UIControlStateNormal];
-                requestVerityCodeBtn.userInteractionEnabled = NO;
+                [self->requestVerityCodeBtn setTitle:title forState:UIControlStateNormal];
+                self->requestVerityCodeBtn.userInteractionEnabled = NO;
                 
             });
             timeout--;

@@ -26,6 +26,9 @@
     model.image = [dic objectForKey:@"image"];
     model.content = [NSString nullToString:[dic objectForKey:@"content"]];
     model.authentication_status = [NSString nullToString:[dic objectForKey:@"authentication_status"]];
+    
+    model.contact = [NSString nullToString:[dic objectForKey:@"contact"]];
+    
     return model;
 }
 

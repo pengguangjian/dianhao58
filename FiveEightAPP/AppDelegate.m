@@ -124,7 +124,7 @@
     UINavigationController *publishNC = [[UINavigationController alloc] initWithRootViewController:publishVC];
     
     MessageVC *messageVC = [[MessageVC alloc]initWithNibName:@"MessageVC" bundle:Nil];
-    messageVC.tabBarItem = [self createTabBarItem:NSLocalizedString(@"Message", nil) imageNamed:@"ic_message_n" selectedImageNamed:@"ic_message_n"];
+    messageVC.tabBarItem = [self createTabBarItem:NSLocalizedString(@"Message", nil) imageNamed:@"ic_message_n" selectedImageNamed:@"ic_message_s"];
     UINavigationController *messageNC = [[UINavigationController alloc] initWithRootViewController:messageVC];
     
     MeVC *meVC = [[MeVC alloc]initWithNibName:@"MeVC" bundle:Nil];
@@ -135,7 +135,7 @@
     _tabBarCtrl = [[FETabBarController alloc]init];
     
     //选中时的颜色
-    self.tabBarCtrl.feTabbar.tintColor = [UIColor colorWithRed:251.0/255.0 green:199.0/255.0 blue:115/255.0 alpha:1];
+    self.tabBarCtrl.feTabbar.tintColor = [UIColor colorWithRed:234/255.0 green:58/255.0 blue:60/255.0 alpha:1];
     //透明设置为NO，显示白色，view的高度到tabbar顶部截止，YES的话到底部
     self.tabBarCtrl.feTabbar.translucent = NO;
     
@@ -151,7 +151,7 @@
     } else {
         [UITabBar appearance].unselectedItemTintColor = TABBARUNSELECTEDTINTCOLOR;
     }
-    [UITabBar appearance].selectedImageTintColor = TABBARSELECTEDTINTCOLOR;
+    [UITabBar appearance].selectedImageTintColor = RGB(234, 58, 60);
     
     //TabBar的分割线
     //    [[UITabBar appearance] setShadowImage:[UIImage new]];

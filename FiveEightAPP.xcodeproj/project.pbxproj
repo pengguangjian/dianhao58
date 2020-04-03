@@ -47,6 +47,7 @@
 		04512EB7243580AC0077B682 /* BindingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04512EB6243580AC0077B682 /* BindingVC.m */; };
 		04512EBB2435DC5C0077B682 /* GMDCircleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04512EBA2435DC5B0077B682 /* GMDCircleLoader.m */; };
 		04512EBF2435DCFB0077B682 /* FindModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04512EBE2435DCFB0077B682 /* FindModel.m */; };
+		046212622437385F00979D90 /* WebViewDataControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 046212612437385F00979D90 /* WebViewDataControl.m */; };
 		0472240C2431848200573F67 /* ApplyAgentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0472240B2431848200573F67 /* ApplyAgentVC.m */; };
 		04722410243197F600573F67 /* UserRenZhengVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0472240F243197F600573F67 /* UserRenZhengVC.m */; };
 		047224132431CCC500573F67 /* RegionalDataControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 047224122431CCC500573F67 /* RegionalDataControl.m */; };
@@ -499,6 +500,8 @@
 		04512EBA2435DC5B0077B682 /* GMDCircleLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDCircleLoader.m; sourceTree = "<group>"; };
 		04512EBD2435DCFB0077B682 /* FindModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindModel.h; sourceTree = "<group>"; };
 		04512EBE2435DCFB0077B682 /* FindModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindModel.m; sourceTree = "<group>"; };
+		046212602437385F00979D90 /* WebViewDataControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewDataControl.h; sourceTree = "<group>"; };
+		046212612437385F00979D90 /* WebViewDataControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewDataControl.m; sourceTree = "<group>"; };
 		0472240A2431848200573F67 /* ApplyAgentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyAgentVC.h; sourceTree = "<group>"; };
 		0472240B2431848200573F67 /* ApplyAgentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyAgentVC.m; sourceTree = "<group>"; };
 		0472240E243197F600573F67 /* UserRenZhengVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserRenZhengVC.h; sourceTree = "<group>"; };
@@ -3077,6 +3080,8 @@
 				20FF03E223308FEF00C16750 /* ShareWebViewVC.h */,
 				20FF03E523308FEF00C16750 /* ShareWebViewVC.m */,
 				20FF03E623308FEF00C16750 /* ShareWebViewVC.xib */,
+				046212602437385F00979D90 /* WebViewDataControl.h */,
+				046212612437385F00979D90 /* WebViewDataControl.m */,
 			);
 			path = H5;
 			sourceTree = "<group>";
@@ -3542,6 +3547,7 @@
 				20FF031523307CBA00C16750 /* YDScrollView.m in Sources */,
 				04722410243197F600573F67 /* UserRenZhengVC.m in Sources */,
 				20F7EB8A23288951006E5EF2 /* NSObject+MJCoding.m in Sources */,
+				046212622437385F00979D90 /* WebViewDataControl.m in Sources */,
 				20F7EB5D2328892C006E5EF2 /* MASConstraintMaker.m in Sources */,
 				0483FFEB242F84310004BAD6 /* MyOrderCellOtherActionView.m in Sources */,
 				20D7C6C2232A171400E0C72F /* LocalImageCell.m in Sources */,

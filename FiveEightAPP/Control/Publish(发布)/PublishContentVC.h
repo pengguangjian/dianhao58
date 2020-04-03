@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PublishContentVC : BaseVC
 @property (strong, nonatomic) HomeLanMuModel *cto;
-@property (strong, nonatomic) IBOutlet UIButton *commitBtn;
-- (IBAction)commitBtnOnTouch:(id)sender;
 
 @end
 

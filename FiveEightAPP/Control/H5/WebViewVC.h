@@ -19,4 +19,6 @@
 
 - (instancetype)initWithTitle:(NSString *)title andUrl:(NSString *)urlString;
 
+- (instancetype)initWithTitle:(NSString *)title initWithTitle:(NSString *)urlString;
+
 @end

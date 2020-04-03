@@ -52,7 +52,6 @@
         [viewback setBackgroundColor:[UIColor whiteColor]];
         
         UIImageView *imgvhead = [[UIImageView alloc] init];
-        [imgvhead setBackgroundColor:[UIColor grayColor]];
         [viewback addSubview:imgvhead];
         [imgvhead mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.offset(15);
@@ -156,7 +155,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    [_imgvhead sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@"img_my_head"]];
+    [_imgvhead sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@"log_log"]];
     
     [_lbtitle setText:model.title];
     

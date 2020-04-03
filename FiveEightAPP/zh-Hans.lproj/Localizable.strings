@@ -54,7 +54,9 @@
 "pleaseNewToPassWord" = "两次新密码不一致";
 "yiyuedubtyalonxieyi" = "已阅读并同意协议《ALOVN使用协议及声明》";
 "appledenglusqcuowu" = "Apple登录授权错误";
-
+"lijiregister" = "立即注册";
+"tongyixiyibingdenglu" = "同意协议并登录";
+"meiyoussdninxydsj" = "没有所搜到您需要的数据";
 
 
 //我的界面
@@ -96,7 +98,7 @@
 "cancel" = "取消";
 "send" = "发送";
 "pleaseComment" = "请输入评论";
-"collectionCancle" = "取消收藏";
+"collectionCancle" = "已收藏";
 "huifu" = "回复";
 "detailCommentdetail" = "【联系时请说是ALOVN看到的,谢谢】添加ALOVN微信：p879176344，可免费发布租房、招聘、二手交易、生活服务等个人信息。 ALOVN官方授权账号，不信你去官网看:） 骗子仿得了我们的相貌，仿不了我们爱你的心，记得交易要谨慎哦";
 
@@ -122,7 +124,7 @@
 "zuiduoxuanzztupian" = "最多选择5张照片";
 "xiayibu" = "下一步";
 "yuantu" = "原图";
-
+"qingshuruzqshoujh" = "请输入正确的手机号";
 
 //////
 ///消息
@@ -180,7 +182,7 @@
 
 /////
 ///我的认证
-"certificationCompleteEasier" = "*完成认证，发布更轻松";
+"certificationCompleteEasier" = "完成认证，发布更轻松";
 "personalAuthentication" = "个人认证";
 "eerchantCertification" = "企业/商家认证";
 "pleaseRealDataAuthentication" = "请输入你的真实资料用于认证";

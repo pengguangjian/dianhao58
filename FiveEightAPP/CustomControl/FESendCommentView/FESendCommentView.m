@@ -60,8 +60,8 @@
     
     [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
-        make.top.equalTo(self).with.offset(DEVICE_Height);
-        make.size.mas_equalTo(CGSizeMake(DEVICE_Width, bgViewHeight));
+        make.bottom.equalTo(self);
+        make.size.sizeOffset(CGSizeMake(DEVICE_Width, bgViewHeight));
     }];
 
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -115,7 +115,7 @@
         make.bottom.equalTo(bgView).with.offset(-6);
     }];
     
-    [self addNoticeForKeyboard];
+//    [self addNoticeForKeyboard];
     
 }
 

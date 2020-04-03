@@ -30,7 +30,7 @@
     [self setNavigationBarTitle:_strname leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
     [self setNavRightBt];
         
-    [self initWithRefreshTableView:CGRectMake(0, SafeAreaTopHeight, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight)];
+    [self initWithRefreshTableView:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight)];
     
     self.tableView.isShowWithoutDataView = YES;
     self.tableView.separatorColor = SEPARATORCOLOR;
@@ -40,17 +40,43 @@
     [self loadFirstData];
 }
 
+-(void)setnavBackground
+{
+    [self.navigationController.navigationBar setBackgroundImage:[Util imageWithColor:RGB(234, 58, 60)] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];// 要使用默认导航栏页面的话，需要设置为nil，否则没有导航栏下面的那根线
+    self.navigationController.navigationBar.translucent = NO;
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor: [UIColor whiteColor],
+    UITextAttributeFont : [UIFont boldSystemFontOfSize:18]};
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setnavBackground];
+    
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];// 要使用默认导航栏页面的话，需要设置为nil，否则没有导航栏下面的那根线
+    self.navigationController.navigationBar.translucent = YES;
+    
+}
+
 
 -(void)setNavRightBt
 {
     NSString *strname = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTCITYNAME];
     _cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
     [_cityBtn setTitle:strname forState:UIControlStateNormal];
-    [_cityBtn setTitleColor:RGB(180, 180, 180) forState:UIControlStateNormal];
+    [_cityBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_cityBtn setBackgroundColor:[UIColor clearColor]];
     _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateNormal];
-    [_cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateHighlighted];
+    [_cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateNormal];
+    [_cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateHighlighted];
     [_cityBtn layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleRight imageTitleSpace:3];
     [_cityBtn addTarget:self action:@selector(cityBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
     

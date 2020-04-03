@@ -16,7 +16,7 @@
     
     UIImageView *headImageView;
     UILabel *nickNameLabel;
-    UIImageView *phoneImageView;
+//    UIImageView *phoneImageView;
     UILabel *phoneOrDescLabel;
     
     NSArray *imageNameArr;
@@ -24,6 +24,8 @@
     NSArray *classNameArr;
     
     UILabel *personalInfoLabel;
+    
+    UIView *viewnavline;
 }
 @end
 
@@ -53,8 +55,18 @@
     
 //
     textArr = @[@[NSLocalizedString(@"mycollect", nil), NSLocalizedString(@"publicHestory", nil),NSLocalizedString(@"regionalPartner", nil),NSLocalizedString(@"myCertification", nil)],@[NSLocalizedString(@"feedback", nil), NSLocalizedString(@"customerTelephone", nil),NSLocalizedString(@"setUp", nil)]];
-    imageNameArr = @[ @[@"me_icon_contact", @"me_icon_feedback", @"me_icon_service", @"me_icon_service"],@[@"me_icon_service", @"me_icon_feedback", @"me_icon_service"]];
+    imageNameArr = @[ @[@"collect_yes", @"my_public_hestory", @"my_quyu_hehuoren", @"my_woderenzhen"],@[@"my_yijianfankui", @"my_upphone", @"my_set"]];
     classNameArr = @[@[@"MyCollectVC", @"PublishHistoryVC",@"RegionalPartnersVC",@"StoreAuthVC"], @[@"ApplyAgentVC", @"FeedbackVC",@"SettingVC"]];
+    
+    
+    viewnavline = [[UIView alloc] init];
+    [viewnavline setBackgroundColor:RGB(240, 240, 240)];
+    [self.navigationController.navigationBar addSubview:viewnavline];
+    [viewnavline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.navigationController.navigationBar);
+        make.height.offset(1);
+    }];
+    [viewnavline setHidden:YES];
     
 }
 
@@ -74,13 +86,6 @@
     bgImageView.clipsToBounds = YES;
     bgImageView.image = [UIImage imageNamed:@"nav_bg"];
     
-//    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-//    gradientLayer.frame = bgImageView.bounds;
-//    gradientLayer.colors = @[(id)DEFAULTCOLOR1.CGColor,(id)DEFAULTCOLOR2.CGColor];  // 设置渐变颜色
-//    gradientLayer.startPoint = CGPointMake(0, 0);
-//    gradientLayer.endPoint = CGPointMake(1, 0);
-//    [bgImageView.layer addSublayer:gradientLayer];
-    
     //背景之上的内容
     UIView *contentView = [[UIView alloc] initWithFrame:bgImageView.bounds];
     contentView.backgroundColor = [UIColor clearColor];
@@ -94,7 +99,7 @@
     headImageView = [[UIImageView alloc] init];
     [headImageView sd_setImageWithURL:[NSURL URLWithString:headImage] placeholderImage:[UIImage imageNamed:@"img_my_head"]];
     [headImageView.layer setMasksToBounds:YES];
-    [headImageView.layer setCornerRadius:35.0f];
+    [headImageView.layer setCornerRadius:30.0f];
     [headImageView.layer setBorderWidth:2.5f];
     [headImageView.layer setBorderColor:[UIColor clearColor].CGColor];
     [contentView addSubview:headImageView];
@@ -102,8 +107,8 @@
 //        make.centerY.mas_equalTo(contentView);
         make.bottom.equalTo(contentView).with.offset(-((StretchHeaderHeight-20-70)/2.0));
         make.left.equalTo(contentView).with.offset(20);
-        make.height.mas_equalTo(@70);
-        make.width.mas_equalTo(@70);
+        make.height.mas_equalTo(@60);
+        make.width.mas_equalTo(@60);
     }];
     
     UIImageView *accessoryDisclosureIndicatorImageView = [[UIImageView alloc] init];
@@ -120,7 +125,7 @@
     personalInfoLabel.font = [UIFont systemFontOfSize:13];
     personalInfoLabel.textColor = [UIColor whiteColor];
     personalInfoLabel.textAlignment = NSTextAlignmentRight;
-    personalInfoLabel.text = NSLocalizedString(@"personalInformation", nil);
+//    personalInfoLabel.text = NSLocalizedString(@"personalInformation", nil);
     [contentView addSubview:personalInfoLabel];
     [personalInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(headImageView);
@@ -148,22 +153,22 @@
 //    phoneOrDescLabel.text = @"139****7518";
     [contentView addSubview:phoneOrDescLabel];
     [phoneOrDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(headImageView.mas_bottom);
-        make.left.equalTo(headImageView.mas_right).with.offset(15+14+6);
+        make.bottom.equalTo(self->headImageView.mas_bottom);
+        make.left.equalTo(self->nickNameLabel);
         make.right.equalTo(accessoryDisclosureIndicatorImageView.mas_left).with.offset(-16);
         make.height.mas_equalTo(@30);
     }];
     
-    phoneImageView = [[UIImageView alloc]init];
-    phoneImageView.image = [UIImage imageNamed:@"me_icon_cell"];
-    [contentView addSubview:phoneImageView];
-    [phoneImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(phoneOrDescLabel);
-        make.left.equalTo(headImageView.mas_right).with.offset(15);
-        make.right.equalTo(phoneOrDescLabel.mas_left).with.offset(-6);
-        make.height.mas_equalTo(@14);
-        make.width.mas_equalTo(@14);
-    }];
+//    phoneImageView = [[UIImageView alloc]init];
+//    phoneImageView.image = [UIImage imageNamed:@"me_icon_cell"];
+//    [contentView addSubview:phoneImageView];
+//    [phoneImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(phoneOrDescLabel);
+//        make.left.equalTo(headImageView.mas_right).with.offset(15);
+//        make.right.equalTo(phoneOrDescLabel.mas_left).with.offset(-6);
+//        make.height.mas_equalTo(@14);
+//        make.width.mas_equalTo(@14);
+//    }];
     
     
     UIButton *stretchHeaderViewBtn = [[UIButton alloc] init];
@@ -179,10 +184,10 @@
     }];
     
     
-    UIButton *btset = [[UIButton alloc] initWithFrame:CGRectMake(bgImageView.width-60, SafeAreaTopHeight-40, 50, 40)];
-    [btset setImage:[UIImage imageNamed:@"me_icon_set"] forState:UIControlStateNormal];
-    [btset addTarget:self action:@selector(navSetAction) forControlEvents:UIControlEventTouchUpInside];
-    [contentView addSubview:btset];
+//    UIButton *btset = [[UIButton alloc] initWithFrame:CGRectMake(bgImageView.width-60, SafeAreaTopHeight-40, 50, 40)];
+//    [btset setImage:[UIImage imageNamed:@"me_icon_set"] forState:UIControlStateNormal];
+//    [btset addTarget:self action:@selector(navSetAction) forControlEvents:UIControlEventTouchUpInside];
+//    [contentView addSubview:btset];
     
     
     
@@ -207,7 +212,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    
+    [viewnavline setHidden:YES];
 //    [self setNavigationBarTitle:nil leftImage:nil andRightImage:[UIImage imageNamed:@"me_icon_set"]];
     
     self.navigationController.navigationBarHidden = YES;
@@ -231,11 +236,11 @@
         headImageView.image = [UIImage imageNamed:@"avater"];
         nickNameLabel.text = NSLocalizedString(@"ImmediatelyLogin", nil);
         phoneOrDescLabel.text = NSLocalizedString(@"ImmediatelyLoginComtent", nil);
-        [phoneImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(@0);
-        }];
+//        [phoneImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.width.mas_equalTo(@0);
+//        }];
         [phoneOrDescLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(headImageView.mas_right).with.offset(15);
+            make.left.equalTo(self->headImageView.mas_right).with.offset(15);
         }];
     } else {
         //已登录
@@ -248,12 +253,12 @@
         phoneOrDescLabel.text = [Util getConcealPhoneNumber:[User sharedUser].phone];
         personalInfoLabel.hidden = NO;
         
-        [phoneImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(@14);
-        }];
+//        [phoneImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.width.mas_equalTo(@14);
+//        }];
         
         [phoneOrDescLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(headImageView.mas_right).with.offset(15+14+6);
+            make.left.equalTo(self->nickNameLabel);
         }];
         
         [self getUserInfo];
@@ -267,16 +272,16 @@
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
     NSLog(@"StatusBar:3黑");
 }
-
 
 - (void)viewDidDisappear:(BOOL)animated {
     
     [super viewDidDisappear:animated];
     
 //    [Util setNavigationBar:self.navigationController.navigationBar andBackgroundColor:[UIColor whiteColor] andIsShowSplitLine:NO];
-    
+    [viewnavline setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -398,6 +403,7 @@
     NSString *imageName = [[imageNameArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.imageView.image = [UIImage imageNamed:imageName];
     
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -452,10 +458,11 @@
     if([className isEqualToString:@"FeedbackVC"])
     {///客服电话
         NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@", [User sharedUser].linksys];
-        /// 防止iOS 10及其之后，拨打电话系统弹出框延迟出现
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
-        });
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+//        /// 防止iOS 10及其之后，拨打电话系统弹出框延迟出现
+//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+//        });
         return;
     }
     Class someClass = NSClassFromString(className);

@@ -12,6 +12,8 @@
 #import "JPUSHService.h"
 #import "LoginVC.h"
 
+#import "WebViewVC.h"
+
 @interface SettingVC () {
     NSArray *textArr;
     NSArray *classNameArr;
@@ -34,8 +36,8 @@
     
     self.tableView.separatorColor = SEPARATORCOLOR;
     
-    textArr = @[@[NSLocalizedString(@"personalInformation", nil), NSLocalizedString(@"securitySetting", nil), NSLocalizedString(@"currency", nil)], @[NSLocalizedString(@"systemScore", nil), NSLocalizedString(@"systemAbout", nil)], @[NSLocalizedString(@"loginOut", nil)]];
-    classNameArr = @[@[@"PersonalInfoVC", @"SafeSettingVC", @"CommonSettingVC"], @[@"", @"AboutVC"], @[@""]];
+    textArr = @[@[NSLocalizedString(@"personalInformation", nil), NSLocalizedString(@"securitySetting", nil), NSLocalizedString(@"currency", nil)], @[NSLocalizedString(@"systemScore", nil), NSLocalizedString(@"使用条款", nil),NSLocalizedString(@"免责声明", nil),NSLocalizedString(@"商家协议", nil),NSLocalizedString(@"systemAbout", nil)], @[NSLocalizedString(@"loginOut", nil)]];
+    classNameArr = @[@[@"PersonalInfoVC", @"SafeSettingVC", @"CommonSettingVC"], @[@"", @"AboutVC",@"AboutVC",@"AboutVC",@"AboutVC"], @[@""]];
     
 }
 
@@ -196,6 +198,19 @@
         [self logout];
         [Util LoginVC:YES];
         return;
+    }
+    if(indexPath.section == 1)
+    {
+        if(indexPath.row>0)
+        {
+            NSArray *arrurl = @[@"",@"frontend.page/terms",@"frontend.page/disclaimer",@"frontend.page/merchant",@"frontend.page/registration"];
+            NSArray *arrtemp = textArr[indexPath.section];
+            WebViewVC *wvc = [[WebViewVC alloc] initWithTitle:arrtemp[indexPath.row] initWithTitle:arrurl[indexPath.row]];
+            
+            [self.navigationController pushViewController:wvc animated:YES];
+            
+            return;
+        }
     }
     
     

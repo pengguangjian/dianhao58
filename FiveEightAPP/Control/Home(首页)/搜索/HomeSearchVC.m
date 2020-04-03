@@ -21,6 +21,9 @@
     HomeBanKuaiDataControl *datacontrol;
     NSString *strcityid;
     NSString *strkeywords;
+    
+    UIView *viewnavsearch;
+    
 }
 
 @property (nonatomic , retain) UITextField *fieldSearch;
@@ -34,12 +37,12 @@
     strkeywords = @"";
     [self setNavigationBarTitle:NSLocalizedString(@"sousuo", nil) leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
         
-    UIView *viewtop = [[UIView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, DEVICE_Width, 50)];
-    [viewtop setBackgroundColor:[UIColor whiteColor]];
-    [self.view addSubview:viewtop];
+    UIView *viewtop = [[UIView alloc] initWithFrame:CGRectMake(50, 0, DEVICE_Width-50, self.navigationController.navigationBar.height)];
+    [self.navigationController.navigationBar addSubview:viewtop];
     [self drawtopVIew:viewtop];
+    viewnavsearch = viewtop;
     
-    [self initWithRefreshTableView:CGRectMake(0, viewtop.bottom, DEVICE_Width, DEVICE_Height-viewtop.bottom)];
+    [self initWithRefreshTableView:CGRectMake(0, SafeAreaTopHeight, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight)];
     
     self.tableView.isShowWithoutDataView = YES;
     self.tableView.separatorColor = SEPARATORCOLOR;
@@ -48,6 +51,34 @@
     strcityid = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTCITYID];
 }
 
+-(void)setnavBackground
+{
+    [self.navigationController.navigationBar setBackgroundImage:[Util imageWithColor:RGB(234, 58, 60)] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];// 要使用默认导航栏页面的话，需要设置为nil，否则没有导航栏下面的那根线
+    self.navigationController.navigationBar.translucent = NO;
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor: [UIColor whiteColor],
+    UITextAttributeFont : [UIFont boldSystemFontOfSize:18]};
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setnavBackground];
+    [viewnavsearch setHidden:NO];
+    
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];// 要使用默认导航栏页面的话，需要设置为nil，否则没有导航栏下面的那根线
+    self.navigationController.navigationBar.translucent = YES;
+    [viewnavsearch setHidden:YES];
+}
+
+
 - (void)leftBtnOnTouch:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -55,16 +86,7 @@
 
 -(void)drawtopVIew:(UIView *)view
 {
-    [view setBackgroundColor:[UIColor redColor]];
-    UIImageView *flogImageView = [[UIImageView alloc] init];
-    flogImageView.image = [UIImage imageNamed:@"1"];
-    [flogImageView.layer setCornerRadius:3.0f];
-    [view addSubview:flogImageView];
-    [flogImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(view).with.offset(12);
-        make.centerY.mas_equalTo(view);
-        make.size.mas_equalTo(CGSizeMake(40, 40));
-    }];
+    [view setBackgroundColor:RGB(234, 58, 69)];
     
     UIButton *publishBtn = [[UIButton alloc] init];
     [publishBtn setTitle:NSLocalizedString(@"sousuo", nil) forState:UIControlStateNormal];
@@ -79,14 +101,13 @@
         make.width.offset(40);
     }];
     NSString *strcityname = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTCITYNAME];
-    cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(60, 5, 60, 40)];
+    cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 3, 60, 40)];
     [cityBtn setTitle:strcityname forState:UIControlStateNormal];
     [cityBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cityBtn setBackgroundColor:[UIColor clearColor]];
     cityBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateNormal];
-    [cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateHighlighted];
-    //    cityBtn.imageView.transform = CGAffineTransformMakeRotation(M_PI/2);
+    [cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateNormal];
+    [cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateHighlighted];
     [cityBtn layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleRight imageTitleSpace:3];
     [cityBtn addTarget:self action:@selector(cityBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:cityBtn];
@@ -94,14 +115,14 @@
     
     ///搜索框
     UIView *viewsearch = [[UIView alloc] init];
-    [viewsearch setBackgroundColor:RGBA(255, 255, 255, 0.6)];
+    [viewsearch setBackgroundColor:RGBA(255, 255, 255, 1)];
     [viewsearch.layer setCornerRadius:3.0f];
     [view addSubview:viewsearch];
     [viewsearch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->cityBtn.mas_right);
         make.right.equalTo(publishBtn.mas_left);
-        make.top.offset(5);
-        make.height.offset(40);
+        make.top.offset(3);
+        make.height.offset(35);
     }];
     UIImageView *imgvsearch = [[UIImageView alloc] init];
     [imgvsearch setImage:[UIImage imageNamed:@"searchBar_icon"]];
@@ -113,7 +134,7 @@
     }];
     
     UITextField *fieldsearch = [[UITextField alloc] init];
-    [fieldsearch setTextColor:[UIColor whiteColor]];
+    [fieldsearch setTextColor:RGB(30, 30, 30)];
     [fieldsearch setTextAlignment:NSTextAlignmentLeft];
     [fieldsearch setFont:[UIFont systemFontOfSize:14]];
     [fieldsearch setPlaceholder:NSLocalizedString(@"zhaogongzuozhaofangz", nil)];
@@ -168,6 +189,10 @@
                BanKuaiModel *model = [BanKuaiModel dicToModelValue:dic];
                [self->_dataArray addObject:model];
            }
+        }
+        if(self.page == 1 && self->_dataArray.count == 0)
+        {
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"meiyoussdninxydsj", nil)];
         }
         [self.tableView reloadData];
         

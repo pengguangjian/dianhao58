@@ -10,6 +10,10 @@
 #import "DescAndTextFieldCell.h"
 #import "RegionalDataControl.h"
 
+#import "OpenedCityVC.h"
+
+#import "OpenedCity.h"
+
 @interface RegionalPartnersVC ()
 {
     RegionalDataControl *datacontrol;
@@ -70,6 +74,38 @@
         [tableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier];
         cell = (DescAndTextFieldCell *)[tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     }
+    [cell.valueTextField setUserInteractionEnabled:YES];
+    if(indexPath.row == 1)
+    {
+        [cell.valueTextField setUserInteractionEnabled:NO];
+        
+        UIImageView *imgvs = [[UIImageView alloc] init];
+        [imgvs setImage:[UIImage imageNamed:@"sanjiao_down_graw"]];
+        [cell.contentView addSubview:imgvs];
+        [imgvs mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(cell.contentView).offset(-20);
+            make.centerY.equalTo(cell.contentView);
+            make.size.sizeOffset(CGSizeMake(15, 15));
+        }];
+        
+        UIButton *btselect = [[UIButton alloc] init];
+        [btselect setBackgroundColor:[UIColor clearColor]];
+        [cell.contentView addSubview:btselect];
+        [btselect mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(cell.valueTextField);
+        }];
+        [btselect addTarget:self action:@selector(addressAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+    }
+    else if (indexPath.row == 3)
+    {
+        [cell.valueTextField setKeyboardType:UIKeyboardTypeNumberPad];
+    }
+    else if (indexPath.row == 4)
+    {
+        [cell.valueTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+    }
     
     
     cell.descLabel.text = [textArr objectAtIndex:indexPath.row];
@@ -116,7 +152,7 @@
     saveBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     [saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [saveBtn setTitle:NSLocalizedString(@"applyingPartner", nil) forState:UIControlStateNormal];
-    [saveBtn setBackgroundColor:ORANGEREDCOLOR];
+    [saveBtn setBackgroundColor:RGB(234, 58, 60)];
     [saveBtn.layer setMasksToBounds:YES];
     [saveBtn.layer setCornerRadius:5.0f];
     saveBtn.xsz_acceptEventInterval = 1;
@@ -168,6 +204,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }
 }
 
+#pragma mark - 地区选择
+-(void)addressAction
+{
+    OpenedCityVC *vc = [[OpenedCityVC alloc] initWithNibName:@"OpenedCityVC" bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.handler = ^(id  _Nonnull cityObj) {
+        OpenedCity *_oc = cityObj;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+        DescAndTextFieldCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        cell.valueTextField.text = _oc.title;
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 #pragma mark - 申请
 - (void)saveBtnOnTouch:(id)sender {
     
@@ -176,9 +227,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
     DescAndTextFieldCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     NSString *name = cell.valueTextField.text;
-    
-    
-    @[@"",NSLocalizedString(@"pleaseSelectRegion", nil), NSLocalizedString(@"pleaseWriteName", nil), NSLocalizedString(@"pleaseMobile", nil), NSLocalizedString(@"pleaseWriteEmail", nil)];
     
     if (!name || !(name.length>0))
     {
@@ -192,7 +240,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (phone.length<3)
     {
-        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleaseMobile", nil)];
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"qingshuruzqshoujh", nil)];
         return;
     }
     

@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , retain) NSString *content;
 /// 0：未认证，1：个人认证，2：企业商家认证
 @property (nonatomic , retain) NSString *authentication_status;
+///联系人
+@property (nonatomic , retain) NSString *contact;
 
 +(BanKuaiModel *)dicToModelValue:(NSDictionary *)dic;
 

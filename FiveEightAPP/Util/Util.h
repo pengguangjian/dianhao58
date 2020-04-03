@@ -29,6 +29,9 @@
 
 + (NSInteger)getIntervalDay:(NSDate*)sDate withEndDate:(NSDate*)eDate;
 
+// 根据颜色生成UIImage
++ (UIImage*)imageWithColor:(UIColor*)color;
+
 //+ (NSMutableArray *)getShoppingCartDataArr;
 //
 //+ (void)saveShoppingCartDataArr:(NSMutableArray *)arr;

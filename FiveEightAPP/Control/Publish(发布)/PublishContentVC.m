@@ -30,8 +30,6 @@
     
     UIButton *selectTypeBtn;
     UIButton *selectAreaBtn;
-    UIButton *countryCodeBtn;
-    UIButton *requestVerityCodeBtn;
     
     NSArray *subTypeArr;
     
@@ -64,9 +62,6 @@
     [super viewDidLoad];
     
     [self setNavigationBarTitle:NSLocalizedString(@"Publish", nil) leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
-    
-    [self.commitBtn setBackgroundColor:ORANGEREDCOLOR];
-    self.commitBtn.xsz_acceptEventInterval = 1;
     
     //注册通知，在查看大图时，删除操作后的更新
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPictures:) name:@"REFRESHPICTURES" object:nil];
@@ -112,7 +107,7 @@
 
 - (void)initView {
     
-    TPKeyboardAvoidingScrollView *scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight-50)];
+    TPKeyboardAvoidingScrollView *scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight)];
     scrollView.contentSize = (CGSize){DEVICE_Width,680+75};
     //    scrollView.pagingEnabled = YES;
     scrollView.delegate      = self;
@@ -311,64 +306,34 @@
     [self.photoView reloadData];
     
     CGRect textFieldBgViewRect = CGRectMake(0, 385+75+10+60, DEVICE_Width, 50);
-    for (NSString* optionTitle in @[NSLocalizedString(@"contacts", nil)]) {
-        
-        UIView *textFieldBgView = [[UIView alloc] initWithFrame:textFieldBgViewRect];
-        [textFieldBgView setBackgroundColor:[UIColor whiteColor]];
-        [bgView addSubview:textFieldBgView];
-        
-        UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(16, 0, 60, 50)];
-        descLabel.text = optionTitle;
-        descLabel.font = [UIFont systemFontOfSize:15];
-        descLabel.textColor = COL1;
-        descLabel.backgroundColor = [UIColor whiteColor];
-        descLabel.textAlignment = NSTextAlignmentLeft;
-        [textFieldBgView addSubview:descLabel];
-        
-        
-        
-        UITextField *textField = [[UITextField alloc]init];
-        textField.font = [UIFont systemFontOfSize:15];
-        
-        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        //    phoneTextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 15, 0)];
-        textField.leftViewMode = UITextFieldViewModeAlways;
-        
-        //    [pwdTextField addTarget:self action:@selector(pwdTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        [textFieldBgView addSubview:textField];
-        [textField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(textFieldBgView).with.offset(0);
-            make.left.equalTo(descLabel.mas_right).with.offset(20);
-            make.right.equalTo(textFieldBgView).with.offset(-16);
-            make.height.mas_equalTo(@50);
-        }];
-        
-        UILabel *rightLabel = [[UILabel alloc]initWithFrame:CGRectMake(DEVICE_Width-16-10, 0, 0, 50)];
-        rightLabel.text = @"";
-        rightLabel.font = [UIFont systemFontOfSize:15];
-        rightLabel.textColor = [UIColor redColor];
-        rightLabel.backgroundColor = [UIColor whiteColor];
-        rightLabel.textAlignment = NSTextAlignmentCenter;
-        [textFieldBgView addSubview:rightLabel];
-        
-        if (![optionTitle isEqualToString:@"微信"]) {
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(16, 49.5, DEVICE_Width-16, 0.5)];
-            lineView.backgroundColor = bgView.backgroundColor;
-            [textFieldBgView addSubview:lineView];
-            textField.placeholder = NSLocalizedString(@"pleaceContacts", nil);
-            textField.tag = 1000;
-        }else{
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(16, 49.5, DEVICE_Width-16, 0.5)];
-            lineView.backgroundColor = bgView.backgroundColor;
-            [textFieldBgView addSubview:lineView];
-            textField.placeholder = @"微信";
-            textField.tag = 1001;
-        }
-        
-        textFieldBgViewRect.origin.y += 50;
-        
-        
-    }
+    ///联系人
+    UIView *textFieldBgView = [[UIView alloc] initWithFrame:textFieldBgViewRect];
+    [textFieldBgView setBackgroundColor:[UIColor whiteColor]];
+    [bgView addSubview:textFieldBgView];
+    
+    UITextField *textField = [[UITextField alloc]init];
+    textField.font = [UIFont systemFontOfSize:15];
+    
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    //    phoneTextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 15, 0)];
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    
+    //    [pwdTextField addTarget:self action:@selector(pwdTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [textFieldBgView addSubview:textField];
+    [textField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(textFieldBgView).with.offset(0);
+        make.left.offset(16);
+        make.right.equalTo(textFieldBgView).with.offset(-16);
+        make.height.mas_equalTo(@50);
+    }];
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(16, 49.5, DEVICE_Width-16, 0.5)];
+    lineView.backgroundColor = bgView.backgroundColor;
+    [textFieldBgView addSubview:lineView];
+    textField.placeholder = NSLocalizedString(@"pleaceContacts", nil);
+    textField.tag = 1000;
+    
+    textFieldBgViewRect.origin.y += 50;
     
     //手机
     UIView *phoneBgView = [[UIView alloc] init];
@@ -380,216 +345,46 @@
         make.size.mas_equalTo(CGSizeMake(DEVICE_Width, 50));
     }];
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(16, 49.5, DEVICE_Width-16, 0.5)];
-    lineView.backgroundColor = bgView.backgroundColor;
-    [phoneBgView addSubview:lineView];
+    UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(16, 49.5, DEVICE_Width-16, 0.5)];
+    lineView1.backgroundColor = bgView.backgroundColor;
+    [phoneBgView addSubview:lineView1];
     
-    UILabel *phoneDescLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 66, 49.5)];
-    phoneDescLabel.text = NSLocalizedString(@"phone", nil);
-    phoneDescLabel.font = [UIFont systemFontOfSize:15];
-    phoneDescLabel.textColor = COL1;
-    phoneDescLabel.backgroundColor = [UIColor whiteColor];
-    phoneDescLabel.textAlignment = NSTextAlignmentLeft;
-    [phoneBgView addSubview:phoneDescLabel];
-    NSMutableAttributedString *phoneDescAttrString = [[NSMutableAttributedString alloc] initWithString:phoneDescLabel.text];
-    [phoneDescAttrString addAttribute:NSFontAttributeName
-                                 value:[UIFont systemFontOfSize:15.0f]
-                                 range:NSMakeRange(0, 0)];
-    [phoneDescAttrString addAttribute:NSForegroundColorAttributeName
-                                 value:[UIColor redColor]
-                                 range:NSMakeRange(0, 0)];
-    phoneDescLabel.attributedText = phoneDescAttrString;
-    
-    countryCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [countryCodeBtn addTarget:self action:@selector(countryCodeBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
-    [countryCodeBtn setTitle:@"+86" forState:UIControlStateNormal];
-    [countryCodeBtn setBackgroundColor:VIEWBGCOLOR];
-    [countryCodeBtn setTitleColor:COL2 forState:UIControlStateNormal];
-    countryCodeBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    [countryCodeBtn.layer setBorderColor:VIEWBGCOLOR.CGColor];
-    [countryCodeBtn.layer setCornerRadius:5.0f];
-    [phoneBgView addSubview:countryCodeBtn];
-    [countryCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(phoneDescLabel.mas_right).with.offset(20);
-        make.centerY.mas_equalTo(phoneBgView);
-        make.size.mas_equalTo(CGSizeMake(60, 40));
-    }];
     
     UITextField *phoneTextField = [[UITextField alloc]init];
     phoneTextField.font = [UIFont systemFontOfSize:15];
     phoneTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     phoneTextField.leftViewMode = UITextFieldViewModeAlways;
+    [phoneTextField setKeyboardType:UIKeyboardTypeNumberPad];
     phoneTextField.tag = 1002;
     phoneTextField.placeholder = NSLocalizedString(@"pleaseMobile", nil);
     [phoneBgView addSubview:phoneTextField];
     [phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(phoneBgView).with.offset(0);
-        make.left.equalTo(countryCodeBtn.mas_right).with.offset(15);
+        make.left.offset(16);
         make.right.equalTo(phoneBgView).with.offset(-16);
         make.height.mas_equalTo(@50);
     }];
     
-//    //验证码
-//    UIView *verityCodeBgView = [[UIView alloc] init];
-//    [verityCodeBgView setBackgroundColor:[UIColor whiteColor]];
-//    [bgView addSubview:verityCodeBgView];
-//    [verityCodeBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.equalTo(bgView).with.offset(0);
-//        make.top.equalTo(phoneBgView.mas_bottom).with.offset(0);
-//        make.size.mas_equalTo(CGSizeMake(DEVICE_Width, 50));
-//    }];
-//
-//    UILabel *verityCodeLabel = [[UILabel alloc]initWithFrame:CGRectMake(16, 0, 60, 50)];
-//    verityCodeLabel.text = NSLocalizedString(@"yanzhengma", nil);
-//    verityCodeLabel.font = [UIFont systemFontOfSize:15];
-//    verityCodeLabel.textColor = COL1;
-//    verityCodeLabel.backgroundColor = [UIColor whiteColor];
-//    verityCodeLabel.textAlignment = NSTextAlignmentLeft;
-//    [verityCodeBgView addSubview:verityCodeLabel];
-//
-//    UITextField *verityCodeTextField = [[UITextField alloc]init];
-//    verityCodeTextField.font = [UIFont systemFontOfSize:15];
-//    verityCodeTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-//    verityCodeTextField.leftViewMode = UITextFieldViewModeAlways;
-//    verityCodeTextField.tag = 1003;
-//    verityCodeTextField.placeholder = NSLocalizedString(@"pleaseCode", nil);
-//    [verityCodeBgView addSubview:verityCodeTextField];
-//    [verityCodeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(verityCodeBgView).with.offset(0);
-//        make.left.equalTo(verityCodeLabel.mas_right).with.offset(20);
-//        make.right.equalTo(verityCodeBgView).with.offset(-16);
-//        make.height.mas_equalTo(@50);
-//    }];
-//    
-//    requestVerityCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [requestVerityCodeBtn addTarget:self action:@selector(requestVerityCodeBtnOnTouch:) forControlEvents:UIControlEventTouchUpInside];
-//    requestVerityCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-//    requestVerityCodeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-//    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"getCode", nil)];
-//    NSRange strRange = {0,[attrStr length]};
-//    [attrStr addAttribute:NSForegroundColorAttributeName value:ORANGEREDCOLOR range:strRange];
-//    [requestVerityCodeBtn.layer setBorderColor:DEFAULTCOLOR2.CGColor];
-//    [requestVerityCodeBtn setAttributedTitle:attrStr forState:UIControlStateNormal];
-//    [verityCodeBgView addSubview:requestVerityCodeBtn];
-//    [requestVerityCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.equalTo(bgView).with.offset(-16);
-//        make.centerY.mas_equalTo(verityCodeBgView);
-//        make.size.mas_equalTo(CGSizeMake(100, 40));
-//    }];
     
-    
-//    UILabel *descLabel = [[UILabel alloc] init];
-//    descLabel.font = [UIFont systemFontOfSize:13];
-//    descLabel.textColor = COL3;
-//    descLabel.text = @"请留下您的邮箱和QQ号码\n小顺子会与您进一步沟通或向您反馈结果";
-//    descLabel.numberOfLines = 0;
-//    [bgView addSubview:descLabel];
-//    [descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.equalTo(bgView).with.offset(523+75+4);
-//        make.left.equalTo(bgView).with.offset(16);
-//        make.right.equalTo(bgView).with.offset(-16);;
-//        make.height.mas_equalTo(@40);
-//    }];
-    
-    
+    UIButton *btsend = [[UIButton alloc] init];
+    [btsend addTarget:self action:@selector(commitBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
+    btsend.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+    [btsend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btsend setTitle:NSLocalizedString(@"pushPublic", nil) forState:UIControlStateNormal];
+    [btsend setBackgroundColor:RGB(234, 58, 60)];
+    [btsend.layer setMasksToBounds:YES];
+    [btsend.layer setCornerRadius:5.0f];
+    [bgView addSubview:btsend];
+    [btsend mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(20);
+        make.right.equalTo(self->bgView.mas_right).offset(-20);
+        make.height.mas_equalTo(@45);
+        make.top.equalTo(phoneBgView.mas_bottom).offset(30);
+    }];
     
     
     scrollView.contentSize = (CGSize){DEVICE_Width,680+75};
     bgView.height = 680+75;
-    
-}
-
-# pragma mark - 点击事件
-
-- (void)requestVerityCodeBtnOnTouch:(UIButton*)btn {
-    
-    //    BOOL networkStatus =  [NetWorkManager instance].status;
-    //    if (!networkStatus) {
-    //        [SVProgressHUD showErrorWithStatus:@"网络不可用，请检查网络"];
-    //    }
-    
-//    UIView *superView = btn.superview;
-//    UITextField *phoneTextField = (UITextField*)[superView viewWithTag:100];
-//
-//    BOOL isEffective = [Util validateMobile:phoneTextField.text];
-//    if (!isEffective)
-//    {
-//        [SVProgressHUD showErrorWithStatus:@"手机号码无效"];
-//        return;
-//    }
-//
-//    HttpManager *hm = [HttpManager createHttpManager];
-//    hm.responseHandler = ^(id responseObject) {
-//
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//
-//            ResponseData *rd = [ResponseData mj_objectWithKeyValues:responseObject];
-//
-//            if ([rd.code isEqualToString:SUCCESS]) {
-//
-//                [SVProgressHUD showSuccessWithStatus:@"成功请求验证码"];
-//                NSLog(@"验证码为：%@",rd.data);
-//                //                [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"验证码为：%@",rd.data]];
-//
-//            } else {
-//                [SVProgressHUD showErrorWithStatus:rd.msg];
-//            }
-//        });
-//
-//    };
-//
-//    //验证类型1-登录，2-忘记密码，3-忘记支付密码
-//    NSDictionary *dataDic = @{@"telphone": phoneTextField.text,
-//                              @"type":[NSNumber numberWithInt:1]
-//                              };
-//    [hm postRequetInterfaceData:dataDic withInterfaceName:@"content/smscode"];
-    
-    [self toCountdown];
-}
-
-- (void)toCountdown {
-    __block int timeout = 59; //倒计时时间
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
-    dispatch_source_set_event_handler(_timer, ^{
-        if(timeout<=0){ //倒计时结束，关闭
-            dispatch_source_cancel(_timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"getCode", nil)];
-                NSRange strRange = {0,[attrStr length]};
-                
-                [attrStr addAttribute:NSForegroundColorAttributeName value:ORANGEREDCOLOR range:strRange];
-                [requestVerityCodeBtn.layer setBorderColor:ORANGEREDCOLOR.CGColor];
-                [requestVerityCodeBtn setAttributedTitle:attrStr forState:UIControlStateNormal];
-                requestVerityCodeBtn.userInteractionEnabled = YES;
-            });
-        }else{
-            //            int minutes = timeout / 60;
-            
-            int seconds = timeout % 120;
-            NSString *strTime = [NSString stringWithFormat:@"%d", seconds];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                NSString *title = [NSString stringWithFormat:@"%@s%@",strTime,NSLocalizedString(@"chongxinhuoqu", nil)];
-                NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:title];
-                NSRange strRange = {0,[attrStr length]};
-                [attrStr addAttribute:NSForegroundColorAttributeName value:RGB(153, 153, 153) range:strRange];
-                [requestVerityCodeBtn.layer setBorderColor:RGB(153, 153, 153).CGColor];
-                [requestVerityCodeBtn setAttributedTitle:attrStr forState:UIControlStateNormal];
-                requestVerityCodeBtn.userInteractionEnabled = NO;
-                
-            });
-            timeout--;
-            
-        }
-    });
-    dispatch_resume(_timer);
-}
-
-- (void)countryCodeBtnOnTouch:(id)sender {
     
 }
 
@@ -653,7 +448,7 @@
     }];
 }
 
-- (IBAction)commitBtnOnTouch:(id)sender {
+- (void)commitBtnOnTouch {
     
     [self.view resignFirstResponder];
     
@@ -702,8 +497,8 @@
         return;
     }
     
-    if (![Util validateMobile:phoneStr]) {
-            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"pleaseMobile", nil)];
+    if (phoneStr.length<3) {
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"qingshuruzqshoujh", nil)];
             return;
     }
     if (self.photoArray.count>0&&imageIndex==0) {
@@ -729,7 +524,6 @@
     NSString *verityCodeStr = tf.text;
     
     NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
-//    [dataDic setObject:@"zh-cn" forKey:@"lang"];
     [dataDic setObject:[User sharedUser].token forKey:@"token"];
     [dataDic setObject:selectCity.id forKey:@"cityid"];
     [dataDic setObject:selectArea.id forKey:@"areaid"];

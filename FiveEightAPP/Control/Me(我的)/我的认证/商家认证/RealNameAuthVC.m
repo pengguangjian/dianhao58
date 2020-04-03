@@ -136,7 +136,7 @@
     saveBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     [saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [saveBtn setTitle:NSLocalizedString(@"confirmSubmission", nil) forState:UIControlStateNormal];
-    [saveBtn setBackgroundColor:ORANGEREDCOLOR];
+    [saveBtn setBackgroundColor:RGB(234, 58, 60)];
     [saveBtn.layer setMasksToBounds:YES];
     [saveBtn.layer setCornerRadius:5.0f];
     saveBtn.xsz_acceptEventInterval = 1;
@@ -228,21 +228,24 @@
     
     UIButton *btitemz = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, (DEVICE_Width-60)/2.0, 120)];
     [view addSubview:btitemz];
-    [self drawBtuuon:btitemz andimage:@"3" andtitle:NSLocalizedString(@"legalFrontIDCard", nil)];
+//    [self drawBtuuon:btitemz andimage:@"3" andtitle:NSLocalizedString(@"legalFrontIDCard", nil)];
+    [self drawBtuuon:btitemz andimage:@"shenfenz_zm" andtitle:@""];
     [btitemz setTag:0];
     [btitemz addTarget:self action:@selector(imageAction:) forControlEvents:UIControlEventTouchUpInside];
     btimagezm = btitemz;
     
     UIButton *btitemf = [[UIButton alloc] initWithFrame:CGRectMake(btitemz.right+30, btitemz.top, btitemz.width, btitemz.height)];
     [view addSubview:btitemf];
-    [self drawBtuuon:btitemf andimage:@"3" andtitle:NSLocalizedString(@"legalReverseIDCard", nil)];
+//    [self drawBtuuon:btitemf andimage:@"3" andtitle:NSLocalizedString(@"legalReverseIDCard", nil)];
+    [self drawBtuuon:btitemf andimage:@"shenfenz_fm" andtitle:@""];
     [btitemf setTag:1];
     [btitemf addTarget:self action:@selector(imageAction:) forControlEvents:UIControlEventTouchUpInside];
     btimagefm = btitemf;
     
     UIButton *btitemzj = [[UIButton alloc] initWithFrame:CGRectMake(btitemz.left, btitemz.bottom+15, btitemz.width, btitemz.height)];
    [view addSubview:btitemzj];
-   [self drawBtuuon:btitemzj andimage:@"3" andtitle:NSLocalizedString(@"businessPhoto", nil)];
+//   [self drawBtuuon:btitemzj andimage:@"3" andtitle:NSLocalizedString(@"businessPhoto", nil)];
+    [self drawBtuuon:btitemzj andimage:@"yingyezhizhao_rz" andtitle:@""];
     [btitemzj setTag:2];
     [btitemzj addTarget:self action:@selector(imageAction:) forControlEvents:UIControlEventTouchUpInside];
     btimagezy = btitemzj;

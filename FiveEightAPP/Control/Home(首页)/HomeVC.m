@@ -78,15 +78,12 @@ static NSString *kLocalCellId = @"LocalImageCell";
     // Do any additional setup after loading the view from its nib.
     
     self.mPageName = @"首页";
-    [self setNavigationBarTitle:NSLocalizedString(@"Home", nil) leftImage:nil andRightImage:nil];
+//    [self setNavigationBarTitle:NSLocalizedString(@"Home", nil) leftImage:nil andRightImage:nil];
+//    NSString *accessTokenInterval = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessTokenInterval"];
+//    NSString *currentInterval = [Util currentDateInterval];
     
-    NSString *accessTokenInterval = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessTokenInterval"];
-    NSString *currentInterval = [Util currentDateInterval];
-    
-    NSTimeInterval interval = [currentInterval longLongValue] / 1000 - [accessTokenInterval longLongValue] / 1000;
     
     datacontrol = [HomeDataControl new];
-    
     [self initData];
     [self initView];
     
@@ -268,6 +265,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
     isPush = YES;
     [Util setNavigationBar:self.navigationController.navigationBar andBackgroundColor:[UIColor whiteColor] andIsShowSplitLine:NO];
     [self setAddressButtonValue];
@@ -281,6 +279,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
 - (void)viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
     [Util setNavigationBar:self.navigationController.navigationBar andBackgroundColor:[UIColor whiteColor] andIsShowSplitLine:YES];
 }
 
@@ -318,22 +317,15 @@ static NSString *kLocalCellId = @"LocalImageCell";
 
 - (void)initView {
     
-    UIView *topView = [[UIView alloc] init];
-    topView.backgroundColor = ORANGEREDCOLOR;
-    [self.view addSubview:topView];
-    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).with.offset(SafeAreaTopHeight);
-        make.left.equalTo(self.view).with.offset(0);
-        make.right.equalTo(self.view).with.offset(0);
-        make.height.mas_equalTo(@50);
-    }];
-    [self drawTopView:topView];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    if (@available(iOS 11.0, *)) {
+        UIScrollView.appearance.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     
-    scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight+50, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight-50-49-SafeAreaBottomHomeHeight)];
+    scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-tabBarHeight)];
     scrollView.contentSize = (CGSize){DEVICE_Width,scrollView.height};
-    //    scrollView.pagingEnabled = YES;
     scrollView.delegate      = self;
-    [scrollView setBackgroundColor:VIEWBGCOLOR];
+    [scrollView setBackgroundColor:[UIColor whiteColor]];
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:scrollView];
@@ -341,8 +333,41 @@ static NSString *kLocalCellId = @"LocalImageCell";
         [self initData];
     }];
     self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, scrollView.width, scrollView.height)];
-    [self.bgView setBackgroundColor:VIEWBGCOLOR];
+    [self.bgView setBackgroundColor:[UIColor whiteColor]];
     [scrollView addSubview:self.bgView];
+    
+    
+    UIView *viewtopback = [[UIView alloc] init];
+    [self.bgView addSubview:viewtopback];
+    [viewtopback setClipsToBounds:YES];
+    [viewtopback mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(0);
+        make.left.offset(0);
+        make.width.offset(DEVICE_Width);
+        make.height.offset(100);
+    }];
+    UIView *viewcolor = [[UIView alloc] init];
+    [viewcolor setBackgroundColor:RGB(234, 58, 60)];
+    [viewtopback addSubview:viewcolor];
+    [viewcolor.layer setMasksToBounds:YES];
+    [viewcolor.layer setCornerRadius:1000];
+    [viewcolor mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(viewtopback);
+        make.bottom.equalTo(viewtopback);
+        make.size.sizeOffset(CGSizeMake(2000, 200));
+    }];
+    
+    UIView *topView = [[UIView alloc] init];
+    topView.backgroundColor = RGB(234, 58, 60);
+    [self.bgView addSubview:topView];
+    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(kStatusBarHeight);
+        make.left.offset(0);
+        make.width.offset(DEVICE_Width);
+        make.height.offset(50);
+    }];
+    [self drawTopView:topView];
+    bgViewHeight = kStatusBarHeight+50;
     
     [self createTypeMenuView];
     
@@ -354,20 +379,19 @@ static NSString *kLocalCellId = @"LocalImageCell";
 -(void)drawTopView:(UIView *)view
 {
     UIImageView *flogImageView = [[UIImageView alloc] init];
-    flogImageView.image = [UIImage imageNamed:@"1"];
-    [flogImageView.layer setCornerRadius:3.0f];
+    flogImageView.image = [UIImage imageNamed:@"log_log"];
     [view addSubview:flogImageView];
     [flogImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(view).with.offset(12);
         make.centerY.mas_equalTo(view);
-        make.size.mas_equalTo(CGSizeMake(40, 40));
+        make.size.mas_equalTo(CGSizeMake(35, 35));
     }];
     
     UIButton *publishBtn = [[UIButton alloc] init];
     [publishBtn setTitle:NSLocalizedString(@"pushPublic", nil) forState:UIControlStateNormal];
     [publishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [publishBtn setBackgroundColor:[UIColor clearColor]];
-    publishBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    publishBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [publishBtn addTarget:self action:@selector(publishBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:publishBtn];
     [publishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -376,22 +400,21 @@ static NSString *kLocalCellId = @"LocalImageCell";
         make.width.offset(40);
     }];
     
-    cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(60, 5, 60, 40)];
+    cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 5, 60, 40)];
     [cityBtn setTitle:_oc.name forState:UIControlStateNormal];
     [cityBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cityBtn setBackgroundColor:[UIColor clearColor]];
     cityBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateNormal];
-    [cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateHighlighted];
-    //    cityBtn.imageView.transform = CGAffineTransformMakeRotation(M_PI/2);
+    [cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateNormal];
+    [cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateHighlighted];
     [cityBtn layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleRight imageTitleSpace:3];
     [cityBtn addTarget:self action:@selector(cityBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:cityBtn];
     
-    UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(120+5, 5, publishBtn.frame.origin.x-5-125, 40)];
+    UIButton *searchBtn = [[UIButton alloc] init];
     [searchBtn setTitle:NSLocalizedString(@"zhaogongzuozhaofangz", nil) forState:UIControlStateNormal];
-    [searchBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [searchBtn setBackgroundColor:RGBA(255, 255, 255, 0.6)];
+    [searchBtn setTitleColor:RGB(200, 200, 200) forState:UIControlStateNormal];
+    [searchBtn setBackgroundColor:RGBA(255, 255, 255, 1)];
     searchBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [searchBtn setImage:[UIImage imageNamed:@"searchBar_icon"] forState:UIControlStateNormal];
     [searchBtn.layer setCornerRadius:3.0f];
@@ -401,27 +424,34 @@ static NSString *kLocalCellId = @"LocalImageCell";
     [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->cityBtn.mas_right);
         make.right.equalTo(publishBtn.mas_left);
-        make.top.offset(5);
-        make.height.offset(40);
+        make.top.offset(10);
+        make.height.offset(30);
     }];
 }
 ///模块
 - (void)createTypeMenuView {
     
-    self.typeMenuView = [[FEHorizontalMenuView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, 190)];
+    self.typeMenuView = [[FEHorizontalMenuView alloc]initWithFrame:CGRectMake(15, 0, DEVICE_Width-30, 190)];
     self.typeMenuView.tag = 1000;
     self.typeMenuView.delegate = self;
     self.typeMenuView.dataSource = self;
     self.typeMenuView.backgroundColor = [UIColor whiteColor];
-    self.typeMenuView.currentPageDotColor = ORANGECOLOR;
-    self.typeMenuView.pageDotColor = SEPARATORCOLOR;
+    self.typeMenuView.currentPageDotColor = RGB(234, 58, 60);
+    self.typeMenuView.pageDotColor = RGB(200, 200, 200);
+    [self.typeMenuView.layer setMasksToBounds:NO];
+    [self.typeMenuView.layer setCornerRadius:5];
     [self.bgView addSubview:self.typeMenuView];
     [self.typeMenuView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(DEVICE_Width, 190));
+        make.top.offset(kStatusBarHeight+50);
+        make.left.offset(15);
+        make.size.mas_equalTo(CGSizeMake(DEVICE_Width-30, 190));
     }];
+    self.typeMenuView.layer.shadowColor = RGB(180, 180, 180).CGColor;
+    self.typeMenuView.layer.shadowOpacity = 0.8f;
+    self.typeMenuView.layer.shadowRadius = 4.0f;
+    self.typeMenuView.layer.shadowOffset = CGSizeMake(0,2);
     
-    bgViewHeight = 190;
+    bgViewHeight += 190;
     
     [self createHotNewsView];
 }
@@ -429,73 +459,55 @@ static NSString *kLocalCellId = @"LocalImageCell";
 - (void)createHotNewsView {
     
     hotNewsView = [[UIView alloc] init];
-        hotNewsView.backgroundColor = [UIColor whiteColor];
-        [self.bgView addSubview:hotNewsView];
-        [hotNewsView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.typeMenuView.mas_bottom).with.offset(10);
-            make.left.equalTo(self.bgView).with.offset(0);
-            make.right.equalTo(self.bgView).with.offset(0);
-            make.height.mas_equalTo(@80);
-        }];
-        
-        UIView *lineView = [[UIView alloc] init];
-        lineView.backgroundColor = SEPARATORCOLOR;
-        [hotNewsView addSubview:lineView];
-        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self->hotNewsView).with.offset(0);
-            make.left.equalTo(self->hotNewsView).with.offset(0);
-            make.right.equalTo(self->hotNewsView).with.offset(0);
-            make.height.mas_equalTo(@1);
-        }];
-        
-    //    UIImageView *leftImageView = [[UIImageView alloc] init];
-    //    leftImageView.image = [UIImage imageNamed:@"tabbar_add_yellow"];
-    //    [hotNewsView addSubview:leftImageView];
-    //    [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.left.equalTo(self->hotNewsView).with.offset(12);
-    //        make.centerY.mas_equalTo(self->hotNewsView);
-    //        make.size.mas_equalTo(CGSizeMake(40, 40));
-    //    }];
-        UILabel *leftImageView = [[UILabel alloc] init];
-        [leftImageView setText:[NSString stringWithFormat:@"%@\n%@",NSLocalizedString(@"zuixin", nil),NSLocalizedString(@"Message", nil)]];
-        [leftImageView setTextColor:RGB(0, 0, 0)];
-        [leftImageView setNumberOfLines:2];
-        [leftImageView setTextAlignment:NSTextAlignmentCenter];
-        [leftImageView setFont:[UIFont boldSystemFontOfSize:18]];
-        [hotNewsView addSubview:leftImageView];
-        [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self->hotNewsView).with.offset(12);
-            make.centerY.mas_equalTo(self->hotNewsView);
-            make.size.mas_equalTo(CGSizeMake(40, 60));
-        }];
-        
-        ccpHotPointView = [[CCPScrollView alloc] initWithFrame:CGRectMake(66, 13, DEVICE_Width-60-32, 50)];
-        [hotNewsView addSubview:ccpHotPointView];
-        ccpHotPointView.titleFont = 12;
-        ccpHotPointView.titleColor = COL1;
-        ccpHotPointView.BGColor = [UIColor whiteColor];
-        [ccpHotPointView clickTitleLabel:^(NSInteger index,NSString *titleString) {
-            [self selectNewMessageIndex:index];
-        }];
-        
-        bgViewHeight += 10+80;
-        
-        [self createAdView];
+    hotNewsView.backgroundColor = [UIColor whiteColor];
+    [self.bgView addSubview:hotNewsView];
+    [hotNewsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.typeMenuView.mas_bottom).with.offset(10);
+        make.left.equalTo(self.bgView).with.offset(0);
+        make.right.equalTo(self.bgView).with.offset(0);
+        make.height.mas_equalTo(@80);
+    }];
+
+    UILabel *leftImageView = [[UILabel alloc] init];
+    [leftImageView setText:[NSString stringWithFormat:@"%@\n%@",NSLocalizedString(@"zuixin", nil),NSLocalizedString(@"Message", nil)]];
+    [leftImageView setTextColor:RGB(223, 66, 71)];
+    [leftImageView setNumberOfLines:2];
+    [leftImageView setTextAlignment:NSTextAlignmentCenter];
+    [leftImageView setFont:[UIFont boldSystemFontOfSize:16]];
+    [hotNewsView addSubview:leftImageView];
+    [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self->hotNewsView).with.offset(12);
+        make.centerY.mas_equalTo(self->hotNewsView);
+        make.size.mas_equalTo(CGSizeMake(40, 60));
+    }];
+    
+    ccpHotPointView = [[CCPScrollView alloc] initWithFrame:CGRectMake(66, 13, DEVICE_Width-60-32, 50)];
+    [hotNewsView addSubview:ccpHotPointView];
+    ccpHotPointView.titleFont = 12;
+    ccpHotPointView.titleColor = COL1;
+    ccpHotPointView.BGColor = [UIColor whiteColor];
+    [ccpHotPointView clickTitleLabel:^(NSInteger index,NSString *titleString) {
+        [self selectNewMessageIndex:index];
+    }];
+    
+    bgViewHeight += 10+80;
+    
+    [self createAdView];
 }
 #pragma mark - 滚动广告图
 - (void)createAdView {
     
     adView = [[UIView alloc] init];
-    adView.backgroundColor = VIEWBGCOLOR;
+    adView.backgroundColor = [UIColor whiteColor];
     [self.bgView addSubview:adView];
     [adView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(hotNewsView.mas_bottom).with.offset(0);
         make.left.equalTo(self.bgView).with.offset(0);
         make.right.equalTo(self.bgView).with.offset(0);
-        make.height.mas_equalTo(@100);
+        make.height.mas_equalTo(@140);
     }];
     
-    _cycleScrollView = [[FECycleScrollView alloc] initWithFrame:CGRectMake(0.f, 12.0f, DEVICE_Width, FIT_WIDTH(76.f))];
+    _cycleScrollView = [[FECycleScrollView alloc] initWithFrame:CGRectMake(0.f, 12.0f, DEVICE_Width, FIT_WIDTH(116.f))];
     _cycleScrollView.delegate = self;
     _cycleScrollView.dataSource = self;
     _cycleScrollView.hidesPageControl = YES;
@@ -504,7 +516,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
     [_cycleScrollView registerCellNib:[UINib nibWithNibName:@"LocalImageCell" bundle:nil] forCellWithReuseIdentifier:kLocalCellId];
     [adView addSubview: _cycleScrollView];
     
-    bgViewHeight += 100;
+    bgViewHeight += 140;
     
     [self createBathFullTimeClassifyView];
 }

@@ -9,6 +9,8 @@
 #import "WebViewVC.h"
 #import <WebKit/WebKit.h>
 
+#import "WebViewDataControl.h"
+
 @interface WebViewVC ()<WKNavigationDelegate>
 {
     UIProgressView *progressView;
@@ -80,6 +82,64 @@
         
     }
     return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title andLoadUrl:(NSString *)urlString
+{
+    
+    self = [super init];
+        if (self) {
+            
+            self.view.backgroundColor = [UIColor whiteColor];
+            
+            [self setNavigationBarTitle:title leftImage:nil andRightImage:nil];
+    //        [self setNavigationBarTitle:nil leftImage:nil andRightImage:nil];
+            self.navigationItem.hidesBackButton = YES;
+            
+            //webView
+            webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight)];
+    //        webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-0)];
+            webView.navigationDelegate = self;
+            [self.view addSubview:webView];
+            
+            if (@available(iOS 11.0, *)) {
+                webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+                webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                webView.scrollView.scrollIndicatorInsets = webView.scrollView.contentInset;
+                
+            } else {
+                self.automaticallyAdjustsScrollViewInsets = NO;
+            }
+            
+
+            UINavigationBar *nav = self.navigationController.navigationBar;
+
+            //progressView
+            progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 44-1, DEVICE_Width, 1)];
+            progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+            progressView.tintColor = DEFAULTCOLOR2;
+            progressView.trackTintColor = [UIColor whiteColor];
+    //         [self.view addSubview:progressView];
+            
+            
+            [webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:NULL];
+            
+            ////网络请求
+            
+            WebViewDataControl *datacontrl = [WebViewDataControl new];
+            [datacontrl loadUrlData:[NSDictionary new] andurl:urlString andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
+                if(state)
+                {
+                    [webView loadHTMLString:[NSString nullToString:[datacontrl.dicdata objectForKey:@"content"]] baseURL:nil];
+                }
+                else
+                {
+                    [SVProgressHUD showErrorWithStatus:desc];
+                }
+            }];
+            
+        }
+        return self;
 }
 
 - (void)leftBtnOnTouch:(id)sender {

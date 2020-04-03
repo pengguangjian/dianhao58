@@ -58,6 +58,14 @@
         }];
         UITextField *fielditem = [self drawFieldView:viewitem andname:arrname[i] andplatch:arrplatch[i]];
         [arrField addObject:fielditem];
+        if(i==1)
+        {
+            [fielditem setKeyboardType:UIKeyboardTypeNumberPad];
+        }
+        else if (i==2)
+        {
+            [fielditem setKeyboardType:UIKeyboardTypeEmailAddress];
+        }
         viewlast = viewitem;
     }
     
@@ -79,7 +87,7 @@
     
     UILabel *lbtishi = [[UILabel alloc] init];
     [lbtishi setText:NSLocalizedString(@"submissionTips", nil)];
-    [lbtishi setTextColor:RGB(30, 30, 30)];
+    [lbtishi setTextColor:RGB(61, 143, 238)];
     [lbtishi setTextAlignment:NSTextAlignmentLeft];
     [lbtishi setFont:[UIFont systemFontOfSize:15]];
     [lbtishi setNumberOfLines:0];
@@ -93,7 +101,7 @@
     [btsend setTitle:NSLocalizedString(@"submission", nil) forState:UIControlStateNormal];
     [btsend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btsend.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [btsend setBackgroundColor:RGB(25, 136, 203)];
+    [btsend setBackgroundColor:RGB(234, 58, 60)];
     [btsend.layer setMasksToBounds:YES];
     [btsend.layer setCornerRadius:3];
     [btsend addTarget:self action:@selector(sendComentAction) forControlEvents:UIControlEventTouchUpInside];
@@ -101,7 +109,7 @@
     [btsend mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(textview);
         make.top.equalTo(lbtishi.mas_bottom).offset(15);
-        make.size.sizeOffset(CGSizeMake(FIT_WIDTH(150), 45));
+        make.size.sizeOffset(CGSizeMake(FIT_WIDTH(300), 45));
     }];
     
     [scvback mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -113,17 +121,6 @@
 
 -(UITextField *)drawFieldView:(UIView *)view andname:(NSString *)strname andplatch:(NSString *)strplatch
 {
-    UILabel *lbname = [[UILabel alloc] init];
-    [lbname setText:strname];
-    [lbname setTextColor:RGB(30, 30, 30)];
-    [lbname setTextAlignment:NSTextAlignmentLeft];
-    [lbname setFont:[UIFont systemFontOfSize:15]];
-    [view addSubview:lbname];
-    [lbname mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(15);
-        make.top.bottom.equalTo(view);
-        make.width.offset(75);
-    }];
     
     UITextField *field = [[UITextField alloc] init];
     [field setTextAlignment:NSTextAlignmentLeft];
@@ -132,7 +129,7 @@
     [field setPlaceholder:strplatch];
     [view addSubview:field];
     [field mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(100);
+        make.left.offset(15);
         make.top.bottom.equalTo(view);
         make.right.equalTo(view).offset(-15);
     }];
@@ -141,7 +138,7 @@
     [viewline setBackgroundColor:RGB(240, 240, 240)];
     [view addSubview:viewline];
     [viewline mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(lbname);
+        make.left.equalTo(field);
         make.right.equalTo(field);
         make.bottom.equalTo(view);
         make.height.offset(1);

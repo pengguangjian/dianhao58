@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,36 +14,23 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wYL-mZ-oYb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZp-xg-zHD">
-                                <rect key="frame" x="12" y="15" width="106" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="aKL-ce-phD"/>
-                                    <constraint firstAttribute="width" constant="106" id="nQx-ye-SpZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6qW-Dr-DgV">
-                                <rect key="frame" x="138" y="16.5" width="170" height="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="20" y="16" width="288" height="18.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xZp-xg-zHD" firstAttribute="leading" secondItem="wYL-mZ-oYb" secondAttribute="leading" constant="12" id="BKu-2E-Ok5"/>
                             <constraint firstItem="6qW-Dr-DgV" firstAttribute="centerY" secondItem="wYL-mZ-oYb" secondAttribute="centerY" id="DwH-Sp-smA"/>
+                            <constraint firstItem="6qW-Dr-DgV" firstAttribute="leading" secondItem="wYL-mZ-oYb" secondAttribute="leading" constant="20" id="HHB-zh-j7o"/>
                             <constraint firstAttribute="trailing" secondItem="6qW-Dr-DgV" secondAttribute="trailing" constant="12" id="Rna-1G-wQZ"/>
-                            <constraint firstItem="xZp-xg-zHD" firstAttribute="centerY" secondItem="wYL-mZ-oYb" secondAttribute="centerY" id="TzL-w5-9zb"/>
-                            <constraint firstItem="6qW-Dr-DgV" firstAttribute="leading" secondItem="xZp-xg-zHD" secondAttribute="trailing" constant="20" id="frS-dj-FwQ"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -58,10 +43,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="descLabel" destination="xZp-xg-zHD" id="QEl-q8-zW0"/>
                 <outlet property="valueTextField" destination="6qW-Dr-DgV" id="j1W-zH-hfE"/>
             </connections>
-            <point key="canvasLocation" x="25" y="49.5"/>
+            <point key="canvasLocation" x="24" y="49.475262368815599"/>
         </tableViewCell>
     </objects>
 </document>

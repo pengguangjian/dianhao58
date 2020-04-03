@@ -143,6 +143,8 @@
 
 #define PHOTOPROPERTY DEVICE_Width*(9.0f/16.0f)
 
+#define currentSystemVersion [[[UIDevice currentDevice] systemVersion] floatValue]
+
 #define ALOGDebug(...) NSLog(__VA_ARGS__)
 
 #define HUANXINPWD @"user"
@@ -164,6 +166,7 @@
 
 #define SafeAreaTopHeight (DEVICE_Height >= 812.0 ? 88 : 64)
 #define SafeAreaBottomHomeHeight (DEVICE_Height >= 812.0 ? 34 : 0)
+#define kStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 
 /// 第一个参数是当下的控制器适配iOS11 一下的，第二个参数表示scrollview或子类
 #define AdjustsScrollViewInsetNever(controller,view) if(@available(iOS 11.0, *)) {view.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;} else if([controller isKindOfClass:[UIViewController class]]) {controller.automaticallyAdjustsScrollViewInsets = false;}

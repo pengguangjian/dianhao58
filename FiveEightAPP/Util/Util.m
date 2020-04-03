@@ -609,6 +609,24 @@
     
 }
 
+// 根据颜色生成UIImage
++ (UIImage*)imageWithColor:(UIColor*)color{
+    
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    // 开始画图的上下文
+    UIGraphicsBeginImageContext(rect.size);
+    
+    // 设置背景颜色
+    [color set];
+    // 设置填充区域
+    UIRectFill(CGRectMake(0, 0, rect.size.width, rect.size.height));
+    
+    // 返回UIImage
+    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+    // 结束上下文
+    UIGraphicsEndImageContext();
+    return image;
+}
 
 + (NSDictionary*)getObjectData:(id)obj
 {

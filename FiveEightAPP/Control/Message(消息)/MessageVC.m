@@ -120,7 +120,7 @@
         [tableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier];
         cell = (NoticeTypeCell *)[tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     }
-    cell.noticeImageView.image = [UIImage imageNamed:@"notice_img_system"];
+    cell.noticeImageView.image = [UIImage imageNamed:@"system_message"];
     MessageModel *model = _dataArray[indexPath.row];
     cell.typeNameLabel.text = NSLocalizedString(@"systemMessage", nil);
     cell.dateLabel.text = model.time;
