@@ -231,6 +231,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication*)application shouldAllowExtensionPointIdentifier:(NSString*)extensionPointIdentifier
+{
+    return NO;
+}
+
 #pragma mark -- UITabBarControllerDelegate
 // 使用feTabBarController 自定义的 选中代理
 - (void)feTabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{

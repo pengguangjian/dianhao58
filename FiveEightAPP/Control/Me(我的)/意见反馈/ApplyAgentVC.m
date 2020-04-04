@@ -8,7 +8,7 @@
 
 #import "ApplyAgentVC.h"
 #import "ApplyAgentDataControl.h"
-@interface ApplyAgentVC ()
+@interface ApplyAgentVC () <UITextFieldDelegate>
 {
     ApplyAgentDataControl *datacontrol;
     
@@ -65,6 +65,8 @@
         else if (i==2)
         {
             [fielditem setKeyboardType:UIKeyboardTypeASCIICapable];
+            [fielditem setTag:2];
+            [fielditem setDelegate:self];
         }
         viewlast = viewitem;
     }
@@ -198,6 +200,26 @@
 - (void)showToast {
     [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"submitSuccess", nil)];
 }
+#pragma mark -
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField.tag == 2)
+    {
+        if([Util isChinese:string])
+        {
+            return NO;
+        }
+        
+    }
+    return YES;
+}
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+//    if (action == @selector(copy:) || action == @selector(paste:)) {
+//        return NO;
+//    }
+    return NO;
+}
+
 /*
 #pragma mark - Navigation
 

@@ -11,7 +11,7 @@
 #import "LoginUser.h"
 #import "SmsProtoctFunction.h"
 
-@interface BindingVC ()
+@interface BindingVC () <UITextFieldDelegate>
 {
     UIButton *requestVerityCodeBtn;
     
@@ -133,6 +133,8 @@
         else if (i==2)
         {
             [fieldname setKeyboardType:UIKeyboardTypeASCIICapable];
+            [fieldname setDelegate:self];
+            [fieldname setTag:2];
         }
         else if (i==0)
         {
@@ -465,6 +467,26 @@
         }
     });
     dispatch_resume(_timer);
+}
+
+#pragma mark -
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField.tag == 2)
+    {
+        if([Util isChinese:string])
+        {
+            return NO;
+        }
+        
+    }
+    return YES;
+}
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+//    if (action == @selector(copy:) || action == @selector(paste:)) {
+//        return NO;
+//    }
+    return NO;
 }
 
 

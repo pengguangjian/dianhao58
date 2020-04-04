@@ -31,6 +31,8 @@
 
 // 根据颜色生成UIImage
 + (UIImage*)imageWithColor:(UIColor*)color;
+///判断输入的是否是中文
++ (BOOL)isChinese:(NSString *)string;
 
 //+ (NSMutableArray *)getShoppingCartDataArr;
 //

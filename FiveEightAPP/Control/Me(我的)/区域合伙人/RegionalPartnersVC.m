@@ -14,7 +14,7 @@
 
 #import "OpenedCity.h"
 
-@interface RegionalPartnersVC ()
+@interface RegionalPartnersVC ()<UITextFieldDelegate>
 {
     RegionalDataControl *datacontrol;
     
@@ -105,7 +105,7 @@
     cell.valueTextField.placeholder = [placeholderArr objectAtIndex:indexPath.row];
     cell.valueTextField.keyboardType = UIKeyboardTypeDefault;
     cell.valueTextField.delegate = nil;
-    
+    cell.valueTextField.tag = indexPath.row;
     if (indexPath.row == 0) {
         cell.valueTextField.enabled = NO;
         cell.valueTextField.text = NSLocalizedString(@"regionalPartner", nil);
@@ -119,6 +119,8 @@
     else if (indexPath.row == 4)
     {
         [cell.valueTextField setKeyboardType:UIKeyboardTypeASCIICapable];
+        cell.valueTextField.delegate = self;
+        cell.valueTextField.tag = 4;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -326,6 +328,27 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void)showToast {
     [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"submitSuccess", nil)];
+}
+
+#pragma mark -
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField.tag == 4)
+    {
+        if([Util isChinese:string])
+        {
+            return NO;
+        }
+        
+    }
+    return YES;
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+//    if (action == @selector(copy:) || action == @selector(paste:)) {
+//        return NO;
+//    }
+    return NO;
 }
 
 @end

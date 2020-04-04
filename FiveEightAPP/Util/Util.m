@@ -627,6 +627,14 @@
     UIGraphicsEndImageContext();
     return image;
 }
+///判断输入的是否是中文
++ (BOOL)isChinese:(NSString *)string {
+    NSString *regex = @"^[\u4E00-\u9FA5]+$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+
+    BOOL isMatch = [pred evaluateWithObject:string];
+    return isMatch;
+}
 
 + (NSDictionary*)getObjectData:(id)obj
 {

@@ -11,7 +11,7 @@
 #import "LoginUser.h"
 #import "SmsProtoctFunction.h"
 
-@interface ResignVC ()
+@interface ResignVC ()<UITextFieldDelegate>
 {
     
     UIScrollView *scvback;
@@ -118,6 +118,8 @@
         else if (i==1)
         {
             [fieldname setKeyboardType:UIKeyboardTypeASCIICapable];
+            [fieldname setDelegate:self];
+            [fieldname setTag:1];
         }
         [arrFiled addObject:fieldname];
     }
@@ -370,6 +372,26 @@
     dispatch_resume(_timer);
 }
 
+
+#pragma mark -
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField.tag == 1)
+    {
+        if([Util isChinese:string])
+        {
+            return NO;
+        }
+        
+    }
+    return YES;
+}
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+//    if (action == @selector(copy:) || action == @selector(paste:)) {
+//        return NO;
+//    }
+    return NO;
+}
 
 /*
 #pragma mark - Navigation

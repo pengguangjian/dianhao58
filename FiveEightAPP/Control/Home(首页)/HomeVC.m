@@ -344,7 +344,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
         make.top.offset(0);
         make.left.offset(0);
         make.width.offset(DEVICE_Width);
-        make.height.offset(100);
+//        make.height.offset(100);
     }];
     UIView *viewcolor = [[UIView alloc] init];
     [viewcolor setBackgroundColor:RGB(234, 58, 60)];
@@ -354,7 +354,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
     [viewcolor mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(viewtopback);
         make.bottom.equalTo(viewtopback);
-        make.size.sizeOffset(CGSizeMake(2000, 200));
+        make.size.sizeOffset(CGSizeMake(2000, 2000));
     }];
     
     UIView *topView = [[UIView alloc] init];
@@ -369,10 +369,16 @@ static NSString *kLocalCellId = @"LocalImageCell";
     [self drawTopView:topView];
     bgViewHeight = kStatusBarHeight+50;
     
+    [viewtopback mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(topView.mas_bottom).offset(40);
+    }];
+    
+    
     [self createTypeMenuView];
     
     [_bgView setHeight:bgViewHeight];
     scrollView.contentSize = CGSizeMake(DEVICE_Width, bgViewHeight);
+     
     
 }
 #pragma mark - 顶部搜索区域
