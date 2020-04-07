@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///历史发布
 -(void)publishHistoryData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back;
 
+///历史发布删除
+-(void)publishHistoryDeleData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back;
+
 ///收藏列表
 -(void)publishCollectData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back;
 

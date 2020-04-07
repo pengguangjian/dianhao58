@@ -146,9 +146,14 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     BanKuaiModel *model = _dataArray[indexPath.row];
-    ContentDetailVC *cvc = [[ContentDetailVC alloc] init];
-    cvc.contentId = [NSNumber numberWithInt:model.did.intValue];
-    [self.navigationController pushViewController:cvc animated:YES];
+    
+    if([model.status isEqualToString:@"normal"])
+    {
+        ContentDetailVC *cvc = [[ContentDetailVC alloc] init];
+        cvc.contentId = [NSNumber numberWithInt:model.did.intValue];
+        [self.navigationController pushViewController:cvc animated:YES];
+    }
+    
     
 }
 
@@ -156,6 +161,45 @@
 {
     return 110;
 }
+
+// 修改编辑按钮文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NSLocalizedString(@"shanchu", nil);
+}
+
+// 定义编辑样式
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+// 进入编辑模式，按下出现的编辑按钮后,进行删除操作
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        
+        BanKuaiModel *model = _dataArray[indexPath.row];
+        NSMutableDictionary *dicpush = [NSMutableDictionary new];
+        [dicpush setObject:[User sharedUser].token forKey:@"token"];
+        [dicpush setObject:model.did forKey:@"key"];
+        
+        [datacontrol publishHistoryDeleData:dicpush andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
+            if(state)
+            {
+                [self->_dataArray removeObject:model];
+                [tableView reloadData];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:desc];
+                
+            }
+        }];
+        
+    }
+    
+}
+
 
 /**
  *  分割线的处理

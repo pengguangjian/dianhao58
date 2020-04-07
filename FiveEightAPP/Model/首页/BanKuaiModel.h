@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///联系人
 @property (nonatomic , retain) NSString *contact;
 
+///normal 正常 verify 审核 rejected 拒绝
+@property (nonatomic , retain) NSString *status;
+
 +(BanKuaiModel *)dicToModelValue:(NSDictionary *)dic;
 
 @end

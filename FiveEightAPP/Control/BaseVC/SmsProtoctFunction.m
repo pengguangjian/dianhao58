@@ -27,7 +27,7 @@
         BOOL state = NO;
        NSString *describle = @"";
        if (responceObjct==nil) {
-           describle = @"网络错误";
+           describle = NSLocalizedString(@"networkCancle", nil);
        }else{
            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
            NSDictionary *dicAll=[str JSONValue];

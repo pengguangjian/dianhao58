@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     strkeywords = @"";
-    [self setNavigationBarTitle:NSLocalizedString(@"sousuo", nil) leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
+    [self setNavigationBarTitle:NSLocalizedString(@"sousuo", nil) leftImage:[UIImage imageNamed:@"ic_stat_back_02_n"] andRightImage:nil];
         
     UIView *viewtop = [[UIView alloc] initWithFrame:CGRectMake(50, 0, DEVICE_Width-50, self.navigationController.navigationBar.height)];
     [self.navigationController.navigationBar addSubview:viewtop];
@@ -207,8 +207,8 @@
     vc.handler = ^(id  _Nonnull cityObj) {
         OpenedCity *_oc = cityObj;
         [self->cityBtn setTitle:_oc.title forState:UIControlStateNormal];
-        [self->cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateNormal];
-        [self->cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateHighlighted];
+        [self->cityBtn setImage:[UIImage imageNamed:@"cityBtn"] forState:UIControlStateNormal];
+        [self->cityBtn setImage:[UIImage imageNamed:@"cityBtn"] forState:UIControlStateHighlighted];
         [self->cityBtn layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleRight imageTitleSpace:3];
         
         [[NSUserDefaults standardUserDefaults] setObject:[NSString nullToString:_oc.title] forKey:SELECTCITYNAME];

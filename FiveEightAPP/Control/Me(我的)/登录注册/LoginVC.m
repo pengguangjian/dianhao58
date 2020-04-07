@@ -53,12 +53,12 @@
     strotherNickName = @"";
     [self initView];
     
-    [self setNavigationBarTitle:@"" leftImage:nil andRightImage:[UIImage imageNamed:@"nav_close_green"]];
+    [self setNavigationBarTitle:@"" leftImage:nil andRightImage:[UIImage imageNamed:@"nav_close_gray"]];
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:BOOLFORKEY]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:BOOLFORKEY];
         // 静态引导页
-        [self setStaticGuidePage];
+//        [self setStaticGuidePage];
         
         // 动态引导页
 //         [self setDynamicGuidePage];
@@ -95,7 +95,7 @@
     
  //   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    [self setNavigationBarTitle:@"" leftImage:nil andRightImage:[UIImage imageNamed:@"nav_close_green"]];
+    [self setNavigationBarTitle:@"" leftImage:nil andRightImage:[UIImage imageNamed:@"nav_close_gray"]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -161,7 +161,7 @@
     model.sliderMenuTextColorForSelect = RGB(234, 58, 60);
     model.autoSuitLineViewWithdForBtnTitle = YES;
     
-    navSliderMenu = [[MSNavSliderMenu alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight*SCREENPROPERTION+122/2.0+15*SCREENPROPERTION, DEVICE_Width, 45) andStyleModel:model andDelegate:self showType:self.menuType];
+    navSliderMenu = [[MSNavSliderMenu alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight*SCREENPROPERTION+122/2.0+35*SCREENPROPERTION, DEVICE_Width, 45) andStyleModel:model andDelegate:self showType:self.menuType];
     navSliderMenu.backgroundColor = [UIColor whiteColor];
     
     UIBezierPath *navSliderMenuMaskPath = [UIBezierPath bezierPathWithRoundedRect:navSliderMenu.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10,10)];
@@ -173,7 +173,7 @@
     [scvback addSubview:navSliderMenu];
     
     // 用于滑动的滚动视图
-    contentScrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight*SCREENPROPERTION+122/2.0+15*SCREENPROPERTION+45, navSliderMenu.width, 250)];
+    contentScrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight*SCREENPROPERTION+122/2.0+35*SCREENPROPERTION+45, navSliderMenu.width, 250)];
     contentScrollView.contentSize = (CGSize){navSliderMenu.width*menuCount,contentScrollView.frame.size.height};
 //    contentScrollView.pagingEnabled = YES;
     contentScrollView.delegate      = self;
@@ -537,14 +537,22 @@
     
     if (@available(iOS 13.0, *))
     {
+        
+        [btf mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(DEVICE_Width/2.0+20);
+        }];
+        
         ASAuthorizationAppleIDButton *loginBtn = [[ASAuthorizationAppleIDButton alloc]initWithAuthorizationButtonType:ASAuthorizationAppleIDButtonTypeSignIn authorizationButtonStyle:ASAuthorizationAppleIDButtonStyleWhiteOutline];
         [loginBtn addTarget:self action:@selector(signInWithApple) forControlEvents:UIControlEventTouchUpInside];
         [scvback addSubview:loginBtn];
         [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.sizeOffset(CGSizeMake(200, 40));
-            make.top.equalTo(btf.mas_bottom).offset(10);
-            make.centerX.equalTo(descLabel);
+            make.size.sizeOffset(CGSizeMake(180, 40));
+            make.top.equalTo(descLabel.mas_bottom).offset(15);
+            make.right.equalTo(btf.mas_left).offset(-10);
+//            make.top.equalTo(btf.mas_bottom).offset(10);
+//            make.centerX.equalTo(descLabel);
         }];
+        
     }
     
     

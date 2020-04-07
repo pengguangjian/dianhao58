@@ -28,7 +28,7 @@
     model.authentication_status = [NSString nullToString:[dic objectForKey:@"authentication_status"]];
     
     model.contact = [NSString nullToString:[dic objectForKey:@"contact"]];
-    
+    model.status = [NSString nullToString:[dic objectForKey:@"status"]];
     return model;
 }
 

@@ -84,18 +84,19 @@ static NSString *kLocalCellId = @"LocalImageCell";
     
     
     datacontrol = [HomeDataControl new];
-    [self initData];
     [self initView];
+    
+    ///绘制没得网络的页面
+    [self emptyView];
+    
+    [self newtworkJianting];
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:BOOLFORKEY]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isShowGuideRootVC"];
         [Util LoginVC:YES];
         return;
     }
-    ///绘制没得网络的页面
-    [self emptyView];
     
-    [self newtworkJianting];
 }
 
 -(void)newtworkJianting
@@ -121,11 +122,13 @@ static NSString *kLocalCellId = @"LocalImageCell";
     case AFNetworkReachabilityStatusReachableViaWWAN:
         {
             [self->_emptyView setHidden:YES];
-            if(self->isgetdata==NO&&self->isloaddata == YES)
-            {
-                [self initData];
-                
-            }
+            
+            [self initData];
+//            if(self->isgetdata==NO&&self->isloaddata == YES)
+//            {
+//
+//
+//            }
             
         }
     break;
@@ -133,10 +136,11 @@ static NSString *kLocalCellId = @"LocalImageCell";
     case AFNetworkReachabilityStatusReachableViaWiFi:
         {
             [self->_emptyView setHidden:YES];
-            if(self->isgetdata==NO&&self->isloaddata == YES)
-            {
-                [self initData];
-            }
+            [self initData];
+//            if(self->isgetdata==NO&&self->isloaddata == YES)
+//            {
+//                [self initData];
+//            }
         }
 
     break;
@@ -231,7 +235,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
 -(void)getHotLanMu
 {
     NSMutableDictionary *dicPush = [NSMutableDictionary new];
-    [datacontrol hotLanMuData:dicPush andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
+    [datacontrol hotLanMuData:dicPush andshowView:nil Callback:^(NSError *eroor, BOOL state, NSString *desc) {
         if(state)
         {
             self->isgetdata = YES;
@@ -310,6 +314,9 @@ static NSString *kLocalCellId = @"LocalImageCell";
     if(cityBtn)
     {
         [cityBtn setTitle:_oc.name forState:UIControlStateNormal];
+        [cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateNormal];
+        [cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateHighlighted];
+        [cityBtn layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleRight imageTitleSpace:3];
     }
 }
 
@@ -789,8 +796,8 @@ static NSString *kLocalCellId = @"LocalImageCell";
     vc.handler = ^(id  _Nonnull cityObj) {
         self->_oc = cityObj;
         [self->cityBtn setTitle:self->_oc.title forState:UIControlStateNormal];
-        [self->cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateNormal];
-        [self->cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateHighlighted];
+        [self->cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateNormal];
+        [self->cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateHighlighted];
         [self->cityBtn layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleRight imageTitleSpace:3];
         
         [[NSUserDefaults standardUserDefaults] setObject:[NSString nullToString:self->_oc.title] forKey:SELECTCITYNAME];

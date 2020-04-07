@@ -25,7 +25,7 @@
         BOOL state = NO;
        NSString *describle = @"";
        if (responceObjct==nil) {
-           describle = @"网络错误";
+           describle = NSLocalizedString(@"networkCancle", nil);
        }else{
            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
            NSDictionary *dicAll=[str JSONValue];
@@ -39,6 +39,35 @@
     }];
 }
 
+///历史发布删除
+-(void)publishHistoryDeleData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back
+{
+    if(view)
+    {
+        [GMDCircleLoader setOnView:view withTitle:nil animated:YES];
+    }
+    HttpManager *httpm = [HttpManager createHttpManager];
+    
+    [httpm postRequetInterfaceData:dicpush withInterfaceName:@"frontend.user/cats" andresponseHandler:^(NSURLSessionDataTask *opration, id responceObjct, NSError *error) {
+       if(view)
+       {
+           [GMDCircleLoader hideFromView:view animated:YES];
+       }
+        BOOL state = NO;
+       NSString *describle = @"";
+       if (responceObjct==nil) {
+           describle = NSLocalizedString(@"networkCancle", nil);
+       }else{
+           NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+           NSDictionary *dicAll=[str JSONValue];
+           describle = dicAll[@"msg"];
+           if ([[NSString nullToString:dicAll[@"code"]] intValue] == 1) {
+               state = YES;
+           }
+       }
+       back(error,state,describle);
+    }];
+}
 
 -(void)publishCollectData:(NSDictionary *)dicpush andshowView:(UIView *)view Callback:(completItemback)back
 {
@@ -55,7 +84,7 @@
         BOOL state = NO;
        NSString *describle = @"";
        if (responceObjct==nil) {
-           describle = @"网络错误";
+           describle = NSLocalizedString(@"networkCancle", nil);
        }else{
            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
            NSDictionary *dicAll=[str JSONValue];
@@ -86,7 +115,7 @@
         BOOL state = NO;
        NSString *describle = @"";
        if (responceObjct==nil) {
-           describle = @"网络错误";
+           describle = NSLocalizedString(@"networkCancle", nil);
        }else{
            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
            NSDictionary *dicAll=[str JSONValue];

@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNavigationBarTitle:_strname leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
+    [self setNavigationBarTitle:_strname leftImage:[UIImage imageNamed:@"ic_stat_back_02_n"] andRightImage:nil];
     [self setNavRightBt];
         
     [self initWithRefreshTableView:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight)];
@@ -144,8 +144,8 @@
     vc.handler = ^(id  _Nonnull cityObj) {
         OpenedCity *_oc = cityObj;
         [self->_cityBtn setTitle:_oc.title forState:UIControlStateNormal];
-        [self->_cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateNormal];
-        [self->_cityBtn setImage:[UIImage imageNamed:@"nav_position_open_black"] forState:UIControlStateHighlighted];
+        [self->_cityBtn setImage:[UIImage imageNamed:@"cityBtn"] forState:UIControlStateNormal];
+        [self->_cityBtn setImage:[UIImage imageNamed:@"cityBtn"] forState:UIControlStateHighlighted];
         [self->_cityBtn layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleRight imageTitleSpace:3];
         
         [[NSUserDefaults standardUserDefaults] setObject:[NSString nullToString:_oc.title] forKey:SELECTCITYNAME];

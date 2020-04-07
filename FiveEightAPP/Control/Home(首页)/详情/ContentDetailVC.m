@@ -231,7 +231,7 @@
         make.size.mas_equalTo(CGSizeMake(DEVICE_Width, 35+20));
     }];
     
-    [self addContactView:[NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"mobile", nil),modeldetail.mobile] andname:[NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"contacts", nil),modeldetail.contact] withAlignTop:20 withSuperView:contactView];
+    [self addContactView:[NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"mobile", nil),[Util getConcealPhoneNumber:modeldetail.mobile]] andname:[NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"contacts", nil),modeldetail.contact] withAlignTop:20 withSuperView:contactView];
     
     
     contentSizeHeight += 35+20;//77+32;
@@ -339,7 +339,7 @@
     if(strcollect.intValue == 1)
     {
         [btcollect setTitle:NSLocalizedString(@"collectionCancle", nil) forState:UIControlStateNormal];
-        [btcollect setImage:[UIImage imageNamed:@"collect_yes"] forState:UIControlStateNormal];
+        [btcollect setImage:[UIImage imageNamed:@"collect_y"] forState:UIControlStateNormal];
     }
     
     [btcollect setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -798,6 +798,8 @@
         if(state)
         {
             [self loadFirstData];
+            
+            [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"pinglunchenggong", nil)];
         }
         else
         {
@@ -855,7 +857,7 @@
                 
                  [self->_btcollect setTitle:NSLocalizedString(@"collectionCancle", nil) forState:UIControlStateNormal];
                 self->strcollect = @"1";
-                [self->_btcollect setImage:[UIImage imageNamed:@"collect_yes"] forState:UIControlStateNormal];
+                [self->_btcollect setImage:[UIImage imageNamed:@"collect_y"] forState:UIControlStateNormal];
             }
             else
             {

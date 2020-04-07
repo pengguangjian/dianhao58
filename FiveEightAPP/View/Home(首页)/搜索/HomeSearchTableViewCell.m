@@ -22,6 +22,7 @@
 @property (nonatomic,retain) UILabel *lbaddress;
 @property (nonatomic,retain) UILabel *lbviews;
 
+@property (nonatomic,retain) UILabel *lbstate;
 
 @end
 
@@ -60,13 +61,21 @@
         }];
         _imgvhead = imgvhead;
         
-        UIImageView *imgvrz = [[UIImageView alloc] init];
-        [imgvhead addSubview:imgvrz];
-        [imgvrz mas_makeConstraints:^(MASConstraintMaker *make) {
+        UILabel *lbstate = [[UILabel alloc] init];
+        [lbstate setTextColor:RGB(234, 58, 60)];
+        [lbstate setTextAlignment:NSTextAlignmentCenter];
+        [lbstate setFont:[UIFont systemFontOfSize:13]];
+        [imgvhead addSubview:lbstate];
+        [lbstate mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.offset(0);
-            make.size.sizeOffset(CGSizeMake(30, 30));
+            make.height.offset(20);
         }];
-        _imgvrz= imgvrz;
+        [lbstate.layer setMasksToBounds:YES];
+        [lbstate.layer setCornerRadius:2];
+        [lbstate.layer setBorderColor:RGB(234, 58, 60).CGColor];
+        [lbstate.layer setBorderWidth:1];
+        [lbstate setHidden:YES];
+        _lbstate = lbstate;
         
         UILabel *lbtitle = [[UILabel alloc] init];
         [lbtitle setTextColor:RGB(30, 30, 30)];
@@ -80,6 +89,14 @@
             make.top.equalTo(imgvhead);
         }];
         _lbtitle = lbtitle;
+        
+        UIImageView *imgvrz = [[UIImageView alloc] init];
+        [viewback addSubview:imgvrz];
+        [imgvrz mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.equalTo(lbtitle);
+            make.size.sizeOffset(CGSizeMake(15, 15));
+        }];
+        _imgvrz= imgvrz;
         
         UILabel *lbother = [[UILabel alloc] init];
         [lbother setTextColor:RGB(30, 30, 30)];
@@ -156,7 +173,7 @@
     [super layoutSubviews];
     [_imgvhead sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@"img_my_head"]];
     
-    [_lbtitle setText:model.title];
+    [_lbtitle setText:[NSString stringWithFormat:@"%@",model.title]];
     
     [_lbother setText:[NSString stringWithFormat:@"%@-%@",model.parent_channel_name,model.channel_name]];
     
@@ -182,11 +199,28 @@
     if(model.authentication_status.intValue == 1)
     {
         [_imgvrz setImage:[UIImage imageNamed:@"gerenrenzhengSuccess"]];
+        [_lbtitle setText:[NSString stringWithFormat:@"    %@",model.title]];
     }
     else if(model.authentication_status.intValue == 2)
     {
         [_imgvrz setImage:[UIImage imageNamed:@"qiyerenzhengSuccess"]];
+        [_lbtitle setText:[NSString stringWithFormat:@"    %@",model.title]];
     }
+    
+    [_lbstate setHidden:YES];
+    if([model.status isEqualToString:@"verify"])
+    {
+        [_lbstate setText:NSLocalizedString(@"shenhezhong", nil)];
+        [_lbstate setHidden:NO];
+    }
+    else if([model.status isEqualToString:@"rejected"])
+    {
+        [_lbstate setText:NSLocalizedString(@"jujue", nil)];
+        [_lbstate setHidden:NO];
+    }
+    
+    
+    
     
 }
 

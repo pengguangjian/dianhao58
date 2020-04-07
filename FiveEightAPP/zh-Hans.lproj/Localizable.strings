@@ -22,7 +22,7 @@
 "changeSuccess" = "修改成功";
 "submitSuccess" = "成功提交";
 "shanchu" = "删除";
-
+"pinglunchenggong" = "评论发布成功";
 
 //Tabbar
 "Home" = "首页";
@@ -56,7 +56,7 @@
 "appledenglusqcuowu" = "Apple登录授权错误";
 "lijiregister" = "立即注册";
 "tongyixiyibingdenglu" = "同意协议并登录";
-"meiyoussdninxydsj" = "没有所搜到您需要的数据";
+"meiyoussdninxydsj" = "没有搜索到您需要的数据";
 
 
 //我的界面
@@ -101,6 +101,9 @@
 "collectionCancle" = "已收藏";
 "huifu" = "回复";
 "detailCommentdetail" = "【联系时请说是ALOVN看到的,谢谢】添加ALOVN微信：p879176344，可免费发布租房、招聘、二手交易、生活服务等个人信息。 ALOVN官方授权账号，不信你去官网看:） 骗子仿得了我们的相貌，仿不了我们爱你的心，记得交易要谨慎哦";
+
+"shenhezhong" = "审核中";
+"jujue" = "拒绝";
 
 //////
 ///发布

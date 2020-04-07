@@ -3771,7 +3771,7 @@
 					"$(PROJECT_DIR)/FiveEightAPP/OpenSRC/JPushSDK-3.0.9",
 					"$(PROJECT_DIR)/FiveEightAPP/OpenSRC/mta-ios-stats-sdk-2.5.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dianhao.58APP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dianhao.FiveEightAPP;
 				PRODUCT_NAME = ALOVN;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3828,7 +3828,7 @@
 					"$(PROJECT_DIR)/FiveEightAPP/OpenSRC/JPushSDK-3.0.9",
 					"$(PROJECT_DIR)/FiveEightAPP/OpenSRC/mta-ios-stats-sdk-2.5.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dianhao.58APP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dianhao.FiveEightAPP;
 				PRODUCT_NAME = ALOVN;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

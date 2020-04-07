@@ -80,7 +80,7 @@
 
 - (void)registerBuglySDK {
     //初始化Bugly
-    [Bugly startWithAppId:@"1c6eb3ab29"];
+    [Bugly startWithAppId:@"82e58d6924"];
 }
 
 - (void)initJPush_APNs {

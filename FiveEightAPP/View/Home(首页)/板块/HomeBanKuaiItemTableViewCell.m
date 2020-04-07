@@ -60,15 +60,6 @@
         }];
         _imgvhead = imgvhead;
         
-        UIImageView *imgvrz = [[UIImageView alloc] init];
-//        [imgvrz setBackgroundColor:[UIColor redColor]];
-        [imgvhead addSubview:imgvrz];
-        [imgvrz mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.offset(0);
-            make.size.sizeOffset(CGSizeMake(30, 30));
-        }];
-        _imgvrz= imgvrz;
-        
         UILabel *lbtitle = [[UILabel alloc] init];
         [lbtitle setTextColor:RGB(30, 30, 30)];
         [lbtitle setTextAlignment:NSTextAlignmentLeft];
@@ -81,6 +72,14 @@
             make.top.equalTo(imgvhead);
         }];
         _lbtitle = lbtitle;
+        
+        UIImageView *imgvrz = [[UIImageView alloc] init];
+        [viewback addSubview:imgvrz];
+        [imgvrz mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.equalTo(lbtitle);
+            make.size.sizeOffset(CGSizeMake(15, 15));
+        }];
+        _imgvrz= imgvrz;
         
         UILabel *lbother = [[UILabel alloc] init];
         [lbother setTextColor:RGB(30, 30, 30)];
@@ -183,10 +182,12 @@
     if(model.authentication_status.intValue == 1)
     {
         [_imgvrz setImage:[UIImage imageNamed:@"gerenrenzhengSuccess"]];
+        [_lbtitle setText:[NSString stringWithFormat:@"    %@",model.title]];
     }
     else if(model.authentication_status.intValue == 2)
     {
         [_imgvrz setImage:[UIImage imageNamed:@"qiyerenzhengSuccess"]];
+        [_lbtitle setText:[NSString stringWithFormat:@"    %@",model.title]];
     }
     
 }
