@@ -22,7 +22,10 @@
 }
 
 - (void)countCellHeight:(NSString*)content andotherColrRange:(NSRange)range{
-    
+    if(content==nil)
+    {
+        content = @"";
+    }
     NSMutableParagraphStyle *contentParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     // 行间距设置为6
     [contentParagraphStyle  setLineSpacing:6];

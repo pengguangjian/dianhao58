@@ -86,7 +86,25 @@
         
     };
     
-    NSDictionary *dataDic = @{@"lang":@"zh-cn"};
+    NSString *userSettingLanguage = [NSBundle currentLanguage];
+    
+    if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
+        [userSettingLanguage isEqualToString:@"vi"])) {
+        userSettingLanguage = @"zh-Hans";
+    }
+    
+    if([userSettingLanguage isEqualToString:@"vi"])
+    {
+        userSettingLanguage = @"vn";
+        
+    }
+    else
+    {
+        userSettingLanguage = @"zh-cn";
+    }
+    
+    
+    NSDictionary *dataDic = @{@"lang":userSettingLanguage};
     
     [hm getRequetInterfaceData:dataDic withInterfaceName:@"frontend.city/lists"];
     

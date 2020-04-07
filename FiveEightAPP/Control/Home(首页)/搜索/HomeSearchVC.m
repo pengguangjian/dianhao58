@@ -42,7 +42,7 @@
     [self drawtopVIew:viewtop];
     viewnavsearch = viewtop;
     
-    [self initWithRefreshTableView:CGRectMake(0, SafeAreaTopHeight, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight)];
+    [self initWithRefreshTableView:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight)];
     
     self.tableView.isShowWithoutDataView = YES;
     self.tableView.separatorColor = SEPARATORCOLOR;

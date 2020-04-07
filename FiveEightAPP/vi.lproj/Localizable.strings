@@ -25,11 +25,11 @@
 "pinglunchenggong" = "评论发布成功";
 
 //Tabbar
-"Home" = "首页";
-"Find" = "发现";
-"Publish" = "发布";
-"Message" = "消息";
-"Me" = "我的";
+"Home" = "shouye";
+"Find" = "faxian";
+"Publish" = "fabu";
+"Message" = "xiaoxi";
+"Me" = "wode";
 
 //登录界面
 "Login" = "登录";

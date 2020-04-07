@@ -32,9 +32,14 @@
         // 由于iOS8中titleLabel的size为0，用下面的这种设置
         labelWidth = self.titleLabel.intrinsicContentSize.width;
         labelHeight = self.titleLabel.intrinsicContentSize.height;
+        
     } else {
         labelWidth = self.titleLabel.frame.size.width;
         labelHeight = self.titleLabel.frame.size.height;
+    }
+    if(labelWidth>self.width)
+    {
+        labelWidth = self.width-imageWith-5;
     }
     
     // 2. 声明全局的imageEdgeInsets和labelEdgeInsets

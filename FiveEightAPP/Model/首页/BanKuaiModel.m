@@ -23,7 +23,10 @@
     model.title = [NSString nullToString:[dic objectForKey:@"title"]];
     model.views = [NSString nullToString:[dic objectForKey:@"comments"]];
     model.mobile = [NSString nullToString:[dic objectForKey:@"mobile"]];
-    model.image = [dic objectForKey:@"image"];
+    if([[dic objectForKey:@"image"] isKindOfClass:[NSArray class]])
+    {
+        model.image = [dic objectForKey:@"image"];
+    }
     model.content = [NSString nullToString:[dic objectForKey:@"content"]];
     model.authentication_status = [NSString nullToString:[dic objectForKey:@"authentication_status"]];
     

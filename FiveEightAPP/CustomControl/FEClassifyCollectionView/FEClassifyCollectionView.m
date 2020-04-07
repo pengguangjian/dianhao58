@@ -40,7 +40,7 @@
     //左右间距
     flowlayout.minimumInteritemSpacing = 0;
     //上下间距
-    flowlayout.minimumLineSpacing = 16;
+    flowlayout.minimumLineSpacing = 5;
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height) collectionViewLayout:flowlayout];
     _collectionView.backgroundColor = [UIColor whiteColor];
@@ -64,12 +64,12 @@
         
         _dataArr = [dataArr copy];
         
-        int row = _dataArr.count/4;
-        if (_dataArr.count%4>0) {
+        int row = _dataArr.count/3;
+        if (_dataArr.count%3>0) {
             row++;
         }
         
-        self.height = row*(16+(DEVICE_Width - 16*4) / 4.0*(9.0/16.0))+16;
+        self.height = row*(5+(DEVICE_Width - 16*3) / 3.0*(9.0/16.0))+16;
         _collectionView.height = self.height;
         
         [self.collectionView reloadData];
@@ -122,13 +122,13 @@
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((DEVICE_Width - 16*4) / 4.0,
-                      (DEVICE_Width - 16*4) / 4.0*(9.0/16.0));
+    return CGSizeMake((DEVICE_Width - 16*3) / 3.0,
+                      (DEVICE_Width - 16*3) / 3.0*(9.0/16.0));
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(16, 16, 16, 16);
+    return UIEdgeInsetsMake(5, 16, 5, 16);
 }
 
 
