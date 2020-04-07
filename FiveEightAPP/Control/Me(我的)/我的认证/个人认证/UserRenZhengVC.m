@@ -13,6 +13,8 @@
 
 #import "StoreSuthDataControl.h"
 
+#import "WebViewVC.h"
+
 @interface UserRenZhengVC ()
 {
     NSArray *textArr;
@@ -114,9 +116,22 @@
     [footView addSubview:protocolLabel];
     
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:protocolLabel.text];
-    [attrString addAttribute:NSForegroundColorAttributeName
-                       value:ORANGEREDCOLOR
-                       range:NSMakeRange(protocolLabel.text.length-12, 12)];
+    
+    
+     NSRange range = [protocolLabel.text rangeOfString:NSLocalizedString(@"renzhenxieyi", nil)];
+     range.length = range.length+2;
+     range.location = range.location-1;
+     
+     @try {
+         [attrString addAttribute:NSForegroundColorAttributeName
+         value:RGB(234, 58, 60)
+         range:range];///中文
+     } @catch (NSException *exception) {
+         
+     } @finally {
+         
+     }
+    
     protocolLabel.attributedText = attrString;
     
     UIButton *userAgreementBtn = [[UIButton alloc]initWithFrame:CGRectMake(16+16+10, 15, DEVICE_Width-42, 14)];
@@ -142,11 +157,9 @@
 
 // 用户协议
 - (void)userAgreementBtnOnTouch:(id)sender {
-//
-//    NSString *urlStr = [NSString stringWithFormat:@"%@/uallsecrecy.html?type=2", H5ADDR];
-//    WebViewVC *vc = [[WebViewVC alloc] initWithTitle:@"个人信息上传协议" andUrl:urlStr];
-//    [self.navigationController pushViewController:vc animated:YES];
-//
+    WebViewVC *vc = [[WebViewVC alloc] initLoadRequest:NSLocalizedString(@"renzhenxieyi", nil) initWithTitle:@"frontend.page/registration"];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 - (void)onRadioButtonValueChanged:(UIButton*)btn {

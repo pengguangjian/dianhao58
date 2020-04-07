@@ -62,7 +62,8 @@
         _imgvhead = imgvhead;
         
         UILabel *lbstate = [[UILabel alloc] init];
-        [lbstate setTextColor:RGB(234, 58, 60)];
+        [lbstate setTextColor:RGB(255, 255, 255)];
+        [lbstate setBackgroundColor:RGB(234, 58, 60)];
         [lbstate setTextAlignment:NSTextAlignmentCenter];
         [lbstate setFont:[UIFont systemFontOfSize:13]];
         [imgvhead addSubview:lbstate];
@@ -72,8 +73,6 @@
         }];
         [lbstate.layer setMasksToBounds:YES];
         [lbstate.layer setCornerRadius:2];
-        [lbstate.layer setBorderColor:RGB(234, 58, 60).CGColor];
-        [lbstate.layer setBorderWidth:1];
         [lbstate setHidden:YES];
         _lbstate = lbstate;
         

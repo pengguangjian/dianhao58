@@ -36,7 +36,7 @@
     
     self.tableView.separatorColor = SEPARATORCOLOR;
     
-    textArr = @[@[NSLocalizedString(@"personalInformation", nil), NSLocalizedString(@"securitySetting", nil), NSLocalizedString(@"currency", nil)], @[NSLocalizedString(@"systemScore", nil), NSLocalizedString(@"使用条款", nil),NSLocalizedString(@"免责声明", nil),NSLocalizedString(@"商家协议", nil),NSLocalizedString(@"systemAbout", nil)], @[NSLocalizedString(@"loginOut", nil)]];
+    textArr = @[@[NSLocalizedString(@"personalInformation", nil), NSLocalizedString(@"securitySetting", nil), NSLocalizedString(@"currency", nil)], @[NSLocalizedString(@"systemScore", nil), NSLocalizedString(@"shiyongtiaokuan", nil),NSLocalizedString(@"mianzeshengming", nil),NSLocalizedString(@"shangjiaxieyi", nil),NSLocalizedString(@"systemAbout", nil)], @[NSLocalizedString(@"loginOut", nil)]];
     classNameArr = @[@[@"PersonalInfoVC", @"SafeSettingVC", @"CommonSettingVC"], @[@"", @"AboutVC",@"AboutVC",@"AboutVC",@"AboutVC"], @[@""]];
     
 }
@@ -52,7 +52,38 @@
     
     
     [self.tableView reloadData];
+    
+    
+    [self drawFooterView];
+    
 
+}
+
+-(void)drawFooterView
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 50)];
+    
+    UIButton *btyingshi = [[UIButton alloc] init];
+    [btyingshi addTarget:self action:@selector(yingshiAction) forControlEvents:UIControlEventTouchUpInside];
+    [btyingshi setTitle:NSLocalizedString(@"yingshizhengce", nil) forState:UIControlStateNormal];
+    [btyingshi setTitleColor:RGB(26, 173, 234) forState:UIControlStateNormal];
+    [btyingshi.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [view addSubview:btyingshi];
+    
+    [btyingshi mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(view);
+        make.height.offset(30);
+    }];
+    
+    
+    self.tableView.tableFooterView = view;
+}
+
+
+-(void)yingshiAction
+{
+    WebViewVC *vc = [[WebViewVC alloc] initLoadRequest:NSLocalizedString(@"yingshizhengce", nil) initWithTitle:@"frontend.page/merchant"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

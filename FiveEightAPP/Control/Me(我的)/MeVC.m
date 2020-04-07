@@ -453,6 +453,16 @@
             }
         }
     }
+    else if(indexPath.section==1)
+    {
+        if(indexPath.row <= 1)
+        {
+            if ([User isNeedLogin]) {
+                [Util LoginVC:YES];
+                return;
+            }
+        }
+    }
     
     NSString *className = [[classNameArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if([className isEqualToString:@"FeedbackVC"])

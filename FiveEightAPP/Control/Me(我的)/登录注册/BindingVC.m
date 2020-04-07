@@ -11,6 +11,8 @@
 #import "LoginUser.h"
 #import "SmsProtoctFunction.h"
 
+#import "WebViewVC.h"
+
 @interface BindingVC () <UITextFieldDelegate>
 {
     UIButton *requestVerityCodeBtn;
@@ -220,9 +222,19 @@
         make.right.equalTo(shortcutLoginBtn.mas_right);
     }];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:protocolLabel.text];
-    [attrString addAttribute:NSForegroundColorAttributeName
-                       value:DEFAULTCOLOR2
-                       range:NSMakeRange(protocolLabel.text.length-14, 14)];///中文
+    NSRange range = [protocolLabel.text rangeOfString:NSLocalizedString(@"shiyongxiyijishengming", nil)];
+    range.length = range.length+2;
+    range.location = range.location-1;
+    
+    @try {
+        [attrString addAttribute:NSForegroundColorAttributeName
+        value:RGB(234, 58, 60)
+        range:range];///中文
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
     protocolLabel.attributedText = attrString;
     
     UIButton *userAgreementBtn =[[UIButton alloc]init];
@@ -341,7 +353,8 @@
 #pragma mark - 协议点击
 -(void)userAgreementBtnOnTouch
 {
-    
+    WebViewVC *vc = [[WebViewVC alloc] initLoadRequest:NSLocalizedString(@"shiyongxieyijishengm", nil) initWithTitle:@"frontend.page/registration"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - 注册

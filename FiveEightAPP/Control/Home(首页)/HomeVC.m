@@ -30,6 +30,9 @@
 #import "LoginUser.h"
 #import "PublishTypeVC.h"
 
+#import "XieYiAlterView.h"
+#import "AppDelegate.h"
+
 #define BOOLFORKEY @"dhGuidePage"
 
 static NSString *kLocalCellId = @"LocalImageCell";
@@ -91,13 +94,32 @@ static NSString *kLocalCellId = @"LocalImageCell";
     
     [self newtworkJianting];
     
+    
+    
     if (![[NSUserDefaults standardUserDefaults] boolForKey:BOOLFORKEY]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isShowGuideRootVC"];
         [Util LoginVC:YES];
         return;
     }
     
+    
 }
+///协议弹框
+-(void)yingshixieyi
+{
+    NSString *strtemp = [NSString nullToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"58tongyixieyi"]];
+    //////
+    if([strtemp intValue] != 2)
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            AppDelegate *dele = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            XieYiAlterView *alterview = [[XieYiAlterView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height) andtitle:nil andcontent:nil];
+            alterview.nav = self.navigationController;
+            [dele.tabBarCtrl.view addSubview:alterview];
+        });
+    }
+}
+
 
 -(void)newtworkJianting
 {
@@ -278,6 +300,9 @@ static NSString *kLocalCellId = @"LocalImageCell";
     {
         [self getUserInfoData];
     }
+    
+    [self yingshixieyi];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

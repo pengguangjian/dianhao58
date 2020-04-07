@@ -149,6 +149,20 @@
 "shiyongxieyijishengm" = "使用协议及声明";
 "qiehuanyuyan" = "切换语言";
 
+"shangjiaxieyi" = "商家协议";
+"mianzeshengming" = "免责声明";
+"shiyongtiaokuan" = "使用条款";
+"renzhenxieyi" = "ALOVN认证服务协议";
+"yingshizhengce" = "隐私政策";
+"butongyi" = "不同意";
+"tongyi" = "同意";
+"wenxintishi" = "温馨提示";
+"qingxiantongyiyishizhengce" = "请先同意隐私政策哦";
+
+"qinaideyonghutongyixieyitk" = "亲爱的用户，您在使用ALOVN前请务必仔细阅读并理解相《隐私政策》条款内的内容，点击同意即代表您已阅读并同意，如果不同意，将可能影响使用ALOVNapp。\n\n我们在提供服务的过程中，可能需要您开通一些设备权限，例如通知、相册、相机、麦克风、日历、定位、获取设备信息权限、全局弹出弹窗权限、以及读写系统设置权限等访问权限。\n\n我们将按照法律法规要求，采取相应安全保护措施，尽力保护您的个人信息安全。";
+"shiyongxiyijishengming" = "ALOVN使用协议及声明";
+
+
 //////
 ///个人信息
 "zhanghuygerenxinxi" = "账户与个人信息";
@@ -202,6 +216,9 @@
 "confirmSubmission" = "确认提交";
 "pleaseServiceAgreement" = "请同意服务协议";
 "qingtianjiashenfenztup" = "请添加身份证图片";
+
+
+
 
 ///
 "pleaseEnterpriseRealDataAuthentication" = "请输入企业真实资料用于认证";

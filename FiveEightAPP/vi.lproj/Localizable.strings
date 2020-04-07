@@ -22,14 +22,14 @@
 "changeSuccess" = "修改成功";
 "submitSuccess" = "成功提交";
 "shanchu" = "删除";
-
+"pinglunchenggong" = "评论发布成功";
 
 //Tabbar
-"Home" = "shouye";
-"Find" = "faxian";
-"Publish" = "fabu";
-"Message" = "xiaoxi";
-"Me" = "wode";
+"Home" = "首页";
+"Find" = "发现";
+"Publish" = "发布";
+"Message" = "消息";
+"Me" = "我的";
 
 //登录界面
 "Login" = "登录";
@@ -53,7 +53,10 @@
 "pleaseNewPassWord" = "请输入新密码";
 "pleaseNewToPassWord" = "两次新密码不一致";
 "yiyuedubtyalonxieyi" = "已阅读并同意协议《ALOVN使用协议及声明》";
-
+"appledenglusqcuowu" = "Apple登录授权错误";
+"lijiregister" = "立即注册";
+"tongyixiyibingdenglu" = "同意协议并登录";
+"meiyoussdninxydsj" = "没有搜索到您需要的数据";
 
 
 //我的界面
@@ -95,9 +98,12 @@
 "cancel" = "取消";
 "send" = "发送";
 "pleaseComment" = "请输入评论";
-"collectionCancle" = "取消收藏";
+"collectionCancle" = "已收藏";
 "huifu" = "回复";
 "detailCommentdetail" = "【联系时请说是ALOVN看到的,谢谢】添加ALOVN微信：p879176344，可免费发布租房、招聘、二手交易、生活服务等个人信息。 ALOVN官方授权账号，不信你去官网看:） 骗子仿得了我们的相貌，仿不了我们爱你的心，记得交易要谨慎哦";
+
+"shenhezhong" = "审核中";
+"jujue" = "拒绝";
 
 //////
 ///发布
@@ -121,7 +127,7 @@
 "zuiduoxuanzztupian" = "最多选择5张照片";
 "xiayibu" = "下一步";
 "yuantu" = "原图";
-
+"qingshuruzqshoujh" = "请输入正确的手机号";
 
 //////
 ///消息
@@ -142,6 +148,20 @@
 "xiugai" = "修改";
 "shiyongxieyijishengm" = "使用协议及声明";
 "qiehuanyuyan" = "切换语言";
+
+"shangjiaxieyi" = "商家协议";
+"mianzeshengming" = "免责声明";
+"shiyongtiaokuan" = "使用条款";
+"renzhenxieyi" = "ALOVN认证服务协议";
+"yingshizhengce" = "隐私政策";
+"butongyi" = "不同意";
+"tongyi" = "同意";
+"wenxintishi" = "温馨提示";
+"qingxiantongyiyishizhengce" = "请先同意隐私政策哦";
+
+"qinaideyonghutongyixieyitk" = "亲爱的用户，您在使用ALOVN前请务必仔细阅读并理解相《隐私政策》条款内的内容，点击同意即代表您已阅读并同意，如果不同意，将可能影响使用ALOVNapp。\n\n我们在提供服务的过程中，可能需要您开通一些设备权限，例如通知、相册、相机、麦克风、日历、定位、获取设备信息权限、全局弹出弹窗权限、以及读写系统设置权限等访问权限。\n\n我们将按照法律法规要求，采取相应安全保护措施，尽力保护您的个人信息安全。";
+"shiyongxiyijishengming" = "ALOVN使用协议及声明";
+
 
 //////
 ///个人信息
@@ -179,7 +199,7 @@
 
 /////
 ///我的认证
-"certificationCompleteEasier" = "*完成认证，发布更轻松";
+"certificationCompleteEasier" = "完成认证，发布更轻松";
 "personalAuthentication" = "个人认证";
 "eerchantCertification" = "企业/商家认证";
 "pleaseRealDataAuthentication" = "请输入你的真实资料用于认证";
@@ -196,6 +216,9 @@
 "confirmSubmission" = "确认提交";
 "pleaseServiceAgreement" = "请同意服务协议";
 "qingtianjiashenfenztup" = "请添加身份证图片";
+
+
+
 
 ///
 "pleaseEnterpriseRealDataAuthentication" = "请输入企业真实资料用于认证";

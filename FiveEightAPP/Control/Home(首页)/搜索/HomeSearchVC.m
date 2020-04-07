@@ -14,7 +14,7 @@
 #import "OpenedCityVC.h"
 #import "OpenedCity.h"
 
-@interface HomeSearchVC ()
+@interface HomeSearchVC ()<UITextFieldDelegate>
 {
     UIButton *cityBtn;
     NSMutableArray *_dataArray;
@@ -139,6 +139,8 @@
     [fieldsearch setFont:[UIFont systemFontOfSize:14]];
     [fieldsearch setPlaceholder:NSLocalizedString(@"zhaogongzuozhaofangz", nil)];
     [fieldsearch setBackgroundColor:[UIColor clearColor]];
+    [fieldsearch setKeyboardType:UIKeyboardTypeWebSearch];
+    [fieldsearch setDelegate:self];
     [viewsearch addSubview:fieldsearch];
     [fieldsearch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(imgvsearch.mas_right).offset(10);
@@ -330,6 +332,18 @@
         [cell setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 0)];
     }
     
+}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if([string isEqualToString:@"\n"])
+    {
+        [self searchBtnOnTouch];
+        return NO;
+    }
+    
+    return YES;
 }
 
 /*
