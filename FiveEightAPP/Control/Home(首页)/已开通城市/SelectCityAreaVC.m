@@ -85,9 +85,25 @@
         
     };
     
-    NSDictionary *dataDic = @{@"lang":@"zh-cn",
-                              @"cityid":_oc.id
-                              };
+    NSString *userSettingLanguage = [NSBundle currentLanguage];
+    
+    if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
+        [userSettingLanguage isEqualToString:@"vi"])) {
+        userSettingLanguage = @"zh-Hans";
+    }
+    
+    if([userSettingLanguage isEqualToString:@"vi"])
+    {
+        userSettingLanguage = @"vn";
+        
+    }
+    else
+    {
+        userSettingLanguage = @"zh-cn";
+    }
+    
+    
+    NSDictionary *dataDic = @{@"lang":userSettingLanguage,@"cityid":_oc.id};
     
     [hm getRequetInterfaceData:dataDic withInterfaceName:@"frontend.city/area"];
     

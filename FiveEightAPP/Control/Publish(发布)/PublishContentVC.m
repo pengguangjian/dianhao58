@@ -88,7 +88,7 @@
 }
 
 - (void)getSubColumnType {
-    NSDictionary *dataDic = @{@"lang":@"zh-cn",
+    NSDictionary *dataDic = @{
                               @"channelid":_cto.did
     };
     [datacontrol getLanMuSonData:(NSMutableDictionary *)dataDic andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {

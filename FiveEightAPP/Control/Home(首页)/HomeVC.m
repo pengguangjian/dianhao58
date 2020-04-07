@@ -836,49 +836,6 @@ static NSString *kLocalCellId = @"LocalImageCell";
 
 #pragma mark --
 
-- (void)getColumnTypeObj {
-    
-    HttpManager *hm = [HttpManager createHttpManager];
-    hm.responseHandler = ^(id responseObject) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            ResponseData *rd = [ResponseData mj_objectWithKeyValues:responseObject];
-            
-            if ([rd.code isEqualToString:SUCCESS] ) {
-                
-                NSArray *dic = [rd.data valueForKey:@"list"];
-                allTypeArr = [ColumnTypeObj mj_objectArrayWithKeyValuesArray:rd.data];
-                
-                self.typeArr  = [[NSMutableArray alloc] init];
-                for (ColumnTypeObj *cto in allTypeArr) {
-                    if ([cto.type isEqualToString:@"channel"]) {//顶级栏目
-                        [self.typeArr addObject:cto];
-                    }
-                }
-                
-                [self.typeMenuView reloadData];
-                
-                [SVProgressHUD dismiss];
-                //                [self.tableView reloadData];
-                
-                [self endHeaderRefreshing];
-                [self endFooterRefreshing];
-                
-                // 变为没有更多数据的状态
-                [self endFooterRefreshingWithNoMoreData];
-                
-            } else {
-                [SVProgressHUD showErrorWithStatus:rd.msg];
-            }
-        });
-    };
-    
-    NSDictionary *dataDic = @{@"lang":@"zh-cn"};
-    [hm getRequetInterfaceData:dataDic withInterfaceName:@"frontend.channel/lists"];
-    
-}
-
 - (MDBEmptyView *)emptyView{
     if (!_emptyView) {
         _emptyView = [[MDBEmptyView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height)];
