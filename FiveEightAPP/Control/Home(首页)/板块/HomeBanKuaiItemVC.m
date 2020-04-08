@@ -77,6 +77,8 @@
     _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [_cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateNormal];
     [_cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateHighlighted];
+    [_cityBtn.widthAnchor constraintEqualToConstant:60].active = YES;
+    [_cityBtn.heightAnchor constraintEqualToConstant:40].active = YES;
     [_cityBtn layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleRight imageTitleSpace:3];
     [_cityBtn addTarget:self action:@selector(cityBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
     

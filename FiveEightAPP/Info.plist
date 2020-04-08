@@ -88,7 +88,7 @@
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>LSApplicationCategoryType</key>
-	<string>使用您的位置为您指派附近技师。否则系统将使用默认地址为您指派技师！</string>
+	<string>使用您的位置为您获取附近信息。</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>wechat</string>

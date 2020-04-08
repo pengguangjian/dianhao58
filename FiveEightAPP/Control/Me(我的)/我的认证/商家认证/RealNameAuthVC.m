@@ -237,7 +237,7 @@
     UIButton *btitemz = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, (DEVICE_Width-60)/2.0, 120)];
     [view addSubview:btitemz];
 //    [self drawBtuuon:btitemz andimage:@"3" andtitle:NSLocalizedString(@"legalFrontIDCard", nil)];
-    [self drawBtuuon:btitemz andimage:@"shenfenz_zm" andtitle:@""];
+    [self drawBtuuon:btitemz andimage:@"shenfenz_zm" andtitle:NSLocalizedString(@"frontIDCard", nil)];
     [btitemz setTag:0];
     [btitemz addTarget:self action:@selector(imageAction:) forControlEvents:UIControlEventTouchUpInside];
     btimagezm = btitemz;
@@ -245,7 +245,7 @@
     UIButton *btitemf = [[UIButton alloc] initWithFrame:CGRectMake(btitemz.right+30, btitemz.top, btitemz.width, btitemz.height)];
     [view addSubview:btitemf];
 //    [self drawBtuuon:btitemf andimage:@"3" andtitle:NSLocalizedString(@"legalReverseIDCard", nil)];
-    [self drawBtuuon:btitemf andimage:@"shenfenz_fm" andtitle:@""];
+    [self drawBtuuon:btitemf andimage:@"shenfenz_fm" andtitle:NSLocalizedString(@"reverseIDCard", nil)];
     [btitemf setTag:1];
     [btitemf addTarget:self action:@selector(imageAction:) forControlEvents:UIControlEventTouchUpInside];
     btimagefm = btitemf;
@@ -253,7 +253,7 @@
     UIButton *btitemzj = [[UIButton alloc] initWithFrame:CGRectMake(btitemz.left, btitemz.bottom+15, btitemz.width, btitemz.height)];
    [view addSubview:btitemzj];
 //   [self drawBtuuon:btitemzj andimage:@"3" andtitle:NSLocalizedString(@"businessPhoto", nil)];
-    [self drawBtuuon:btitemzj andimage:@"yingyezhizhao_rz" andtitle:@""];
+    [self drawBtuuon:btitemzj andimage:@"yingyezhizhao_rz" andtitle:NSLocalizedString(@"businessPhoto", nil)];
     [btitemzj setTag:2];
     [btitemzj addTarget:self action:@selector(imageAction:) forControlEvents:UIControlEventTouchUpInside];
     btimagezy = btitemzj;
@@ -266,11 +266,10 @@
  
     UIImageView *imgv = [[UIImageView alloc] init];
     [imgv setImage:[UIImage imageNamed:strimage]];
-    [imgv setTag:100];
     [bt addSubview:imgv];
     [imgv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(bt);
-        make.bottom.equalTo(bt).offset(-25);
+        make.bottom.equalTo(bt).offset(-10);
     }];
     
     UILabel *lbtitle = [[UILabel alloc] init];
@@ -278,10 +277,23 @@
     [lbtitle setTextColor:RGB(50, 50, 50)];
     [lbtitle setTextAlignment:NSTextAlignmentCenter];
     [lbtitle setFont:[UIFont systemFontOfSize:14]];
+    lbtitle.adjustsFontSizeToFitWidth = YES;
+    lbtitle.minimumScaleFactor = 0.1;
     [bt addSubview:lbtitle];
     [lbtitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(bt);
+        make.left.right.equalTo(bt);
         make.height.offset(20);
+        make.centerY.equalTo(bt).offset(20);
+    }];
+    
+    
+    UIImageView *imgv1 = [[UIImageView alloc] init];
+    [imgv1 setTag:100];
+    [imgv1 setBackgroundColor:[UIColor clearColor]];
+    [bt addSubview:imgv1];
+    [imgv1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(bt);
+        make.bottom.equalTo(bt).offset(-10);
     }];
     
     

@@ -38,12 +38,12 @@
     [[ZaloSDK sharedInstance] initializeWithAppId:@"4417178685282046391"];
     
     //注册ShareSDK+
-    [self registerShareSDK];
+//    [self registerShareSDK];
     //注册高德地图
 //    [self registerAMap];
     //初始化MTA统计
 //    [self registerMTASDK];
-    //注册Bugly
+//    注册Bugly
     [self registerBuglySDK];
     //初始化JPush APNs代码
 //    [self initJPush_APNs];

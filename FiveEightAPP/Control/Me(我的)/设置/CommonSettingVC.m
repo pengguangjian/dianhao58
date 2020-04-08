@@ -246,7 +246,15 @@
         [selectSexView show];
         
         selectSexView.selectLaunangeHandler = ^(int sendertag) {
-            [self changeLange:sendertag];
+            NSString *userSettingLanguage = [NSBundle currentLanguage];
+            if((sendertag==1 && [userSettingLanguage isEqualToString:@"vi"])||(sendertag == 2 && [userSettingLanguage isEqualToString:@"zh-Hans"]))
+            {
+                
+            }else
+            {
+                [self changeLange:sendertag];
+            }
+            
         };
     }
     
@@ -380,6 +388,7 @@
              break;
      }
      
+    [[NSUserDefaults standardUserDefaults] setObject:[NSArray array] forKey:@"addressListHome"];
      //更新UI
 //     UITabBarController *tabBar = (UITabBarController *)[[UIApplication sharedApplication] keyWindow].rootViewController;
      

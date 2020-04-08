@@ -39,11 +39,21 @@
     
     
     if ([User sharedUser].token.length>0) {
-        [manager.requestSerializer setValue:[User sharedUser].token forHTTPHeaderField:@"user-token"];
+        [manager.requestSerializer setValue:[User sharedUser].token forHTTPHeaderField:@"token"];
     }
-    if ([User sharedUser].access_token.length>0) {
-        [manager.requestSerializer setValue:[User sharedUser].access_token forHTTPHeaderField:@"access-token"];
-    }
+    NSString *userSettingLanguage = [NSBundle currentLanguage];
+    if([userSettingLanguage isEqualToString:@"vi"])
+     {
+         [manager.requestSerializer setValue:@"vn" forHTTPHeaderField:@"lang"];
+     }
+     else
+     {
+         [manager.requestSerializer setValue:@"zh-cn" forHTTPHeaderField:@"lang"];
+     }
+    
+//    if ([User sharedUser].access_token.length>0) {
+//        [manager.requestSerializer setValue:[User sharedUser].access_token forHTTPHeaderField:@"access-token"];
+//    }
     [manager.requestSerializer setValue:@"v1" forHTTPHeaderField:@"version"];
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -109,11 +119,17 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
     
     
     if ([User sharedUser].token.length>0) {
-        [manager.requestSerializer setValue:[User sharedUser].token forHTTPHeaderField:@"user-token"];
+        [manager.requestSerializer setValue:[User sharedUser].token forHTTPHeaderField:@"token"];
     }
-    if ([User sharedUser].access_token.length>0) {
-        [manager.requestSerializer setValue:[User sharedUser].access_token forHTTPHeaderField:@"access-token"];
-    }
+    NSString *userSettingLanguage = [NSBundle currentLanguage];
+    if([userSettingLanguage isEqualToString:@"vi"])
+     {
+         [manager.requestSerializer setValue:@"vn" forHTTPHeaderField:@"lang"];
+     }
+     else
+     {
+         [manager.requestSerializer setValue:@"zh-cn" forHTTPHeaderField:@"lang"];
+     }
     [manager.requestSerializer setValue:@"v1" forHTTPHeaderField:@"version"];
     
     
@@ -129,8 +145,6 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
 //    } else {
 //        parameters = nil;
 //    }
-    NSString *userSettingLanguage = [NSBundle currentLanguage];
-    
     if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
         [userSettingLanguage isEqualToString:@"vi"])) {
         userSettingLanguage = @"zh-Hans";
@@ -194,11 +208,17 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
         
         
         if ([User sharedUser].token.length>0) {
-            [manager.requestSerializer setValue:[User sharedUser].token forHTTPHeaderField:@"user-token"];
+            [manager.requestSerializer setValue:[User sharedUser].token forHTTPHeaderField:@"token"];
         }
-        if ([User sharedUser].access_token.length>0) {
-            [manager.requestSerializer setValue:[User sharedUser].access_token forHTTPHeaderField:@"access-token"];
-        }
+        NSString *userSettingLanguage = [NSBundle currentLanguage];
+        if([userSettingLanguage isEqualToString:@"vi"])
+         {
+             [manager.requestSerializer setValue:@"vn" forHTTPHeaderField:@"lang"];
+         }
+         else
+         {
+             [manager.requestSerializer setValue:@"zh-cn" forHTTPHeaderField:@"lang"];
+         }
         [manager.requestSerializer setValue:@"v1" forHTTPHeaderField:@"version"];
         
         
@@ -209,6 +229,9 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
             
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:transactionDataDic];
         
+    
+    
+    
         [manager POST:URL.absoluteString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -260,11 +283,17 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
     
 
     if ([User sharedUser].token.length>0) {
-        [manager.requestSerializer setValue:[User sharedUser].token forHTTPHeaderField:@"user-token"];
+        [manager.requestSerializer setValue:[User sharedUser].token forHTTPHeaderField:@"token"];
     }
-    if ([User sharedUser].access_token.length>0) {
-        [manager.requestSerializer setValue:[User sharedUser].access_token forHTTPHeaderField:@"access-token"];
-    }
+    NSString *userSettingLanguage = [NSBundle currentLanguage];
+    if([userSettingLanguage isEqualToString:@"vi"])
+     {
+         [manager.requestSerializer setValue:@"vn" forHTTPHeaderField:@"lang"];
+     }
+     else
+     {
+         [manager.requestSerializer setValue:@"zh-cn" forHTTPHeaderField:@"lang"];
+     }
     [manager.requestSerializer setValue:@"v1" forHTTPHeaderField:@"version"];
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -331,11 +360,17 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
     
 
     if ([User sharedUser].token.length>0) {
-        [manager.requestSerializer setValue:[User sharedUser].token forHTTPHeaderField:@"user-token"];
+        [manager.requestSerializer setValue:[User sharedUser].token forHTTPHeaderField:@"token"];
     }
-    if ([User sharedUser].access_token.length>0) {
-        [manager.requestSerializer setValue:[User sharedUser].access_token forHTTPHeaderField:@"access-token"];
-    }
+    NSString *userSettingLanguage = [NSBundle currentLanguage];
+    if([userSettingLanguage isEqualToString:@"vi"])
+     {
+         [manager.requestSerializer setValue:@"vn" forHTTPHeaderField:@"lang"];
+     }
+     else
+     {
+         [manager.requestSerializer setValue:@"zh-cn" forHTTPHeaderField:@"lang"];
+     }
     [manager.requestSerializer setValue:@"v1" forHTTPHeaderField:@"version"];
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:transactionDataDic];
@@ -345,7 +380,6 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
 //    } else {
 //        parameters = nil;
 //    }
-    NSString *userSettingLanguage = [NSBundle currentLanguage];
     
     if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
         [userSettingLanguage isEqualToString:@"vi"])) {

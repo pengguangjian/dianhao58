@@ -24,6 +24,17 @@
 "shanchu" = "Xóa";
 "pinglunchenggong" = "Bình luận được đăng thành công";
 
+"zhelikongkongruye" = "Ở đây trống";
+"wangluozoudiule" = "Mất mạng";
+"xialakeyishuaxin" = "Kéo xuống để làm mới";
+"songkailijishuaxin" = "Phát hành để làm mới ngay lập tức";
+"zhengzaishuaxsjzhong" = "Làm mới dữ liệu ...";
+"dianjihuoshanglajzgd" = "Nhấp hoặc kéo để tải thêm";
+"zhengzaijiazaigdsj" = "Đang tải thêm dữ liệu ...";
+"woshiyoudixiande" = "Tôi có một điểm mấu chốt";
+"shanglakyjiazaigd" = "Kéo lên có thể tải thêm";
+"songkailijijiazgd" = "Phát hành ngay lập tức để tải thêm";
+
 "nian" = "Năm";
 "yue" = "Tháng";
 "ri" = "Ngày";
@@ -196,7 +207,7 @@
 "regionalPartner" = "Đối tác khu vực";
 "applicationArea" = "Khu vực đăng ký";
 "pleaseSelectRegion" = "Vui lòng chọn khu vực";
-"pleaseWriteName" = "Vui lòng điền họ tên 名";
+"pleaseWriteName" = "Vui lòng điền họ tên";
 "contactNumber" = "Số liên lạc";
 "pleaseWriteEmail" = "Vui lòng nhập email của bạn";
 "applyingPartner" = "Đối tác đăng ký";

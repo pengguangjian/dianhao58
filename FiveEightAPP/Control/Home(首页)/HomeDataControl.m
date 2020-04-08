@@ -17,6 +17,7 @@
     {
         [GMDCircleLoader setOnView:view withTitle:nil animated:YES];
     }
+    
     HttpManager *httpm = [HttpManager createHttpManager];
     [httpm getRequetInterfaceData:dicpush withInterfaceName:@"frontend.channel/lists" andresponseHandler:^(NSURLSessionDataTask *opration, id responceObjct, NSError *error) {
        if(view)

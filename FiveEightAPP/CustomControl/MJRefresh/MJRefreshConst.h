@@ -46,18 +46,32 @@ UIKIT_EXTERN NSString *const MJRefreshKeyPathPanState;
 
 UIKIT_EXTERN NSString *const MJRefreshHeaderLastUpdatedTimeKey;
 
-UIKIT_EXTERN NSString *const MJRefreshHeaderIdleText;
-UIKIT_EXTERN NSString *const MJRefreshHeaderPullingText;
-UIKIT_EXTERN NSString *const MJRefreshHeaderRefreshingText;
+#define MJRefreshHeaderIdleText NSLocalizedString(@"xialakeyishuaxin", nil)
+#define MJRefreshHeaderPullingText NSLocalizedString(@"songkailijishuaxin", nil)
+#define MJRefreshHeaderRefreshingText NSLocalizedString(@"zhengzaishuaxsjzhong", nil)
 
-UIKIT_EXTERN NSString *const MJRefreshAutoFooterIdleText;
-UIKIT_EXTERN NSString *const MJRefreshAutoFooterRefreshingText;
-UIKIT_EXTERN NSString *const MJRefreshAutoFooterNoMoreDataText;
+#define MJRefreshAutoFooterIdleText NSLocalizedString(@"dianjihuoshanglajzgd", nil)
+#define MJRefreshAutoFooterRefreshingText NSLocalizedString(@"zhengzaijiazaigdsj", nil)
+#define MJRefreshAutoFooterNoMoreDataText NSLocalizedString(@"woshiyoudixiande", nil)
 
-UIKIT_EXTERN NSString *const MJRefreshBackFooterIdleText;
-UIKIT_EXTERN NSString *const MJRefreshBackFooterPullingText;
-UIKIT_EXTERN NSString *const MJRefreshBackFooterRefreshingText;
-UIKIT_EXTERN NSString *const MJRefreshBackFooterNoMoreDataText;
+
+#define MJRefreshBackFooterIdleText NSLocalizedString(@"shanglakyjiazaigd", nil)
+#define MJRefreshBackFooterPullingText NSLocalizedString(@"songkailijijiazgd", nil)
+#define MJRefreshBackFooterRefreshingText NSLocalizedString(@"zhengzaijiazaigdsj", nil)
+#define MJRefreshBackFooterNoMoreDataText NSLocalizedString(@"woshiyoudixiande", nil)
+
+//UIKIT_EXTERN NSString *const MJRefreshHeaderIdleText;
+//UIKIT_EXTERN NSString *const MJRefreshHeaderPullingText;
+//UIKIT_EXTERN NSString *const MJRefreshHeaderRefreshingText;
+//
+//UIKIT_EXTERN NSString *const MJRefreshAutoFooterIdleText;
+//UIKIT_EXTERN NSString *const MJRefreshAutoFooterRefreshingText;
+//UIKIT_EXTERN NSString *const MJRefreshAutoFooterNoMoreDataText;
+//
+//UIKIT_EXTERN NSString *const MJRefreshBackFooterIdleText;
+//UIKIT_EXTERN NSString *const MJRefreshBackFooterPullingText;
+//UIKIT_EXTERN NSString *const MJRefreshBackFooterRefreshingText;
+//UIKIT_EXTERN NSString *const MJRefreshBackFooterNoMoreDataText;
 
 // 状态检查
 #define MJRefreshCheckState \

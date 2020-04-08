@@ -1166,6 +1166,12 @@
 
 - (void)setAppLanguage:(UIButton*)btn {
     
+    NSString *userSettingLanguage = [NSBundle currentLanguage];
+    if((btn.tag==0 && [userSettingLanguage isEqualToString:@"vi"])||(btn.tag == 1 && [userSettingLanguage isEqualToString:@"zh-Hans"]))
+    {
+        return;
+    }
+    
     switch (btn.tag) {
         case 0:
             [UWConfig setUserLanguage:@"vi"];
@@ -1182,6 +1188,8 @@
         [btn setSelected:NO];
     }
     [btn setSelected:YES];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSArray array] forKey:@"addressListHome"];
     
     //更新UI
 //    UITabBarController *tabBar = (UITabBarController *)[[UIApplication sharedApplication] keyWindow].rootViewController;

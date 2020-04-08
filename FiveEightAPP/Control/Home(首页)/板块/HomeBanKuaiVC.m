@@ -94,11 +94,17 @@
     _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [_cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateNormal];
     [_cityBtn setImage:[UIImage imageNamed:@"sanjiao_down"] forState:UIControlStateHighlighted];
+    
     [_cityBtn layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleRight imageTitleSpace:3];
     [_cityBtn addTarget:self action:@selector(cityBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
-    
+    [_cityBtn.widthAnchor constraintEqualToConstant:60].active = YES;
+    [_cityBtn.heightAnchor constraintEqualToConstant:40].active = YES;
     UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_cityBtn];
+    rightBarButtonItem.style = UIBarButtonItemStylePlain;
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    
+    
+    
     
 }
 
@@ -142,6 +148,7 @@
         {
             btnowselect = btitem;
             [btnowselect setBackgroundColor:RGB(234, 58, 60)];
+            [btnowselect setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
             HomeLanMuModel *model = _modelSuper.arrson[btnowselect.tag];
             _strid = model.did;
         }
@@ -229,9 +236,11 @@
     if(btnowselect!=nil)
     {
         [btnowselect setBackgroundColor:[UIColor whiteColor]];
+        [btnowselect setTitleColor:RGB(50, 50, 50) forState:UIControlStateNormal];
     }
     btnowselect = sender;
     [btnowselect setBackgroundColor:RGB(234, 58, 60)];
+    [btnowselect setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
     
     HomeLanMuModel *model = _modelSuper.arrson[btnowselect.tag];
     _strid = model.did;

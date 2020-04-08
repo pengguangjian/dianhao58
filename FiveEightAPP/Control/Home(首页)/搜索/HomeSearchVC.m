@@ -120,7 +120,7 @@
     [viewsearch.layer setCornerRadius:3.0f];
     [view addSubview:viewsearch];
     [viewsearch mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->cityBtn.mas_right);
+        make.left.equalTo(self->cityBtn.mas_right).offset(2);
         make.right.equalTo(publishBtn.mas_left);
         make.top.offset(3);
         make.height.offset(35);

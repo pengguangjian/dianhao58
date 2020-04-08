@@ -24,6 +24,19 @@
 "shanchu" = "删除";
 "pinglunchenggong" = "评论发布成功";
 
+"zhelikongkongruye" = "这里空空如也";
+"wangluozoudiule" = "网络走丢啦";
+"xialakeyishuaxin" = "下拉可以刷新";
+"songkailijishuaxin" = "松开立即刷新";
+"zhengzaishuaxsjzhong" = "正在刷新数据中...";
+"dianjihuoshanglajzgd" = "点击或上拉加载更多";
+"zhengzaijiazaigdsj" = "正在加载更多的数据...";
+"woshiyoudixiande" = "我是有底线的";
+"shanglakyjiazaigd" = "上拉可以加载更多的";
+"songkailijijiazgd" = "松开立即加载更多";
+
+
+
 "nian" = "年";
 "yue" = "月";
 "ri" = "日";

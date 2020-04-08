@@ -95,7 +95,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
     
     [self newtworkJianting];
     
-    
+    [self getAddressListDdata];
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:BOOLFORKEY]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isShowGuideRootVC"];
@@ -193,6 +193,43 @@ static NSString *kLocalCellId = @"LocalImageCell";
     });
     
     
+}
+
+-(void)getAddressListDdata
+{
+    HttpManager *hm = [HttpManager createHttpManager];
+    hm.responseHandler = ^(id responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            ResponseData *rd = [ResponseData mj_objectWithKeyValues:responseObject];
+            if ([rd.code isEqualToString:SUCCESS] ) {
+                
+                if([[rd.data valueForKey:@"list"] isKindOfClass:[NSArray class]])
+                {
+                    NSArray *dic = [rd.data valueForKey:@"list"];
+                    if(dic.count > 0)
+                    {///有数据
+                        [[NSUserDefaults standardUserDefaults] setObject:dic forKey:@"addressListHome"];
+                        [self setAddressButtonValue];
+                    }
+                }
+            }
+        });
+    };
+    NSString *userSettingLanguage = [NSBundle currentLanguage];
+    if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
+        [userSettingLanguage isEqualToString:@"vi"])) {
+        userSettingLanguage = @"zh-Hans";
+    }
+    if([userSettingLanguage isEqualToString:@"vi"])
+    {
+        userSettingLanguage = @"vn";
+    }
+    else
+    {
+        userSettingLanguage = @"zh-cn";
+    }
+    NSDictionary *dataDic = @{@"lang":userSettingLanguage};
+    [hm getRequetInterfaceData:dataDic withInterfaceName:@"frontend.city/lists"];
 }
 
 -(void)getLanMu
@@ -294,6 +331,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    
     isPush = YES;
     [Util setNavigationBar:self.navigationController.navigationBar andBackgroundColor:[UIColor whiteColor] andIsShowSplitLine:NO];
     [self setAddressButtonValue];
@@ -337,7 +375,25 @@ static NSString *kLocalCellId = @"LocalImageCell";
         strid = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTCITYID];
         strname = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTCITYNAME];
     }
-    
+    else
+    {
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"addressListHome"] isKindOfClass:[NSArray class]])
+        {
+            NSArray *arrtemp = [[NSUserDefaults standardUserDefaults] objectForKey:@"addressListHome"];
+            
+            for(NSDictionary *dic in arrtemp)
+            {
+                if([[NSString nullToString:[dic objectForKey:@"id"]] isEqualToString:strid])
+                {
+                    strname = [NSString nullToString:[dic objectForKey:@"title"]];
+                    [[NSUserDefaults standardUserDefaults] setObject:strname forKey:SELECTCITYNAME];
+                    break;
+                }
+            }
+            arrtemp = nil;
+            
+        }
+    }
     _oc = [[OpenedCity alloc] init];
     _oc.name =strname;
     _oc.id = [NSNumber numberWithInteger:[strid integerValue]];
@@ -466,7 +522,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
     [searchBtn addTarget:self action:@selector(searchBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:searchBtn];
     [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->cityBtn.mas_right);
+        make.left.equalTo(self->cityBtn.mas_right).offset(2);
         make.right.equalTo(publishBtn.mas_left);
         make.top.offset(10);
         make.height.offset(30);
@@ -513,7 +569,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
     }];
 
     UILabel *leftImageView = [[UILabel alloc] init];
-    [leftImageView setText:[NSString stringWithFormat:@"%@\n%@",NSLocalizedString(@"zuixin", nil),NSLocalizedString(@"Message", nil)]];
+    [leftImageView setText:[NSString stringWithFormat:@"%@\n%@",NSLocalizedString(@"Message", nil),NSLocalizedString(@"zuixin", nil)]];
     [leftImageView setTextColor:RGB(223, 66, 71)];
     [leftImageView setNumberOfLines:2];
     [leftImageView setTextAlignment:NSTextAlignmentCenter];

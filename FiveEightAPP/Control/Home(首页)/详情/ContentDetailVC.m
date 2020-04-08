@@ -424,9 +424,11 @@
         make.size.mas_equalTo(CGSizeMake(DEVICE_Width-32, 15));
     }];
     NSMutableAttributedString *nameAttrString = [[NSMutableAttributedString alloc] initWithString:name];
+    
+    NSInteger iname = NSLocalizedString(@"contacts", nil).length;
     [nameAttrString addAttribute:NSForegroundColorAttributeName
                             value:ORANGEREDCOLOR
-                            range:NSMakeRange(0, 4)];
+                            range:NSMakeRange(0, iname+1)];
     contactNameLabel.attributedText = nameAttrString;
     
     
@@ -442,9 +444,10 @@
         make.size.mas_equalTo(CGSizeMake(DEVICE_Width-32, 15));
     }];
     NSMutableAttributedString *phoneAttrString = [[NSMutableAttributedString alloc] initWithString:textphone];
+    NSInteger iphone = NSLocalizedString(@"mobile", nil).length;
     [phoneAttrString addAttribute:NSForegroundColorAttributeName
                             value:ORANGEREDCOLOR
-                            range:NSMakeRange(0, 3)];
+                            range:NSMakeRange(0, iphone+1)];
     contactLabel.attributedText = phoneAttrString;
     
     

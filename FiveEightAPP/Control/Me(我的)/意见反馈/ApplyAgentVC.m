@@ -8,7 +8,7 @@
 
 #import "ApplyAgentVC.h"
 #import "ApplyAgentDataControl.h"
-@interface ApplyAgentVC () <UITextFieldDelegate>
+@interface ApplyAgentVC () <UITextFieldDelegate,UITextViewDelegate>
 {
     ApplyAgentDataControl *datacontrol;
     
@@ -78,6 +78,7 @@
     [textview setFont:[UIFont systemFontOfSize:15]];
     [textview setPlaceholder:NSLocalizedString(@"pleaseOpinion", nil)];
     [textview setBackgroundColor:RGB(245, 245, 245)];
+    [textview setDelegate:self];
     [scvback addSubview:textview];
     [textview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(15);
@@ -218,6 +219,20 @@
 //        return NO;
 //    }
     return NO;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([text isEqualToString:@""])
+    {
+        return YES;
+    }
+    if(textView.text.length>=300)
+    {
+        return NO;;
+    }
+    
+    return YES;
 }
 
 /*

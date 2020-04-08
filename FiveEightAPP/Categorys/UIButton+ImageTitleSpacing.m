@@ -37,9 +37,9 @@
         labelWidth = self.titleLabel.frame.size.width;
         labelHeight = self.titleLabel.frame.size.height;
     }
-    if(labelWidth>self.width)
+    if(labelWidth+imageWith+space>self.width)
     {
-        labelWidth = self.width-imageWith-5;
+        labelWidth = self.width-imageWith-space;
     }
     
     // 2. 声明全局的imageEdgeInsets和labelEdgeInsets

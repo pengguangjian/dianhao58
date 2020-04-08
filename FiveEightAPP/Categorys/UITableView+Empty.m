@@ -132,11 +132,11 @@
         if (status == AFNetworkReachabilityStatusReachableViaWWAN || status == AFNetworkReachabilityStatusReachableViaWiFi) {
 //            NSLog(@"有网");
             isHaveNetwork = YES;
-            [self initWithoutDataView:@"img_blank" withTitle:@"这里空空如也"];
+            [self initWithoutDataView:@"img_blank" withTitle:NSLocalizedString(@"zhelikongkongruye", nil)];
         }else{
 //            NSLog(@"没网");
             isHaveNetwork = NO;
-            [self initWithoutDataView:@"img_nonetwork" withTitle:@"网络走丢啦"];
+            [self initWithoutDataView:@"img_nonetwork" withTitle:NSLocalizedString(@"wangluozoudiule", nil)];
         }
     }];
     
