@@ -110,6 +110,13 @@
 
 - (void)createRootVC {
     
+    if(_tabBarCtrl!= nil)
+    {
+        _tabBarCtrl.viewControllers = nil;
+        _tabBarCtrl = nil;
+        [self.window removeAllSubviews];
+    }
+    
     HomeVC *homeVC = [[HomeVC alloc]initWithNibName:@"HomeVC" bundle:Nil];
     homeVC.tabBarItem = [self createTabBarItem:NSLocalizedString(@"Home", nil) imageNamed:@"ic_home_n" selectedImageNamed:@"ic_home_s"];
     UINavigationController *homeNC = [[UINavigationController alloc] initWithRootViewController:homeVC];

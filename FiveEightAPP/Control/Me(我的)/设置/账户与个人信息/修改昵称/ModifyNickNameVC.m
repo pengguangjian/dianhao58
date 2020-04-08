@@ -74,8 +74,8 @@
     [saveBtn setBackgroundColor:RGB(234, 58, 60)];
     [saveBtn.layer setMasksToBounds:YES];
     [saveBtn.layer setCornerRadius:5.0f];
-    saveBtn.xsz_acceptEventInterval = 1;
-    [saveBtn gradientButtonWithSize:CGSizeMake(DEVICE_Width-80, 50) colorArray:@[(id)DEFAULTCOLOR1,(id)DEFAULTCOLOR2] percentageArray:@[@(0.18),@(1)] gradientType:GradientFromLeftToRight];
+//    saveBtn.xsz_acceptEventInterval = 1;
+//    [saveBtn gradientButtonWithSize:CGSizeMake(DEVICE_Width-80, 50) colorArray:@[(id)DEFAULTCOLOR1,(id)DEFAULTCOLOR2] percentageArray:@[@(0.18),@(1)] gradientType:GradientFromLeftToRight];
     [self.view addSubview:saveBtn];
     [saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(descLabel.mas_bottom).with.offset(20);

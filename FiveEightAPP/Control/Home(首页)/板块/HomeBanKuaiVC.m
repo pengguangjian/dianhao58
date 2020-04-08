@@ -110,34 +110,41 @@
         iline+=1;
     }
     UIView *viewlast;
-    float fitemw = (DEVICE_Width-75)/4.0;
-    for(int i = 0 ; i < iline; i++)
+    float fleft = 15;
+    float ftop = 10;
+    for(int i = 0 ; i < _modelSuper.arrson.count; i++)
     {
-        for(int j = 0 ; j < 4; j++)
+        HomeLanMuModel *model = _modelSuper.arrson[i];
+        if([model.name isEqualToString:@""])
         {
-            if(j+i*4>=_modelSuper.arrson.count)break;
-            HomeLanMuModel *model = _modelSuper.arrson[j+i*4];
-            UIButton *btitem = [[UIButton alloc] initWithFrame:CGRectMake(15+(fitemw+15)*j, 10+45*i, fitemw, 35)];
-            [btitem setTitleColor:RGB(50, 50, 50) forState:UIControlStateNormal];
-            [btitem.titleLabel setFont:[UIFont systemFontOfSize:14]];
-            [btitem setTitle:model.name forState:UIControlStateNormal];
-            [view addSubview:btitem];
-            [btitem.layer setMasksToBounds:YES];
-            [btitem.layer setCornerRadius:3];
-            [btitem.layer setBorderColor:RGB(200, 200, 200).CGColor];
-            [btitem.layer setBorderWidth:1];
-            [btitem setTag:j+i*4];
-            viewlast = btitem;
-            [btitem addTarget:self action:@selector(topBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-            if(i*4+j==0)
-            {
-                btnowselect = btitem;
-                [btnowselect setBackgroundColor:RGB(234, 58, 60)];
-                HomeLanMuModel *model = _modelSuper.arrson[btnowselect.tag];
-                _strid = model.did;
-            }
+            continue;
         }
-        
+        float fwtemp = [Util countTextSize:CGSizeMake(DEVICE_Width-30, 20) andtextfont:[UIFont systemFontOfSize:14] andtext:model.name].width+10;
+        if(fleft+fwtemp>DEVICE_Width-15)
+        {
+            fleft=15;
+            ftop+=50;
+        }
+        UIButton *btitem = [[UIButton alloc] initWithFrame:CGRectMake(fleft, ftop, fwtemp, 35)];
+        [btitem setTitleColor:RGB(50, 50, 50) forState:UIControlStateNormal];
+        [btitem.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [btitem setTitle:model.name forState:UIControlStateNormal];
+        [view addSubview:btitem];
+        [btitem.layer setMasksToBounds:YES];
+        [btitem.layer setCornerRadius:3];
+        [btitem.layer setBorderColor:RGB(200, 200, 200).CGColor];
+        [btitem.layer setBorderWidth:1];
+        [btitem setTag:i];
+        viewlast = btitem;
+        [btitem addTarget:self action:@selector(topBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        fleft = btitem.right+15;
+        if(i == 0 )
+        {
+            btnowselect = btitem;
+            [btnowselect setBackgroundColor:RGB(234, 58, 60)];
+            HomeLanMuModel *model = _modelSuper.arrson[btnowselect.tag];
+            _strid = model.did;
+        }
     }
     if(viewlast==nil)
     {

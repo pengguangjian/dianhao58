@@ -140,7 +140,8 @@
     [requestVerityCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(viewcode).with.offset(-25);
         make.centerY.mas_equalTo(viewcode).offset(-5);
-        make.size.mas_equalTo(CGSizeMake(100, 35));
+        make.height.mas_equalTo(@35);
+        make.width.mas_equalTo(@120);
     }];
     
     
@@ -156,7 +157,7 @@
     [view addSubview:shortcutLoginBtn];
     [shortcutLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(20);
-        make.right.equalTo(view.mas_right).offset(-20);
+        make.width.offset(DEVICE_Width-40);
         make.height.mas_equalTo(@50);
         make.top.equalTo(viewcode.mas_bottom).offset(30);
     }];

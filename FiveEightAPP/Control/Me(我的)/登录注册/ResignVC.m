@@ -78,7 +78,7 @@
     [scvback addSubview:viewinfo];
     [viewinfo mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
-        make.right.offset(DEVICE_Width);
+        make.width.offset(DEVICE_Width);
         make.top.equalTo(logoImageView.mas_bottom).offset(30);
     }];
     [self drawInfoView:viewinfo];
@@ -148,7 +148,8 @@
     [requestVerityCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(viewcode).with.offset(-25);
         make.centerY.mas_equalTo(viewcode).offset(-5);
-        make.size.mas_equalTo(CGSizeMake(100, 35));
+        make.height.mas_equalTo(@35);
+        make.width.mas_equalTo(@120);
     }];
     
     

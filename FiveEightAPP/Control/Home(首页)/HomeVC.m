@@ -72,6 +72,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
 @property (nonatomic, strong) FECycleScrollView *cycleScrollView;
 @property (nonatomic, strong) MDBEmptyView *emptyView;
 @property (nonatomic, strong)FEClassifyCollectionView *classifyView;
+@property (nonatomic, strong)XieYiAlterView *alterview;;
 @end
 
 @implementation HomeVC
@@ -116,6 +117,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
             XieYiAlterView *alterview = [[XieYiAlterView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height) andtitle:nil andcontent:nil];
             alterview.nav = self.navigationController;
             [dele.tabBarCtrl.view addSubview:alterview];
+            self->_alterview = alterview;
         });
     }
 }
@@ -310,6 +312,9 @@ static NSString *kLocalCellId = @"LocalImageCell";
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
     [Util setNavigationBar:self.navigationController.navigationBar andBackgroundColor:[UIColor whiteColor] andIsShowSplitLine:YES];
+    
+    [_alterview removeFromSuperview];
+    
 }
 
 - (void)setNavItem {
@@ -324,7 +329,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
     
     NSString *strid = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTCITYID];
     NSString *strname = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTCITYNAME];
-    if(strname.length<1)
+    if(strname.length<1 || [strname isEqualToString:@"河内"]|| [strname isEqualToString:@"Hà nội"])
     {
         
         [[NSUserDefaults standardUserDefaults] setObject:NSLocalizedString(@"henei", nil) forKey:SELECTCITYNAME];
@@ -332,6 +337,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
         strid = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTCITYID];
         strname = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTCITYNAME];
     }
+    
     _oc = [[OpenedCity alloc] init];
     _oc.name =strname;
     _oc.id = [NSNumber numberWithInteger:[strid integerValue]];
@@ -512,6 +518,8 @@ static NSString *kLocalCellId = @"LocalImageCell";
     [leftImageView setNumberOfLines:2];
     [leftImageView setTextAlignment:NSTextAlignmentCenter];
     [leftImageView setFont:[UIFont boldSystemFontOfSize:16]];
+    leftImageView.adjustsFontSizeToFitWidth = YES;
+    leftImageView.minimumScaleFactor = 0.1;
     [hotNewsView addSubview:leftImageView];
     [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->hotNewsView).with.offset(12);
@@ -761,7 +769,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
 - (__kindof FECycleScrollViewCell *)cycleScrollView:(FECycleScrollView *)cycleScrollView cellForItemAtIndex:(NSInteger)index {
     
     LocalImageCell *cell = [cycleScrollView dequeueReusableCellWithReuseIdentifier:kLocalCellId forIndex:index];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[_localPathGroup[index] objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"img_my_head"]];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[_localPathGroup[index] objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"homeNOmo"]];
     return cell;
     
 }

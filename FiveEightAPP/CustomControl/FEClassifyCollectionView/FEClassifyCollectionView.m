@@ -69,7 +69,7 @@
             row++;
         }
         
-        self.height = row*(5+(DEVICE_Width - 16*3) / 3.0*(9.0/16.0))+16;
+        self.height = row*(6+(DEVICE_Width - 16*3) / 3.0*(9.0/16.0))+16;
         _collectionView.height = self.height;
         
         [self.collectionView reloadData];

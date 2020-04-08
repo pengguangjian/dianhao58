@@ -60,18 +60,21 @@
 
 - (void)createHeaderView {
     
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 30)];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 35)];
     [headView setBackgroundColor:[UIColor whiteColor]];
     
     UILabel *descLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, DEVICE_Width-32, headView.height)];
     descLabel.font = [UIFont systemFontOfSize:13];
     descLabel.backgroundColor = [UIColor clearColor];
     descLabel.textColor = COL2;
+    [descLabel setNumberOfLines:0];
     descLabel.textAlignment = NSTextAlignmentLeft;
     descLabel.text = NSLocalizedString(@"pleaseRealDataAuthentication", nil);//_aso.nameErrorStr;
+    [descLabel setNumberOfLines:0];
     [headView addSubview:descLabel];
     
     self.tableView.tableHeaderView = headView;
+ 
     
 }
 
@@ -108,7 +111,7 @@
     [radioBtnArr addObject:radioBtn];
     [radioBtnArr[0] setGroupButtons:radioBtnArr]; // 设置为同一组
     
-    UILabel *protocolLabel = [[UILabel alloc] initWithFrame:CGRectMake(16+16+10, 15, DEVICE_Width-42, 14)];
+    UILabel *protocolLabel = [[UILabel alloc] initWithFrame:CGRectMake(16+16+10, 5, DEVICE_Width-42, 35)];
     protocolLabel.text = NSLocalizedString(@"agreementConsent", nil);
     protocolLabel.numberOfLines = 0;
     protocolLabel.textColor = COL3;

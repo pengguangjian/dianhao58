@@ -42,7 +42,7 @@
     [self drawtopVIew:viewtop];
     viewnavsearch = viewtop;
     
-    [self initWithRefreshTableView:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight)];
+    [self initWithRefreshTableView:CGRectMake(0, SafeAreaTopHeight, DEVICE_Width, DEVICE_Height-SafeAreaTopHeight)];
     
     self.tableView.isShowWithoutDataView = YES;
     self.tableView.separatorColor = SEPARATORCOLOR;
@@ -95,10 +95,11 @@
     publishBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [publishBtn addTarget:self action:@selector(searchBtnOnTouch) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:publishBtn];
+    float fwidth = [Util countTextSize:CGSizeMake(100, 20) andtextfont:[UIFont systemFontOfSize:14] andtext:NSLocalizedString(@"sousuo", nil)].width+10;
     [publishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(view.mas_right).offset(-10);
         make.top.bottom.equalTo(view);
-        make.width.offset(40);
+        make.width.offset(fwidth);
     }];
     NSString *strcityname = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTCITYNAME];
     cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 3, 60, 40)];

@@ -95,12 +95,12 @@
     [lbtoptishi setTextColor:RGB(20, 20, 20)];
     [lbtoptishi setTextAlignment:NSTextAlignmentLeft];
     [lbtoptishi setFont:[UIFont systemFontOfSize:16]];
+    [lbtoptishi setNumberOfLines:0];
     [viewback addSubview:lbtoptishi];
     [lbtoptishi mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(15);
         make.top.offset(20);
         make.right.equalTo(self->viewback).offset(-15);
-        make.height.offset(30);
     }];
     
     NSArray *arrname = @[NSLocalizedString(@"personalAuthentication", nil),NSLocalizedString(@"eerchantCertification", nil)];
@@ -119,7 +119,7 @@
             make.left.offset(10);
             make.right.equalTo(self->viewback).offset(-10);
             make.height.offset(45);
-            make.top.offset(60+55*i);
+            make.top.equalTo(lbtoptishi.mas_bottom).offset(15+55*i);
         }];
         [self drawItemView:viewitem andimage:arrimage[i] andname:arrname[i] andisrenz:arrstate[i]];
         [viewitem setTag:i];
@@ -154,7 +154,7 @@
     [lbname mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(view);
         make.left.equalTo(imagev.mas_right).offset(10);
-        make.width.offset(DEVICE_Width-100);
+        make.width.offset(DEVICE_Width-140);
     }];
     
     if(strisrenz.intValue == 1 || strisrenz.intValue == 2 || strisrenz.intValue == 3)

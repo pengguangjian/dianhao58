@@ -77,6 +77,8 @@
     
     [viewnavline removeFromSuperview];
     
+    [self dismisshanchupinglun];
+    
 }
 
 - (void)leftBtnOnTouch:(id)sender
@@ -265,29 +267,25 @@
     
     //推广内容
     NSString *adContent = NSLocalizedString(@"detailCommentdetail", nil);
-    
     UILabel *adContentLabel = [[UILabel alloc]init];
     adContentLabel.text = adContent;
     adContentLabel.font = [UIFont systemFontOfSize:17];
     adContentLabel.textColor = COL1;
-//    [adContentLabel setBackgroundColor:[UIColor redColor]];
     adContentLabel.numberOfLines = 0;
     adContentLabel.textAlignment = NSTextAlignmentLeft;
     [headerView addSubview:adContentLabel];
-    
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     // 行间距设置为8
     [paragraphStyle  setLineSpacing:8];
     NSMutableAttributedString  *adContentAttr = [[NSMutableAttributedString alloc] initWithString:adContentLabel.text];
     [adContentAttr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [adContentLabel.text length])];
     adContentLabel.attributedText = adContentAttr;
-    
     //计算高度
     CGSize adTextSize = [adContentLabel.text boundingRectWithSize:CGSizeMake(DEVICE_Width-32, CGFLOAT_MAX)
                                                       options:NSStringDrawingUsesLineFragmentOrigin
                                                    attributes:@{NSFontAttributeName:adContentLabel.font}
                                                       context:nil].size;
-    int adRow = (int)(adTextSize.height/17)-1;
+    int adRow = (int)(adTextSize.height/17);
     if (adRow<0) {
         adRow = 0;
     }
@@ -366,7 +364,7 @@
     [btpinglun mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(view).offset(-15);
         make.top.bottom.equalTo(view);
-        make.width.offset(50);
+        make.width.mas_equalTo(@70);
     }];
     [btpinglun layoutButtonWithEdgeInsetsStyle:GHButtonEdgeInsetsStyleTop imageTitleSpace:3];
 }
@@ -561,7 +559,7 @@
     }
     HomeDetailContentModel *model = commentArr[indexPath.row];
     
-    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.userinfoavatar] placeholderImage:[UIImage imageNamed:@"img_my_head"]];
+    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.userinfoavatar] placeholderImage:[UIImage imageNamed:@"log_log"]];
     cell.nickNameLabel.text = model.userinfonickname;
     cell.model = commentArr[indexPath.row];
     cell.delegate = self;
@@ -578,7 +576,7 @@
     }
     
     cell.dateTimeLabel.text = model.create_date;
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -749,7 +747,15 @@
     HomeDetailContentModel *model = value;
     CGRect rect = [sender.superview convertRect:sender.frame toView:self.view.window];
     
-    cellOtherActionView = [[MyOrderCellOtherActionView alloc] initWithFrame:CGRectMake(DEVICE_Width-70,rect.origin.y+25, 60, 65)];
+    float ftemp = 70;
+    NSString *userSettingLanguage = [NSBundle currentLanguage];
+     
+    if([userSettingLanguage isEqualToString:@"vi"])
+     {
+         ftemp = 110;
+     }
+    
+    cellOtherActionView = [[MyOrderCellOtherActionView alloc] initWithFrame:CGRectMake(DEVICE_Width-ftemp,rect.origin.y+25, ftemp-10, 65)];
     cellOtherActionView.model = model;
     [cellOtherActionView setDelegate:self];
     [self.view.window addSubview:cellOtherActionView];

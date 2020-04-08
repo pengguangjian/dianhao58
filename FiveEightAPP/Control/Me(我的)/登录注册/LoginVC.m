@@ -292,7 +292,8 @@
     [requestVerityCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(bgView).with.offset(-25);
         make.top.equalTo(phoneTextFieldBelowLine.mas_bottom).with.offset(20);
-        make.size.mas_equalTo(CGSizeMake(100, 35));
+        make.height.mas_equalTo(@35);
+        make.width.mas_equalTo(@120);
     }];
     
     
@@ -1166,14 +1167,11 @@
 - (void)setAppLanguage:(UIButton*)btn {
     
     switch (btn.tag) {
-        case 1:
-            [UWConfig setUserLanguage:@"zh-Hans"];
-            break;
-        case 2:
+        case 0:
             [UWConfig setUserLanguage:@"vi"];
             break;
-        case 3:
-            [UWConfig setUserLanguage:@"en"];
+        case 1:
+            [UWConfig setUserLanguage:@"zh-Hans"];
             break;
             
         default:
@@ -1186,21 +1184,21 @@
     [btn setSelected:YES];
     
     //更新UI
-    UITabBarController *tabBar = (UITabBarController *)[[UIApplication sharedApplication] keyWindow].rootViewController;
+//    UITabBarController *tabBar = (UITabBarController *)[[UIApplication sharedApplication] keyWindow].rootViewController;
     
-    NSUInteger tabbarSelectedIndex = tabBar.selectedIndex;
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
+//    NSUInteger tabbarSelectedIndex = tabBar.selectedIndex;
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     //解决奇怪的动画bug。异步执行
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//        UIWindow *window = [UIApplication sharedApplication].keyWindow;
         [[UIApplication sharedApplication].keyWindow.layer addAnimation:[self exitAnim] forKey:nil];
         
         [app createRootVC];
         
         UITabBarController *newTabBar = (UITabBarController *)[[UIApplication sharedApplication] keyWindow].rootViewController;
-        newTabBar.selectedIndex = tabbarSelectedIndex;
+        newTabBar.selectedIndex = 0;
         [Util LoginVC:YES];
         
     });

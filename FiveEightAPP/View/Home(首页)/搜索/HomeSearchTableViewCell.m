@@ -65,7 +65,7 @@
         [lbstate setTextColor:RGB(255, 255, 255)];
         [lbstate setBackgroundColor:RGB(234, 58, 60)];
         [lbstate setTextAlignment:NSTextAlignmentCenter];
-        [lbstate setFont:[UIFont systemFontOfSize:13]];
+        [lbstate setFont:[UIFont systemFontOfSize:12]];
         [imgvhead addSubview:lbstate];
         [lbstate mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.offset(0);
@@ -105,7 +105,7 @@
         [lbother mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(lbtitle);
             make.bottom.equalTo(imgvhead).offset(-5);
-            make.width.offset(160);
+            make.right.equalTo(viewback.mas_right).offset(-100);
             make.height.offset(20);
         }];
         _lbother= lbother;
@@ -147,7 +147,7 @@
         [lbviews mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(lbtitle);
             make.top.equalTo(lbtime.mas_bottom);
-            make.width.offset(160);
+            make.width.offset(90);
         }];
         _lbviews = lbviews;
         
@@ -170,7 +170,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    [_imgvhead sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@"img_my_head"]];
+    [_imgvhead sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@"log_log"]];
     
     [_lbtitle setText:[NSString stringWithFormat:@"%@",model.title]];
     

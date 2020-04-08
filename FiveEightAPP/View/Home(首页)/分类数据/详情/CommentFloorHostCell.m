@@ -18,6 +18,9 @@
     
     self.dateTimeLabel.textColor = COL2;
     
+//    huifu
+    [self.replyBtn setTitle:NSLocalizedString(@"huifu", nil) forState:UIControlStateNormal];
+    
     [self.headImageView.layer setCornerRadius:15.0f];
 }
 

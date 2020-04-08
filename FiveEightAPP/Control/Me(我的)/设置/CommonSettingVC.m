@@ -381,9 +381,9 @@
      }
      
      //更新UI
-     UITabBarController *tabBar = (UITabBarController *)[[UIApplication sharedApplication] keyWindow].rootViewController;
+//     UITabBarController *tabBar = (UITabBarController *)[[UIApplication sharedApplication] keyWindow].rootViewController;
      
-     NSUInteger tabbarSelectedIndex = tabBar.selectedIndex;
+//     NSUInteger tabbarSelectedIndex = tabBar.selectedIndex;
      AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
      
      //解决奇怪的动画bug。异步执行
@@ -393,7 +393,7 @@
          [app createRootVC];
          
          UITabBarController *newTabBar = (UITabBarController *)[[UIApplication sharedApplication] keyWindow].rootViewController;
-         newTabBar.selectedIndex = tabbarSelectedIndex;
+         newTabBar.selectedIndex = 0;
 //         [Util LoginVC:YES];
          
      });

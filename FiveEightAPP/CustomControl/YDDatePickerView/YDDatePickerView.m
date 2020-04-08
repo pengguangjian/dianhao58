@@ -40,7 +40,18 @@
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     self.datePic = datePicker;
     datePicker.backgroundColor = COL8;
-    datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+    
+    NSString *userSettingLanguage = [NSBundle currentLanguage];
+    if([userSettingLanguage isEqualToString:@"vi"])
+     {
+         datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"vi"];
+     }
+    else
+    {
+        datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+    }
+    
+    
     datePicker.datePickerMode = UIDatePickerModeDate;
     datePicker.maximumDate = [NSDate date];
     

@@ -89,7 +89,7 @@
         [lbother mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(lbtitle);
             make.bottom.equalTo(imgvhead).offset(-5);
-            make.width.offset(160);
+            make.right.equalTo(viewback.mas_right).offset(-100);
             make.height.offset(20);
         }];
         _lbother= lbother;
@@ -131,7 +131,7 @@
         [lbviews mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(lbtitle);
             make.top.equalTo(lbtime.mas_bottom);
-            make.width.offset(160);
+            make.width.offset(90);
         }];
         _lbviews = lbviews;
         

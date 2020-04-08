@@ -15,233 +15,237 @@
 //文本调用方法：NSLocalizedString(@"mainText", nil);
 
 
-"pushCancle" = "上传失败";
-"shangchuanchenggong" = "上传成功";
-"networkCancle" = "网络错误";
-"pushSuccess" = "发布成功";
-"changeSuccess" = "修改成功";
-"submitSuccess" = "成功提交";
-"shanchu" = "删除";
-"pinglunchenggong" = "评论发布成功";
+"pushCancle" = "Tải lên thất bại";
+"shangchuanchenggong" = "Tải lên thành công";
+"networkCancle" = "Lỗi mạng";
+"pushSuccess" = "Đăng thành công";
+"changeSuccess" = "Sửa đổi thành công";
+"submitSuccess" = "Gửi thành công";
+"shanchu" = "Xóa";
+"pinglunchenggong" = "Bình luận được đăng thành công";
+
+"nian" = "Năm";
+"yue" = "Tháng";
+"ri" = "Ngày";
 
 //Tabbar
-"Home" = "shouye";
-"Find" = "faxian";
-"Publish" = "fabu";
-"Message" = "xiaoxi";
-"Me" = "wode";
+"Home" = "Trang chủ";
+"Find" = "Tìm thấy";
+"Publish" = "Đăng";
+"Message" = "Tin tức";
+"Me" = "Của tôi";
 
 //登录界面
-"Login" = "登录";
+"Login" = "Đăng nhập";
 //////
-"quickLogin" = "快捷登录";
-"passwordLogin" = "密码登录";
-"pleaseMobile" = "请输入您的手机号";
-"pleaseCode" = "请输入验证码";
-"pleasePassWord" = "请输入密码";
-"getCode" = "获取验证码";
-"thirdLogin" = "第三方账号登录";
-"register" = "注册";
-"forgetPassword" = "忘记密码";
-"nickName" = "昵称";
-"pleaseEmail" = "请输入邮箱";
-"PleaseToPassWord" = "请再次输入密码";
-"chongxinhuoqu" = "重新获取";
-"chenggongqingqiuyanzm" = "成功请求验证码";
-"xiugaimima" = "修改密码";
-"queding" = "确定";
-"pleaseNewPassWord" = "请输入新密码";
-"pleaseNewToPassWord" = "两次新密码不一致";
-"yiyuedubtyalonxieyi" = "已阅读并同意协议《ALOVN使用协议及声明》";
-"appledenglusqcuowu" = "Apple登录授权错误";
-"lijiregister" = "立即注册";
-"tongyixiyibingdenglu" = "同意协议并登录";
-"meiyoussdninxydsj" = "没有搜索到您需要的数据";
+"quickLogin" = "Đăng nhập nhanh";
+"passwordLogin" = "Mật khẩu đăng nhập";
+"pleaseMobile" = "Vui lòng nhập số điện thoại di động của bạn";
+"pleaseCode" = "Vui lòng nhập mã xác minh";
+"pleasePassWord" = "Vui lòng nhập mật khẩu";
+"getCode" = "Nhận mã xác minh";
+"thirdLogin" = "Đăng nhập tài khoản bên thứ ba";
+"register" = "Đăng ký";
+"forgetPassword" = "Quên mật khẩu";
+"nickName" = "Biệt danh";
+"pleaseEmail" = "Vui lòng nhập email của bạn";
+"PleaseToPassWord" = "Vui lòng nhập lại mật khẩu";
+"chongxinhuoqu" = "Nhận mã mới";
+"chenggongqingqiuyanzm" = "Mã xác minh được yêu cầu thành công";
+"xiugaimima" = "Thay đổi mật khẩu";
+"queding" = "Xác nhân";
+"pleaseNewPassWord" = "Vui lòng nhập mật khẩu mới";
+"pleaseNewToPassWord" = "Hai mật khẩu mới không nhất quán";
+"yiyuedubtyalonxieyi" = "Đã đọc và đồng ý với thỏa thuận \"Thỏa thuận và tuyên bố sử dụng ALOVN\"";
+"appledenglusqcuowu" = "Lỗi ủy quyền đăng nhập của Apple";
+"lijiregister" = "Đăng ký ngay";
+"tongyixiyibingdenglu" = "Đồng ý với thỏa thuận và đăng nhập";
+"meiyoussdninxydsj" = "Không tìm thấy dữ liệu bạn cần";
 
 
 //我的界面
-"ImmediatelyLogin" = "立即登录";
+"ImmediatelyLogin" = "Đăng nhập ngay";
 ///////////
-"ImmediatelyLoginComtent" = "登录后享ALOVN优质服务";
-"mycollect" = "我的收藏";
-"publicHestory" = "发布历史";
-"regionalPartner" = "区域合伙人";
-"myCertification" = "我的认证";
-"feedback" = "意见反馈";
-"customerTelephone" = "客服电话";
-"setUp" = "设置";
+"ImmediatelyLoginComtent" = "Sau khi đăng nhập, hãy tận hưởng dịch vụ cao cấp ALOVN";
+"mycollect" = "Yêu thích";
+"publicHestory" = "Lịch sử đăng";
+"regionalPartner" = "Đối tác khu vực";
+"myCertification" = "Chứng nhận của tôi";
+"feedback" = "Phản hồi";
+"customerTelephone" = "Điện thoại dịch vụ khách hàng";
+"setUp" = "Thiết lập";
 
 
 /////
 //首页
-"pushPublic" = "发布";
-"zuixin" = "最新";
-"hotPlate" = "热门板块";
-"citiesOpened" = "已开通城市";
-"henei" = "河内";
-"zhaogongzuozhaofangz" = "找工作 找房子";
-"xuanzhechengshi" = "选择城市";
-"xuanzhediqu" = "选择地区";
-"quanbu" = "全部";
-"sousuo" = "搜索";
+"pushPublic" = "Đăng";
+"zuixin" = "Mới nhất";
+"hotPlate" = "Lĩnh vực phổ biến";
+"citiesOpened" = "Thành phố đã mở";
+"henei" = "Hà nội";
+"zhaogongzuozhaofangz" = "Tìm công việc tìm nhà";
+"xuanzhechengshi" = "Chọn thành phố";
+"xuanzhediqu" = "Chọn vùng";
+"quanbu" = "Tất cả";
+"sousuo" = "Tìm kiếm";
 
 
 ////
 ///详情
-"details" = "详情";
-"mobile" = "电话";
-"comments" = "评论";
-"comments2" = "条评论";
-"deleteComments" = "删除评论";
-"callUp" = "拨打电话";
-"collection" = "收藏";
-"cancel" = "取消";
-"send" = "发送";
-"pleaseComment" = "请输入评论";
-"collectionCancle" = "已收藏";
-"huifu" = "回复";
-"detailCommentdetail" = "【联系时请说是ALOVN看到的,谢谢】添加ALOVN微信：p879176344，可免费发布租房、招聘、二手交易、生活服务等个人信息。 ALOVN官方授权账号，不信你去官网看:） 骗子仿得了我们的相貌，仿不了我们爱你的心，记得交易要谨慎哦";
+"details" = "Chi tiết";
+"mobile" = "Điện thoại";
+"comments" = "bình luận";
+"comments2" = "bình luận";
+"deleteComments" = "Xóa nhận xét";
+"callUp" = "Gọi điện";
+"collection" = "Lưu";
+"cancel" = "Hủy bỏ";
+"send" = "Gửi";
+"pleaseComment" = "Vui lòng nhập bình luận";
+"collectionCancle" = "Đã lưu";
+"huifu" = "Trả lời";
+"detailCommentdetail" = "[Khi kết nối, hãy nói nó là từ alon, cảm ơn] đăng ký cho tài khoản alon, và bạn có thể phát hành thông tin cá nhân như cho thuê, tuyển dụng, giao dịch cũ, dịch vụ đời s ống, v. v. miễn phí.)Một kẻ dối trá có thể giả mạo diện mạo của chúng tôi, nhưng không phải tình yêu dành cho bạn. Hãy nhớ phải thận trọng trong giao dịch.";
 
-"shenhezhong" = "审核中";
-"jujue" = "拒绝";
+"shenhezhong" = "Đang xem xét";
+"jujue" = "Từ chối";
 
 //////
 ///发布
-"kuaijiefabu" = "快捷发布";
-"pleaseTitle" = "请输入标题";
-"selectType" = "选择类别";
-"pleaseSelectType" = "请选择类别";
-"selectArea" = "选择区域";
-"pleaseSelectArea" = "请选择区域";
-"pleaseInfoMessage" = "请输入信息描述";
-"addImage" = "添加图片";
-"contacts" = "联系人";
-"pleaceContacts" = "请输入联系人";
-"phone" = "手机";
-"yanzhengma" = "验证码";
-"shangchuantupianzhong" = "上传图片中";
-"tishi" = "提示";
-"zifugeshubunengdayu" = "字符个数不能大于50";
-"zifugeshubunengdayus2" = "字符个数不能大于20000";
-"yulan" = "预览";
-"zuiduoxuanzztupian" = "最多选择5张照片";
-"xiayibu" = "下一步";
-"yuantu" = "原图";
-"qingshuruzqshoujh" = "请输入正确的手机号";
+"kuaijiefabu" = "Đăng nhanh";
+"pleaseTitle" = "Vui lòng nhập tiêu đề";
+"selectType" = "Chọn danh mục";
+"pleaseSelectType" = "Vui lòng chọn danh mục";
+"selectArea" = "Chọn khu vực";
+"pleaseSelectArea" = "Vui lòng chọn khu vực";
+"pleaseInfoMessage" = "Vui lòng nhập tin mô tả";
+"addImage" = "Thêm hình ảnh";
+"contacts" = "Người liên hệ";
+"pleaceContacts" = "Vui lòng nhập người liên hệ";
+"phone" = "Điện thoại ";
+"yanzhengma" = "Mã xác nhận";
+"shangchuantupianzhong" = "Đang tải ảnh lên";
+"tishi" = "Nhắc nhở";
+"zifugeshubunengdayu" = "Số lượng ký tự không thể lớn hơn 50";
+"zifugeshubunengdayus2" = "Số lượng ký tự không thể lớn hơn 20000";
+"yulan" = "Xem trước";
+"zuiduoxuanzztupian" = "Chọn tối đa 5 ảnh";
+"xiayibu" = "Bước tiếp theo";
+"yuantu" = "Ảnh gốc";
+"qingshuruzqshoujh" = "Vui lòng nhập đúng số điện thoại";
 
 //////
 ///消息
-"systemMessage" = "系统消息";
+"systemMessage" = "Hệ thống tin tức";
 
 ////
 ///设置
-"personalInformation" = "个人信息";
-"securitySetting" = "安全设置";
-"currency" = "通用";
-"systemScore" = "喜欢ALOVN？去评分吧";
-"systemAbout" = "关于ALOVN";
-"loginOut" = "退出登录";
-"qingchuhuancun" = "清除缓存";
-"tuisongtongzhi" = "推送通知";
-"niquedingyaschcm" = "你确定要清除缓存吗?";
-"dengluima" = "登录密码";
-"xiugai" = "修改";
-"shiyongxieyijishengm" = "使用协议及声明";
-"qiehuanyuyan" = "切换语言";
+"personalInformation" = "Thông tin cá nhân";
+"securitySetting" = "Thiết lập bảo mật";
+"currency" = "Tổng hợp";
+"systemScore" = "Thích ALOVN? Đánh giá nhé";
+"systemAbout" = "Giới thiệu về ALOVN";
+"loginOut" = "Đăng xuất";
+"qingchuhuancun" = "Xóa bộ nhớ cache";
+"tuisongtongzhi" = "Đề cử thông báo ";
+"niquedingyaschcm" = "Bạn có chắc chắn muốn xóa bộ nhớ cache?";
+"dengluima" = "Mật khẩu đăng nhập";
+"xiugai" = "Sửa đổi";
+"shiyongxieyijishengm" = "Thỏa thuận sử dụng và tuyên bố";
+"qiehuanyuyan" = "Chuyển ngôn ngữ";
 
-"shangjiaxieyi" = "商家协议";
-"mianzeshengming" = "免责声明";
-"shiyongtiaokuan" = "使用条款";
-"renzhenxieyi" = "ALOVN认证服务协议";
-"yingshizhengce" = "隐私政策";
-"butongyi" = "不同意";
-"tongyi" = "同意";
-"wenxintishi" = "温馨提示";
-"qingxiantongyiyishizhengce" = "请先同意隐私政策哦";
+"shangjiaxieyi" = "Hiệp định thương gia";
+"mianzeshengming" = "Khước từ tuyên bố";
+"shiyongtiaokuan" = "Điều khoản sử dụng";
+"renzhenxieyi" = "Thỏa thuận dịch vụ chứng nhận ALOVN";
+"yingshizhengce" = "Chính sách bảo mật";
+"butongyi" = "Không đồng ý";
+"tongyi" = "Đồng ý";
+"wenxintishi" = "Nhắc nhớ nhẹ";
+"qingxiantongyiyishizhengce" = "Vui lòng đồng ý với chính sách quyền riêng tư trước";
 
-"qinaideyonghutongyixieyitk" = "亲爱的用户，您在使用ALOVN前请务必仔细阅读并理解相《隐私政策》条款内的内容，点击同意即代表您已阅读并同意，如果不同意，将可能影响使用ALOVNapp。\n\n我们在提供服务的过程中，可能需要您开通一些设备权限，例如通知、相册、相机、麦克风、日历、定位、获取设备信息权限、全局弹出弹窗权限、以及读写系统设置权限等访问权限。\n\n我们将按照法律法规要求，采取相应安全保护措施，尽力保护您的个人信息安全。";
-"shiyongxiyijishengming" = "ALOVN使用协议及声明";
+"qinaideyonghutongyixieyitk" = "Kính gửi người dùng, trước khi sử dụng ALOVN, bạn phải đọc và hiểu kỹ nội dung trong các điều khoản của \"Chính sách bảo mật\". Nhấp vào Đồng Ý có nghĩa là bạn đã đọc và đồng ý. Nếu bạn không đồng ý, nó có thể ảnh hưởng đến việc sử dụng ALOVN app. \ n \ n Trong quá trình cung cấp dịch vụ, bạn có thể cần mở một số quyền của thiết bị, chẳng hạn như thông báo, album, máy ảnh, micrô, lịch, định vị, truy cập quyền truy cập thông tin thiết bị, quyền bật tin pop-up, quyền đọc và viết quyền thiết lập hệ thống và các quyền truy cập khác. \ n \ n Chúng tôi sẽ thực hiện các biện pháp bảo vệ an ninh tương ứng theo các yêu cầu của luật pháp và quy định, cố gắng hết sức để bảo vệ tính bảo mật của thông tin cá nhân của bạn.";
+"shiyongxiyijishengming" = "Thỏa thuận và tuyên bố sử dụng ALOVN";
 
 
 //////
 ///个人信息
-"zhanghuygerenxinxi" = "账户与个人信息";
-"headImage" = "头像";
-"accountBinding" = "账号绑定";
-"unbound" = "未绑定";
-"bound" = "已绑定";
-"changeOk" = "确认修改";
-"setNickNameCountChar" = "昵称最多可设置16个字";
-"qingtianxiexinnicheng" = "请填写新昵称";
-"baomi" = "保密";
-"nan" = "男";
-"nv" = "女";
-"xuanzhexingbie" = "选择性别";
-"weishezhi" = "未设置";
-"shengri" = "生日";
-"xingbie" = "性别";
-"paizhao" = "拍照";
-"chongxiangcezhongxuanz" = "从相册中选择";
-"xuanzhetupian" = "选择图片";
+"zhanghuygerenxinxi" = "Tài khoản và thông tin cá nhân";
+"headImage" = "Hình đại diện";
+"accountBinding" = "Tài khoản ràng buộc";
+"unbound" = "Chưa ràng buộc";
+"bound" = "Đã ràng buộc";
+"changeOk" = "Xác nhận thay đổi";
+"setNickNameCountChar" = "Biệt hiệu có thể được đặt tối đa 16 ký tự";
+"qingtianxiexinnicheng" = "Vui lòng điền biệt hiệu mới";
+"baomi" = "Bảo mật";
+"nan" = "Nam";
+"nv" = "Nữ";
+"xuanzhexingbie" = "Chọn giới tính";
+"weishezhi" = "Chưa cài đặt";
+"shengri" = "Sinh nhật";
+"xingbie" = "Giới tính";
+"paizhao" = "Chụp ảnh";
+"chongxiangcezhongxuanz" = "Chọn từ album";
+"xuanzhetupian" = "Chọn hình";
 
 
 /////
 ///区域合伙人
-"shenfqingalovnhehuoren" = "申请alovn区域合伙人";
-"applicationType" = "申请类型";
-"regionalPartner" = "区域合伙人";
-"applicationArea" = "申请地区";
-"pleaseSelectRegion" = "请选择地区";
-"pleaseWriteName" = "请填写您的姓名";
-"contactNumber" = "联系电话";
-"pleaseWriteEmail" = "请输入您的邮箱";
-"applyingPartner" = "申请合伙人";
+"shenfqingalovnhehuoren" = "Đăng ký thành đối tác khu vực của alovn";
+"applicationType" = "Loại đăng ký";
+"regionalPartner" = "Đối tác khu vực";
+"applicationArea" = "Khu vực đăng ký";
+"pleaseSelectRegion" = "Vui lòng chọn khu vực";
+"pleaseWriteName" = "Vui lòng điền họ tên 名";
+"contactNumber" = "Số liên lạc";
+"pleaseWriteEmail" = "Vui lòng nhập email của bạn";
+"applyingPartner" = "Đối tác đăng ký";
 
 /////
 ///我的认证
-"certificationCompleteEasier" = "完成认证，发布更轻松";
-"personalAuthentication" = "个人认证";
-"eerchantCertification" = "企业/商家认证";
-"pleaseRealDataAuthentication" = "请输入你的真实资料用于认证";
-"certified" = "已认证";
-"submitted" = "已提交";
-"notPass" = "未通过";
-"realName" = "真实姓名";
-"pleaserealName" = "请输入您的真实姓名";
-"idNumber" = "身份证号";
-"pleaseidNumber" = "请输入您的身份证号";
-"frontIDCard" = "身份证正面";
-"reverseIDCard" = "身份证反面";
-"agreementConsent" = "我同意《ALOVN认证服务协议》";
-"confirmSubmission" = "确认提交";
-"pleaseServiceAgreement" = "请同意服务协议";
-"qingtianjiashenfenztup" = "请添加身份证图片";
+"certificationCompleteEasier" = "Hoàn thành chứng nhận, dễ dàng hơn để đăng";
+"personalAuthentication" = "Xác thực cá nhân";
+"eerchantCertification" = "Chứng nhận doanh nghiệp / thương nghiệp";
+"pleaseRealDataAuthentication" = "Vui lòng nhập thông tin thực của bạn để xác thực";
+"certified" = "Đã chứng nhận";
+"submitted" = "Đã nộp";
+"notPass" = "Không thông qua";
+"realName" = "Tên thật";
+"pleaserealName" = "Vui lòng nhập tên thật của bạn";
+"idNumber" = "Số CMND";
+"pleaseidNumber" = "Vui lòng nhập số CMND của bạn";
+"frontIDCard" = "Mặt trước CMND";
+"reverseIDCard" = "Mặt sau CMND";
+"agreementConsent" = "Tôi đồng ý với \"Thỏa thuận dịch vụ chứng nhận ALOVN\"";
+"confirmSubmission" = "Xác nhận nộp";
+"pleaseServiceAgreement" = "Vui lòng đồng ý với thỏa thuận dịch vụ";
+"qingtianjiashenfenztup" = "Vui lòng thêm hình ảnh CMND";
 
 
 
 
 ///
-"pleaseEnterpriseRealDataAuthentication" = "请输入企业真实资料用于认证";
-"enterpriseName" = "企业名称";
-"pleaseEnterpriseName" = "请输入企业名称";
-"enterpriseNumber" = "企业注册号";
-"noUnifiedCode" = "如无可填写统一社会信用代码";
-"legalName" = "法人姓名";
-"pleaseLegalName" = "请输入法人姓名";
-"legalNumber" = "法人身份证号";
-"pleaseLegalNumber" = "请输入法人身份证号";
-"legalFrontIDCard" = "法人身份证正面";
-"legalReverseIDCard" = "法人身份证反面";
-"businessPhoto" = "营业执照照片";
-"pleaseBusinessPhoto" = "请添加营业执照图片";
-"pleaseEnterpriseNumber" = "请输入企业注册号";
+"pleaseEnterpriseRealDataAuthentication" = "Vui lòng nhập thông tin công ty thực để chứng nhận";
+"enterpriseName" = "Tên doanh nghiệp";
+"pleaseEnterpriseName" = "Vui lòng nhập tên công ty";
+"enterpriseNumber" = "Số đăng ký kinh doanh";
+"noUnifiedCode" = "Nếu không, bạn có thể điền vào mã tín dụng xã hội";
+"legalName" = "Tên pháp nhân";
+"pleaseLegalName" = "Vui lòng nhập tên pháp nhân";
+"legalNumber" = "Số CMND của pháp nhân";
+"pleaseLegalNumber" = "Vui lòng nhập CMND của pháp nhân";
+"legalFrontIDCard" = "Mặt trước CMND";
+"legalReverseIDCard" = "Mặt sau CMND";
+"businessPhoto" = "Ảnh giấy phép kinh doanh";
+"pleaseBusinessPhoto" = "Vui lòng thêm một hình ảnh của giấy phép kinh doanh của bạn";
+"pleaseEnterpriseNumber" = "Vui lòng nhập số đăng ký doanh nghiệp";
 
 
 ////
 ///意见反馈
-"phoneNumber" = "电话号码";
-"pleaseNumber" = "请输入联系电话";
-"pleaseOpinion" = "请输入您的意见反馈，最多不超过300个字…";
-"pleaseOpinion1" = "请输入您的意见反馈";
-"submission" = "提交";
-"submissionTips" = "*非常感谢您对我们提出的意见反馈，我们收到反馈信息，会第一时间处理！";
+"phoneNumber" = "Số điện thoại";
+"pleaseNumber" = "Vui lòng nhập số liên lạc";
+"pleaseOpinion" = "Vui lòng nhập phản hồi của bạn, không quá 300 từ ...";
+"pleaseOpinion1" = "Vui lòng nhập phản hồi của bạn";
+"submission" = "Gửi";
+"submissionTips" = "* Cảm ơn bạn rất nhiều vì phản hồi của bạn, chúng tôi sẽ nhận được thông tin phản hồi và sẽ giải quyết nhanh nhất có thể!";

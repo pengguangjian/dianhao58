@@ -24,6 +24,10 @@
 "shanchu" = "删除";
 "pinglunchenggong" = "评论发布成功";
 
+"nian" = "年";
+"yue" = "月";
+"ri" = "日";
+
 //Tabbar
 "Home" = "首页";
 "Find" = "发现";
@@ -100,7 +104,7 @@
 "pleaseComment" = "请输入评论";
 "collectionCancle" = "已收藏";
 "huifu" = "回复";
-"detailCommentdetail" = "【联系时请说是ALOVN看到的,谢谢】添加ALOVN微信：p879176344，可免费发布租房、招聘、二手交易、生活服务等个人信息。 ALOVN官方授权账号，不信你去官网看:） 骗子仿得了我们的相貌，仿不了我们爱你的心，记得交易要谨慎哦";
+"detailCommentdetail" = "【联系时请说是ALOVN上看到的,谢谢】注册ALOVN账号，可免费发布租房、招聘、二手交易、生活服务等个人信息。） 骗子仿得了我们的相貌，仿不了我们爱你的心，记得交易要谨慎哦";
 
 "shenhezhong" = "审核中";
 "jujue" = "拒绝";
