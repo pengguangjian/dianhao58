@@ -170,7 +170,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    [_imgvhead sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@"log_log"]];
+    [_imgvhead sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@"imageNoImage"]];
     
     [_lbtitle setText:[NSString stringWithFormat:@"%@",model.title]];
     

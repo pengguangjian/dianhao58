@@ -44,7 +44,7 @@
     //初始化MTA统计
 //    [self registerMTASDK];
 //    注册Bugly
-    [self registerBuglySDK];
+//    [self registerBuglySDK];
     //初始化JPush APNs代码
 //    [self initJPush_APNs];
 //    //初始化JPush
