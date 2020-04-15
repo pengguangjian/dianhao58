@@ -82,7 +82,8 @@
 
 -(void)yingshiAction
 {
-    WebViewVC *vc = [[WebViewVC alloc] initLoadRequest:NSLocalizedString(@"yingshizhengce", nil) initWithTitle:@"frontend.page/merchant"];
+//    WebViewVC *vc = [[WebViewVC alloc] initLoadRequest:NSLocalizedString(@"yingshizhengce", nil) initWithTitle:@"frontend.page/merchant"];
+    WebViewVC *vc = [[WebViewVC alloc] initWithTitle:NSLocalizedString(@"yingshizhengce", nil) andUrl:@"http://alovn.luckymall.vn/zh-cn/page/privacy"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -219,7 +220,7 @@
             return;
         }
         
-        NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", @"1420965259"];
+        NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", @"1508112343"];
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str]];
         return;
     }

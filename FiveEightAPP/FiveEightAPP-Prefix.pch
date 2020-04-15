@@ -123,7 +123,8 @@
 
 //#define METHOD_URLSTR  @"http://192.168.0.104/api/"
 //#define METHOD_URLSTR  @"http://api.alovn.com/api/"
-#define METHOD_URLSTR  @"http://local.dottp.com/api/"
+//#define METHOD_URLSTR  @"http://local.dottp.com/api/"
+#define METHOD_URLSTR  @"http://alovn.luckymall.vn/api/"
 #define IMAGEPREFIX @"http://uatimage.xsztn.cn/"
 #define H5ADDR @"http://uatwap.xsztn.cn"
 
