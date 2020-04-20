@@ -22,7 +22,7 @@
 #import <ZaloSDK/ZaloSDK.h>
 #import <AuthenticationServices/AuthenticationServices.h>
 
-@interface LoginVC ()<MSNavSliderMenuDelegate,ASAuthorizationControllerDelegate>
+@interface LoginVC ()<MSNavSliderMenuDelegate,ASAuthorizationControllerDelegate,ASAuthorizationControllerPresentationContextProviding>
 {
     
     UIScrollView *scvback;
@@ -547,7 +547,7 @@
         [loginBtn addTarget:self action:@selector(signInWithApple) forControlEvents:UIControlEventTouchUpInside];
         [scvback addSubview:loginBtn];
         [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.sizeOffset(CGSizeMake(180, 40));
+            make.size.sizeOffset(CGSizeMake(120, 40));
             make.top.equalTo(descLabel.mas_bottom).offset(15);
             make.right.equalTo(btf.mas_left).offset(-10);
 //            make.top.equalTo(btf.mas_bottom).offset(10);
@@ -559,7 +559,7 @@
     
     
     //获取系统语言
-    NSArray *languages = [NSLocale preferredLanguages];
+//    NSArray *languages = [NSLocale preferredLanguages];
     
     NSString *userSettingLanguage = [NSBundle currentLanguage];
     
@@ -1026,16 +1026,20 @@
 #pragma mark --- appid登录
 - (void)didAppleAction {
     if (@available(iOS 13.0, *)) {
-        // 基于用户AppleID的授权，生成用户授权请求的一种机制
-        ASAuthorizationAppleIDProvider *provider = [[ASAuthorizationAppleIDProvider alloc] init];
-        // 创建新的AppleID授权请求
-        ASAuthorizationAppleIDRequest *request = [provider createRequest];
+        // 基于用户的Apple ID授权用户，生成用户授权请求的一种机制
+        ASAuthorizationAppleIDProvider *appleIDProvider = [[ASAuthorizationAppleIDProvider alloc] init];
+        // 创建新的AppleID 授权请求
+        ASAuthorizationAppleIDRequest *appleIDRequest = [appleIDProvider createRequest];
         // 在用户授权期间请求的联系信息
-        request.requestedScopes = @[ASAuthorizationScopeEmail, ASAuthorizationScopeFullName];
-        // 由 ASAuthorizationAppleIDProvider 创建的授权请求来管理 授权请求控制器
-        ASAuthorizationController *authController = [[ASAuthorizationController alloc] initWithAuthorizationRequests:@[request]];
-        authController.delegate = self;
-        [authController performRequests];
+        appleIDRequest.requestedScopes = @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+        // 由ASAuthorizationAppleIDProvider创建的授权请求 管理授权请求的控制器
+        ASAuthorizationController *authorizationController = [[ASAuthorizationController alloc] initWithAuthorizationRequests:@[appleIDRequest]];
+        // 设置授权控制器通知授权请求的成功与失败的代理
+        authorizationController.delegate = self;
+        // 设置提供 展示上下文的代理，在这个上下文中 系统可以展示授权界面给用户
+        authorizationController.presentationContextProvider = self;
+        // 在控制器初始化期间启动授权流
+        [authorizationController performRequests];
     }
     
 }
@@ -1044,22 +1048,26 @@
 
 /// Apple登录授权出错
 - (void)authorizationController:(ASAuthorizationController *)controller didCompleteWithError:(NSError *)error API_AVAILABLE(ios(13.0)) {
-    NSLog(@"Apple登录_错误信息: %@", error.localizedDescription);
-    [SVProgressHUD showErrorWithStatus:@"Apple登录授权错误"];
-    NSInteger code = error.code;
-    if (code == ASAuthorizationErrorUnknown) { // 授权请求未知错误
-        NSLog(@"Apple登录_授权请求未知错误");
-        
-//        [self thirdLogin:4 withBindCode:@"99435834345"];
-    } else if (code == ASAuthorizationErrorCanceled) { // 授权请求取消了
-        NSLog(@"Apple登录_授权请求取消了");
-    } else if (code == ASAuthorizationErrorInvalidResponse) { // 授权请求响应无效
-        NSLog(@"Apple登录_授权请求响应无效");
-    } else if (code == ASAuthorizationErrorNotHandled) { // 授权请求未能处理
-        NSLog(@"Apple登录_授权请求未能处理");
-    } else if (code == ASAuthorizationErrorFailed) { // 授权请求失败
-        NSLog(@"Apple登录_授权请求失败");
+    NSString *errorMsg = nil;
+    switch (error.code) {
+        case ASAuthorizationErrorCanceled:
+            errorMsg = @"用户取消了授权请求";
+            break;
+        case ASAuthorizationErrorFailed:
+            errorMsg = @"授权请求失败";
+            break;
+        case ASAuthorizationErrorInvalidResponse:
+            errorMsg = @"授权请求响应无效";
+            break;
+        case ASAuthorizationErrorNotHandled:
+            errorMsg = @"未能处理授权请求";
+            break;
+        case ASAuthorizationErrorUnknown:
+            errorMsg = @"授权请求失败未知原因";
+            break;
     }
+    NSLog(@"%@", errorMsg);
+    [SVProgressHUD showErrorWithStatus:errorMsg];
 }
 
 /// Apple登录授权成功
@@ -1070,15 +1078,15 @@
         ASAuthorizationAppleIDCredential *credential = (ASAuthorizationAppleIDCredential *)authorization.credential;
         
         NSString *userID = credential.user;
-        NSString *state = credential.state;
-        NSArray<ASAuthorizationScope> *authorizedScopes = credential.authorizedScopes;
-        // refresh_token
-        NSString *authorizationCode = [[NSString alloc] initWithData:credential.authorizationCode encoding:NSUTF8StringEncoding];
-        // access_token
-        NSString *identityToken = [[NSString alloc] initWithData:credential.identityToken encoding:NSUTF8StringEncoding];
-        NSString *email = credential.email;
-        NSPersonNameComponents *fullName = credential.fullName;
-        ASUserDetectionStatus realUserStatus = credential.realUserStatus;
+//        NSString *state = credential.state;
+//        NSArray<ASAuthorizationScope> *authorizedScopes = credential.authorizedScopes;
+//        // refresh_token
+//        NSString *authorizationCode = [[NSString alloc] initWithData:credential.authorizationCode encoding:NSUTF8StringEncoding];
+//        // access_token
+//        NSString *identityToken = [[NSString alloc] initWithData:credential.identityToken encoding:NSUTF8StringEncoding];
+//        NSString *email = credential.email;
+//        NSPersonNameComponents *fullName = credential.fullName;
+//        ASUserDetectionStatus realUserStatus = credential.realUserStatus;
         
         @try {
             [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"appleUserID"];
@@ -1089,13 +1097,13 @@
         }
         
         
-        NSLog(@"Apple登录_1_user: %@", userID);
-        NSLog(@"Apple登录_4_authorizationCode: %@", authorizationCode);
-        NSLog(@"Apple登录_5_identityToken: %@", identityToken);
-        NSLog(@"Apple登录_6_email: %@", email);
-        NSLog(@"Apple登录_7_fullName.givenName: %@", fullName.givenName);
-        NSLog(@"Apple登录_7_fullName.familyName: %@", fullName.familyName);
-        NSLog(@"Apple登录_8_realUserStatus: %ld", realUserStatus);
+//        NSLog(@"Apple登录_1_user: %@", userID);
+//        NSLog(@"Apple登录_4_authorizationCode: %@", authorizationCode);
+//        NSLog(@"Apple登录_5_identityToken: %@", identityToken);
+//        NSLog(@"Apple登录_6_email: %@", email);
+//        NSLog(@"Apple登录_7_fullName.givenName: %@", fullName.givenName);
+//        NSLog(@"Apple登录_7_fullName.familyName: %@", fullName.familyName);
+//        NSLog(@"Apple登录_8_realUserStatus: %ld", realUserStatus);
         //这里我只用到了userID，email，[NSString stringWithFormat:@"%@%@", fullName.familyName, fullName.givenName]
        //接下来就调用自己服务器接口
         strotherNickName = @"";
@@ -1121,14 +1129,14 @@
     DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height) videoURL:videoURL];
     [self.navigationController.view addSubview:guidePage];
 }
-// 用户协议
-- (void)userAgreementBtnOnTouch:(id)sender {
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@/agreement.html?type=2", H5ADDR];
-//    WebViewVC *vc = [[WebViewVC alloc] initWithTitle:@"58使用协议及声明" andUrl:urlStr];
-//    [self.navigationController pushViewController:vc animated:YES];
-    
-}
+//// 用户协议
+//- (void)userAgreementBtnOnTouch:(id)sender {
+//
+//    NSString *urlStr = [NSString stringWithFormat:@"%@/agreement.html?type=2", H5ADDR];
+////    WebViewVC *vc = [[WebViewVC alloc] initWithTitle:@"58使用协议及声明" andUrl:urlStr];
+////    [self.navigationController pushViewController:vc animated:YES];
+//
+//}
 
 - (void)forgetPwdBtnOnTouch:(id)sender {
     LoginForgetPwdVC *vc = [[LoginForgetPwdVC alloc] initWithNibName:@"LoginForgetPwdVC" bundle:nil];

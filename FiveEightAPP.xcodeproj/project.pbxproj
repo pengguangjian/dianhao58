@@ -489,6 +489,7 @@
 		042FCE8B2432F7AB00C89528 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
 		042FCE8C2432F7AB00C89528 /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFCompatibilityMacros.h; sourceTree = "<group>"; };
 		042FCE8D2432F7AB00C89528 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		04365E81244D41D6009740CD /* ALOVN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ALOVN.entitlements; sourceTree = "<group>"; };
 		04425EE0243421A100944514 /* SmsProtoctFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmsProtoctFunction.h; sourceTree = "<group>"; };
 		04425EE1243421A100944514 /* SmsProtoctFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmsProtoctFunction.m; sourceTree = "<group>"; };
 		04425EE3243432EF00944514 /* LaunangeChangeAlterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunangeChangeAlterView.h; sourceTree = "<group>"; };
@@ -2393,6 +2394,7 @@
 		20F7EB1E232886AF006E5EF2 /* FiveEightAPP */ = {
 			isa = PBXGroup;
 			children = (
+				04365E81244D41D6009740CD /* ALOVN.entitlements */,
 				20F7EB1F232886AF006E5EF2 /* AppDelegate.h */,
 				20F7EB20232886AF006E5EF2 /* AppDelegate.m */,
 				20FF039123308ADB00C16750 /* AppDelegate+ThirdPartyRegister.h */,
@@ -3732,8 +3734,10 @@
 			baseConfigurationReference = CD6E67E389B469535E52EF1C /* Pods-FiveEightAPP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FiveEightAPP/ALOVN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.3;
 				DEVELOPMENT_TEAM = 9XR7KZAB52;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3789,8 +3793,10 @@
 			baseConfigurationReference = 8DA29871373EE52218CAB36D /* Pods-FiveEightAPP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FiveEightAPP/ALOVN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.3;
 				DEVELOPMENT_TEAM = 9XR7KZAB52;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

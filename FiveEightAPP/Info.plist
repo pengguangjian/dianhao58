@@ -86,7 +86,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string>使用您的位置为您获取附近信息。</string>
 	<key>LSApplicationQueriesSchemes</key>
