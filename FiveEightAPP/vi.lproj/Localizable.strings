@@ -41,7 +41,7 @@
 
 //Tabbar
 "Home" = "Trang chủ";
-"Find" = "Tìm thấy";
+"Find" = "Điểm truy cập";
 "Publish" = "Đăng";
 "Message" = "Tin tức";
 "Me" = "Của tôi";
@@ -94,7 +94,7 @@
 "hotPlate" = "Lĩnh vực phổ biến";
 "citiesOpened" = "Thành phố đã mở";
 "henei" = "Hà nội";
-"zhaogongzuozhaofangz" = "Tìm công việc tìm nhà";
+"zhaogongzuozhaofangz" = "Bạn muốn tìm kiếm gì ~";
 "xuanzhechengshi" = "Chọn thành phố";
 "xuanzhediqu" = "Chọn vùng";
 "quanbu" = "Tất cả";
@@ -260,3 +260,10 @@
 "pleaseOpinion1" = "Vui lòng nhập phản hồi của bạn";
 "submission" = "Gửi";
 "submissionTips" = "* Cảm ơn bạn rất nhiều vì phản hồi của bạn, chúng tôi sẽ nhận được thông tin phản hồi và sẽ giải quyết nhanh nhất có thể!";
+
+"用户取消了授权请求" = "Người dùng đã hủy yêu cầu ủy quyền";
+"授权请求失败" = "Yêu cầu ủy quyền không thành công";
+"授权请求响应无效" = "Phản hồi yêu cầu ủy quyền không hợp lệ";
+"未能处理授权请求" = "Không thể xử lý yêu cầu ủy quyền";
+"授权请求失败未知原因" = "Yêu cầu ủy quyền không thành công";
+"暂时还没有数据哦" = "Chưa có dữ liệu";

@@ -170,7 +170,7 @@
     UILabel *cartLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, 14)];
     cartLabel.font = [UIFont systemFontOfSize:14];
     cartLabel.text = title;
-    cartLabel.textColor = DEFAULTCOLOR2;
+    cartLabel.textColor = RGB(200, 200, 200);
     cartLabel.textAlignment = NSTextAlignmentCenter;
     [self.withoutDataView addSubview:cartLabel];
     

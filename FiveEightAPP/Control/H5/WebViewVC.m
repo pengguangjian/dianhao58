@@ -11,12 +11,17 @@
 
 #import "WebViewDataControl.h"
 
+#import "MDBEmptyView.h"
+
 @interface WebViewVC ()<WKNavigationDelegate>
 {
     UIProgressView *progressView;
     WKWebView *webView;
     NSURL *url;
 }
+
+@property (nonatomic , retain) MDBEmptyView *emptyView;
+
 @end
 
 @implementation WebViewVC
@@ -28,6 +33,8 @@
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     
     [self setNavigationBarTitle:nil leftImage:[UIImage imageNamed:@"ic_stat_back_n"] andRightImage:nil];
+    
+    [self emptyView];
 //    [self setNavigationBarTitle:nil leftImage:nil andRightImage:nil];
 }
 
@@ -141,6 +148,7 @@
                 else
                 {
                     [SVProgressHUD showErrorWithStatus:desc];
+                    _emptyView.hidden = NO;
                 }
             }];
             
@@ -216,6 +224,33 @@
         });
     }
     decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+
+/// 页面加载失败时调用
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation
+{
+    
+    _emptyView.hidden = NO;
+}
+
+- (MDBEmptyView *)emptyView{
+    if (!_emptyView) {
+        _emptyView = [[MDBEmptyView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height)];
+        [self.view addSubview:_emptyView];
+        _emptyView.remindStr = NSLocalizedString(@"暂时还没有数据哦", nil);
+        _emptyView.hidden = YES;
+        [_emptyView setUserInteractionEnabled:YES];
+        UITapGestureRecognizer *tapemp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(initData)];
+        [_emptyView addGestureRecognizer:tapemp];
+    }
+    return _emptyView;
+}
+
+-(void)initData
+{
+    
 }
 
 @end

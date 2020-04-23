@@ -89,7 +89,7 @@
     
     if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
         [userSettingLanguage isEqualToString:@"vi"])) {
-        userSettingLanguage = @"zh-Hans";
+        userSettingLanguage = @"vi";
     }
     
     if([userSettingLanguage isEqualToString:@"vi"])

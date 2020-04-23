@@ -96,7 +96,7 @@
     versionLabel.backgroundColor = [UIColor clearColor];
     versionLabel.textColor = COL2;
     versionLabel.textAlignment = NSTextAlignmentCenter;
-    versionLabel.text = [NSString stringWithFormat:@"58 %@", app_Version];
+    versionLabel.text = [NSString stringWithFormat:@"ALOVN %@", app_Version];
     [bgView addSubview:versionLabel];
     [versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(bgView);

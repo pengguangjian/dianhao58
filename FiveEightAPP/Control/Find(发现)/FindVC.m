@@ -52,7 +52,7 @@
 {
     NSMutableDictionary *dicpush = [NSMutableDictionary new];
     [dicpush setObject:[NSNumber numberWithInt:self.page] forKey:@"page"];
-    [datacontrol findListData:dicpush andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
+    [datacontrol findListData:dicpush andshowView:self.tableView Callback:^(NSError *eroor, BOOL state, NSString *desc) {
         [self endHeaderRefreshing];
         [self endFooterRefreshing];
         if(self.page == 1 || self->arrdata==nil)

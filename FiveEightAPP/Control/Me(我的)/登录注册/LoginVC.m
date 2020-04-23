@@ -150,7 +150,7 @@
     
     MSNavSliderMenuStyleModel *model = [MSNavSliderMenuStyleModel new];
     
-    NSMutableArray *titles = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"quickLogin", nil), NSLocalizedString(@"passwordLogin", nil), nil];
+    NSMutableArray *titles = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"passwordLogin", nil),NSLocalizedString(@"quickLogin", nil),  nil];
     
     model.menuTitles = [titles copy];
     
@@ -225,19 +225,20 @@
     if (![listVCQueue objectForKey:@(index)]) {
         
         if (index == 0) {
-            [self shortcutLoginView];
-        } else if (index == 1) {
             [self pwdLoginView];
+            
+        } else if (index == 1) {
+            [self shortcutLoginView];
         }
     }
 }
 
 #pragma mark - 验证码登录
 - (void)shortcutLoginView {
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentScrollView.width, contentScrollView.height)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(contentScrollView.width, 0, contentScrollView.width, contentScrollView.height)];
     [bgView setBackgroundColor:[UIColor whiteColor]];
     [contentScrollView addSubview:bgView];
-    [listVCQueue setObject:bgView forKey:@(0)];
+    [listVCQueue setObject:bgView forKey:@(1)];
     
     UIBezierPath *bgViewMaskPath = [UIBezierPath bezierPathWithRoundedRect:contentScrollView.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(10,10)];
     CAShapeLayer *bgViewMaskLayer = [[CAShapeLayer alloc] init];
@@ -351,10 +352,10 @@
 #pragma mark - 密码登录
 - (void)pwdLoginView {
     
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(contentScrollView.width, 0, contentScrollView.width, contentScrollView.height)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentScrollView.width, contentScrollView.height)];
     [bgView setBackgroundColor:[UIColor whiteColor]];
     [contentScrollView addSubview:bgView];
-    [listVCQueue setObject:bgView forKey:@(1)];
+    [listVCQueue setObject:bgView forKey:@(0)];
     
     UIBezierPath *bgViewMaskPath = [UIBezierPath bezierPathWithRoundedRect:contentScrollView.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(10,10)];
     CAShapeLayer *bgViewMaskLayer = [[CAShapeLayer alloc] init];
@@ -543,16 +544,26 @@
             make.left.offset(DEVICE_Width/2.0+20);
         }];
         
-        ASAuthorizationAppleIDButton *loginBtn = [[ASAuthorizationAppleIDButton alloc]initWithAuthorizationButtonType:ASAuthorizationAppleIDButtonTypeSignIn authorizationButtonStyle:ASAuthorizationAppleIDButtonStyleWhiteOutline];
-        [loginBtn addTarget:self action:@selector(signInWithApple) forControlEvents:UIControlEventTouchUpInside];
-        [scvback addSubview:loginBtn];
-        [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.sizeOffset(CGSizeMake(120, 40));
+        ASAuthorizationAppleIDButton *appleIDBtn = [ASAuthorizationAppleIDButton buttonWithType:ASAuthorizationAppleIDButtonTypeDefault style:ASAuthorizationAppleIDButtonStyleBlack];
+        [appleIDBtn addTarget:self action:@selector(signInWithApple) forControlEvents:UIControlEventTouchUpInside];
+        [scvback addSubview:appleIDBtn];
+        [appleIDBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.sizeOffset(CGSizeMake(140, 40));
             make.top.equalTo(descLabel.mas_bottom).offset(15);
-            make.right.equalTo(btf.mas_left).offset(-10);
-//            make.top.equalTo(btf.mas_bottom).offset(10);
-//            make.centerX.equalTo(descLabel);
+            make.right.equalTo(btf.mas_left).offset(-20);
         }];
+                
+        
+//        ASAuthorizationAppleIDButton *loginBtn = [[ASAuthorizationAppleIDButton alloc]initWithAuthorizationButtonType:ASAuthorizationAppleIDButtonTypeSignIn authorizationButtonStyle:ASAuthorizationAppleIDButtonStyleWhiteOutline];
+//        [loginBtn addTarget:self action:@selector(signInWithApple) forControlEvents:UIControlEventTouchUpInside];
+//        [scvback addSubview:loginBtn];
+//        [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.size.sizeOffset(CGSizeMake(120, 40));
+//            make.top.equalTo(descLabel.mas_bottom).offset(15);
+//            make.right.equalTo(btf.mas_left).offset(-10);
+////            make.top.equalTo(btf.mas_bottom).offset(10);
+////            make.centerX.equalTo(descLabel);
+//        }];
         
     }
     
@@ -565,7 +576,7 @@
     
     if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
         [userSettingLanguage isEqualToString:@"vi"])) {
-        userSettingLanguage = @"zh-Hans";
+        userSettingLanguage = @"vi";
     }
     
     NSArray *arrtitle = @[@"Tiếng Việt",@"中文"];//,@"English"
@@ -1051,19 +1062,19 @@
     NSString *errorMsg = nil;
     switch (error.code) {
         case ASAuthorizationErrorCanceled:
-            errorMsg = @"用户取消了授权请求";
+            errorMsg = NSLocalizedString(@"用户取消了授权请求",nil);
             break;
         case ASAuthorizationErrorFailed:
-            errorMsg = @"授权请求失败";
+            errorMsg = NSLocalizedString(@"授权请求失败",nil);
             break;
         case ASAuthorizationErrorInvalidResponse:
-            errorMsg = @"授权请求响应无效";
+            errorMsg = NSLocalizedString(@"授权请求响应无效",nil);
             break;
         case ASAuthorizationErrorNotHandled:
-            errorMsg = @"未能处理授权请求";
+            errorMsg = NSLocalizedString(@"未能处理授权请求",nil);
             break;
         case ASAuthorizationErrorUnknown:
-            errorMsg = @"授权请求失败未知原因";
+            errorMsg = NSLocalizedString(@"授权请求失败未知原因",nil);
             break;
     }
     NSLog(@"%@", errorMsg);
@@ -1110,16 +1121,17 @@
         [self thirdLogin:4 withBindCode:userID];
         
         
-    } else if (credentialClass == [ASPasswordCredential class]) {
-        // 用户登录使用的是: 现有密码凭证
-        ASPasswordCredential *credential = (ASPasswordCredential *)authorization.credential;
-        NSString *user = credential.user; // 密码凭证对象的用户标识(用户的唯一标识)
-        NSString *password = credential.password;
-        NSLog(@"Apple登录_现有密码凭证: %@, %@", user, password);
-        strotherNickName = @"";
-        [self thirdLogin:4 withBindCode:user];
-        
     }
+//    else if (credentialClass == [ASPasswordCredential class]) {
+//        // 用户登录使用的是: 现有密码凭证
+//        ASPasswordCredential *credential = (ASPasswordCredential *)authorization.credential;
+//        NSString *user = credential.user; // 密码凭证对象的用户标识(用户的唯一标识)
+//        NSString *password = credential.password;
+//        NSLog(@"Apple登录_现有密码凭证: %@, %@", user, password);
+//        strotherNickName = @"";
+//        [self thirdLogin:4 withBindCode:user];
+//        
+//    }
 }
 
 #pragma mark - 设置APP视频引导页

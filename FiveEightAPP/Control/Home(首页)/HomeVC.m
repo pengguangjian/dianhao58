@@ -187,10 +187,12 @@ static NSString *kLocalCellId = @"LocalImageCell";
     
     [self getLanMu];
     [self getLunBoImage];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self getNewMessage];
-        [self getHotLanMu];
-    });
+    [self getNewMessage];
+    [self getHotLanMu];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self getNewMessage];
+//        [self getHotLanMu];
+//    });
     
     
 }
@@ -218,7 +220,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
     NSString *userSettingLanguage = [NSBundle currentLanguage];
     if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
         [userSettingLanguage isEqualToString:@"vi"])) {
-        userSettingLanguage = @"zh-Hans";
+        userSettingLanguage = @"vi";
     }
     if([userSettingLanguage isEqualToString:@"vi"])
     {
@@ -341,7 +343,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
         [self getUserInfoData];
     }
     
-    [self yingshixieyi];
+//    [self yingshixieyi];
     
 }
 
@@ -833,13 +835,17 @@ static NSString *kLocalCellId = @"LocalImageCell";
 #pragma mark -- ZKCycleScrollView Delegate 滚动图
 - (void)cycleScrollView:(FECycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     
-    if(isPush==NO)return;
-    isPush=NO;
+    
     
     NSDictionary *dic = datacontrol.arrLunBoImage[index];
 //    WebViewVC *wvc = [[WebViewVC alloc] initWithTitle:<#(NSString *)#> andUrl:<#(NSString *)#>]
     NSLog(@"selected index: %@", dic);
-    
+    if([NSString nullToString:[dic objectForKey:@"url"]].length<5)
+    {
+        return;
+    }
+    if(isPush==NO)return;
+    isPush=NO;
     WebViewVC *wvc = [[WebViewVC alloc] initWithTitle:[NSString nullToString:[dic objectForKey:@"title"]] andUrl:[NSString nullToString:[dic objectForKey:@"url"]]];
     wvc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:wvc animated:YES];
@@ -904,13 +910,13 @@ static NSString *kLocalCellId = @"LocalImageCell";
     if (!_emptyView) {
         _emptyView = [[MDBEmptyView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height)];
         [self.view addSubview:_emptyView];
-        _emptyView.remindStr = @"暂时还没有数据哦～";
+        _emptyView.remindStr = NSLocalizedString(@"暂时还没有数据哦", nil);
         _emptyView.hidden = YES;
         [_emptyView setUserInteractionEnabled:YES];
         UITapGestureRecognizer *tapemp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(initData)];
         [_emptyView addGestureRecognizer:tapemp];
     }
-    return _emptyView;
+    return _emptyView; 
 }
 
 @end

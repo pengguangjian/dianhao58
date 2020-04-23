@@ -37,7 +37,7 @@
     
     self.tableView.separatorColor = SEPARATORCOLOR;
     
-    textArr = @[@[NSLocalizedString(@"qingchuhuancun", nil), NSLocalizedString(@"tuisongtongzhi", nil),NSLocalizedString(@"qiehuanyuyan", nil)]];
+    textArr = @[@[NSLocalizedString(@"qingchuhuancun", nil), NSLocalizedString(@"qiehuanyuyan", nil)]];///NSLocalizedString(@"tuisongtongzhi", nil),
     
     
     NSString *alias = [NSString stringWithFormat:@"%@%@",[[Util getUDID] stringByReplacingOccurrencesOfString:@"-" withString:@""],[User sharedUser].user_id];
@@ -97,7 +97,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 2;
     
 }
 
@@ -109,7 +109,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row == 0||indexPath.row == 2) {
+    if (indexPath.row == 0||indexPath.row == 1) {
         static NSString *CustomCellIdentifier = @"CommonSettingCell";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
@@ -144,14 +144,14 @@
                 });
             });
         }
-        else if (indexPath.row == 2)
+        else if (indexPath.row == 1)
         {
             
             NSString *userSettingLanguage = [NSBundle currentLanguage];
             
             if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
                 [userSettingLanguage isEqualToString:@"vi"])) {
-                userSettingLanguage = @"zh-Hans";
+                userSettingLanguage = @"vi";
             }
             if([userSettingLanguage isEqualToString:@"zh-Hans"])
             {
@@ -240,7 +240,7 @@
         [self showAlterViewWithCacheSize:size andPath:path];
         
     }
-    else if (indexPath.row == 2)
+    else if (indexPath.row == 1)
     {///语言切换
         LaunangeChangeAlterView *selectSexView = [LaunangeChangeAlterView sharedView];
         [selectSexView show];

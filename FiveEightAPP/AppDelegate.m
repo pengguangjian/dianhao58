@@ -25,6 +25,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+//    NSString *userSettingLanguage = [NSBundle currentLanguage];
+    if([UWConfig userLanguage]==nil)
+    {
+        [UWConfig setUserLanguage:@"vi"];
+    }
+    
+    
     [[NetWorkManager instance] startListen]; //程序启动要开启网络状态监听-
     
     //        // 启动图片延时: 1秒
