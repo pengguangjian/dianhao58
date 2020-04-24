@@ -28,7 +28,7 @@
 //    NSString *userSettingLanguage = [NSBundle currentLanguage];
     if([UWConfig userLanguage]==nil)
     {
-        [UWConfig setUserLanguage:@"vi"];
+        [UWConfig setUserLanguage:@"zh-Hans"];
     }
     
     

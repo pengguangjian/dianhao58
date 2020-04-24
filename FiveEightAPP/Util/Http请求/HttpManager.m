@@ -35,7 +35,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //添加可接受数据类型
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html", nil];
-    manager.requestSerializer.timeoutInterval = 10.0f;
+    manager.requestSerializer.timeoutInterval = 15.0f;
     
     
     if ([User sharedUser].token.length>0) {
@@ -115,7 +115,7 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //添加可接受数据类型
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html", nil];
-    manager.requestSerializer.timeoutInterval = 10.0f;
+    manager.requestSerializer.timeoutInterval = 15.0f;
     
     
     if ([User sharedUser].token.length>0) {
@@ -169,7 +169,7 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
     [manager POST:URL.absoluteString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+        [SVProgressHUD dismiss];
         ResponseData *rd = [ResponseData mj_objectWithKeyValues:responseObject];
         
         if ([rd.code isEqualToString:SUCCESS] && [rd.sub_code isEqualToString:UNLOGIN]) {
@@ -204,7 +204,7 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         //添加可接受数据类型
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html", nil];
-        manager.requestSerializer.timeoutInterval = 10.0f;
+        manager.requestSerializer.timeoutInterval = 15.0f;
         
         
         if ([User sharedUser].token.length>0) {
@@ -235,7 +235,7 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
         [manager POST:URL.absoluteString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
+            [SVProgressHUD dismiss];
             ResponseData *rd = [ResponseData mj_objectWithKeyValues:responseObject];
             
             if ([rd.code isEqualToString:SUCCESS] && [rd.sub_code isEqualToString:UNLOGIN]) {
@@ -279,7 +279,7 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //添加可接受数据类型
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html", nil];
-    manager.requestSerializer.timeoutInterval = 10.0f;
+    manager.requestSerializer.timeoutInterval = 15.0f;
     
 
     if ([User sharedUser].token.length>0) {
@@ -356,7 +356,7 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //添加可接受数据类型
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html", nil];
-    manager.requestSerializer.timeoutInterval = 10.0f;
+    manager.requestSerializer.timeoutInterval = 15.0f;
     
 
     if ([User sharedUser].token.length>0) {
@@ -409,7 +409,7 @@ withInterfaceName:(NSString *)interfaceName andresponseHandler:(completCallback)
     [manager GET:URL.absoluteString parameters:parameters progress:^(NSProgress *uploadProgress) {
         //正在执行请求
     } success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+        [SVProgressHUD dismiss];
         ResponseData *rd = [ResponseData mj_objectWithKeyValues:responseObject];
         
         if ([rd.code isEqualToString:SUCCESS] && [rd.sub_code isEqualToString:UNLOGIN]) {

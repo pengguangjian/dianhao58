@@ -576,7 +576,7 @@
     
     if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
         [userSettingLanguage isEqualToString:@"vi"])) {
-        userSettingLanguage = @"vi";
+        userSettingLanguage = @"zh-Hans";
     }
     
     NSArray *arrtitle = @[@"Tiếng Việt",@"中文"];//,@"English"
@@ -842,6 +842,7 @@
 
 
 - (void)zaloLoginBtnOnTouch {
+    
     
     WEAK_SELF;
     [[ZaloSDK sharedInstance] authenticateZaloWithAuthenType:ZAZAloSDKAuthenTypeViaZaloAppAndWebView parentController:self

@@ -151,7 +151,7 @@
             
             if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
                 [userSettingLanguage isEqualToString:@"vi"])) {
-                userSettingLanguage = @"vi";
+                userSettingLanguage = @"zh-Hans";
             }
             if([userSettingLanguage isEqualToString:@"zh-Hans"])
             {

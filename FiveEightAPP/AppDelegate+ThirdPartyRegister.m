@@ -18,7 +18,7 @@
 #import "MTA.h"
 #import "MTAConfig.h"
 
-#import <Bugly/Bugly.h>
+//#import <Bugly/Bugly.h>
 //#import <AMapFoundationKit/AMapFoundationKit.h>
 
 #import <AudioToolbox/AudioToolbox.h>
@@ -80,7 +80,7 @@
 
 - (void)registerBuglySDK {
     //初始化Bugly
-    [Bugly startWithAppId:@"82e58d6924"];
+//    [Bugly startWithAppId:@"82e58d6924"];
 }
 
 - (void)initJPush_APNs {

@@ -15,7 +15,7 @@
 {
     if(view)
     {
-        [GMDCircleLoader setOnView:view withTitle:nil animated:YES];
+        [GMDCircleLoader setOnView:view withTitle:@"" animated:YES];
     }
     
     HttpManager *httpm = [HttpManager createHttpManager];
@@ -24,6 +24,7 @@
        {
            [GMDCircleLoader hideFromView:view animated:YES];
        }
+        
         BOOL state = NO;
        NSString *describle = @"";
        if (responceObjct==nil) {

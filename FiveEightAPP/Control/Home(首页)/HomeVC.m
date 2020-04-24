@@ -61,6 +61,8 @@ static NSString *kLocalCellId = @"LocalImageCell";
     BOOL isgetdata;
     BOOL isloaddata;
     
+    BOOL isinitData;
+    
     BOOL isuserinfo;
     ///是否可以跳转
     BOOL isPush;
@@ -95,7 +97,10 @@ static NSString *kLocalCellId = @"LocalImageCell";
     
     [self newtworkJianting];
     
-    [self getAddressListDdata];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self getAddressListDdata];
+    });
+    
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:BOOLFORKEY]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isShowGuideRootVC"];
@@ -180,21 +185,19 @@ static NSString *kLocalCellId = @"LocalImageCell";
 }
 
 - (void)initData {
-    
+    if(isinitData==YES)return;
     [self setAddressButtonValue];
     
     isloaddata = YES;
-    
+    isinitData = YES;
     [self getLanMu];
     [self getLunBoImage];
-    [self getNewMessage];
-    [self getHotLanMu];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self getNewMessage];
-//        [self getHotLanMu];
-//    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self getNewMessage];
+        [self getHotLanMu];
+    });
     
-    
+    NSLog(@"开始加载。。。。。。");
 }
 
 -(void)getAddressListDdata
@@ -220,7 +223,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
     NSString *userSettingLanguage = [NSBundle currentLanguage];
     if (!([userSettingLanguage isEqualToString:@"zh-Hans"]||
         [userSettingLanguage isEqualToString:@"vi"])) {
-        userSettingLanguage = @"vi";
+        userSettingLanguage = @"zh-Hans";
     }
     if([userSettingLanguage isEqualToString:@"vi"])
     {
@@ -242,8 +245,10 @@ static NSString *kLocalCellId = @"LocalImageCell";
     [datacontrol homeLanMuData:dicPush andshowView:self.view Callback:^(NSError *eroor, BOOL state, NSString *desc) {
         [self->scrollView.mj_header endRefreshing];
         self->arrLanMu = [NSMutableArray new];
+        self->isinitData = NO;
         if(state)
         {
+            NSLog(@"获取成功。。。。。。");
             self->isgetdata = YES;
             for(NSDictionary *dic in self->datacontrol.arrLanMu)
             {
@@ -252,6 +257,7 @@ static NSString *kLocalCellId = @"LocalImageCell";
                 self->_typeArr = self->arrLanMu;
                 
             }
+            
         }
         [self.typeMenuView reloadData];
         
@@ -267,7 +273,9 @@ static NSString *kLocalCellId = @"LocalImageCell";
         {
             self->isgetdata = YES;
             self->_localPathGroup = self->datacontrol.arrLunBoImage;
+            
         }
+        
         [self->_cycleScrollView reloadData];
         
     }];
