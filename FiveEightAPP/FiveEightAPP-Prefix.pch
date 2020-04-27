@@ -44,7 +44,7 @@
 #import "ResponseData.h"
 #import "AFNetworking.h"
 #import "User.h"
-#import "NetWorkManager.h"
+//#import "NetWorkManager.h"
 #import "AppDelegate.h"
 #import "MTA.h"
 #import "UWConfig.h"

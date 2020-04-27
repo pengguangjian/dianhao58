@@ -9,17 +9,6 @@
 CFBundleDisplayName = "ALOVN";
 
 //请求权限国际化
-LSApplicationCategoryType = "Hãy dùng vị trí của bạn để có thông tin gần đó cho bạn.";
-NSAppleMusicUsageDescription = "Alovn đòi hỏi bạn đồng ý truy cập cơ sở dữ liệu truyền thông.";
-NSBluetoothPeripheralUsageDescription = "Alovn cần sự cho phép của bạn truy cập Bluetooth";
-NSCalendarsUsageDescription = "Alovn đòi hỏi bạn đồng ý truy cập lịch";
-NSCameraUsageDescription = "Bật camera để chụp ảnh";
-NSLocationAlwaysAndWhenInUseUsageDeion  = "Hãy dùng vị trí của bạn để có thông tin gần đó cho bạn.";
-NSLocationAlwaysAndWhenInUseUsageDescription  = "Hãy dùng vị trí của bạn để có thông tin gần đó cho bạn.";
-NSLocationAlwaysUsageDescription  = "Hãy dùng vị trí của bạn để có thông tin gần đó cho bạn.";
-NSLocationUsageDescription  = "Hãy dùng vị trí của bạn để có thông tin gần đó cho bạn.";
-NSLocationWhenInUseUsageDeion  = "Hãy dùng vị trí của bạn để có thông tin gần đó cho bạn.";
-NSLocationWhenInUseUsageDescription  = "Hãy dùng vị trí của bạn để có thông tin gần đó cho bạn.";
-NSMicrophoneUsageDescription  = "Thử nói chuyện với bạn bè xem sao!";
-NSPhotoLibraryAddUsageDescription  = "Bật tính năng của tập ảnh để cho alovn truy cập tập ảnh";
-NSPhotoLibraryUsageDescription  = "Bật tính năng của tập ảnh để cho alovn truy cập tập ảnh";
+NSCameraUsageDescription  = "Cần có máy ảnh để tải lên hình đại diện và đăng thông tin, vui lòng cho phép ALOVN sử dụng máy ảnh";
+NSPhotoLibraryUsageDescription  = "Tải lên avatar và đăng thông tin yêu cầu sử dụng album ảnh, vui lòng cho phép ALOVN sử dụng album ảnh";
+NSAppleMusicUsageDescription = "ALOVN cần sự đồng ý của bạn, lưu ảnh yêu cầu truy cập vào thư viện phương tiện";

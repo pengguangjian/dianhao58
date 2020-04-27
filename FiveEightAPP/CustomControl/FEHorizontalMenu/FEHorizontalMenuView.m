@@ -29,7 +29,10 @@
         self.menuTile.textAlignment = 1;
         self.menuTile.font = [UIFont boldSystemFontOfSize:13];
         self.menuTile.textColor = [UIColor colorWithRed:51 / 255.0 green:51 / 255.0 blue:51 / 255.0 alpha:1.0];
+//        self.menuTile.adjustsFontSizeToFitWidth = YES;
+//        self.menuTile.minimumScaleFactor = 0.1;
         [self.contentView addSubview:self.menuTile];
+        
         
         self.menuIcon = [UIImageView new];
         [self.contentView addSubview:self.menuIcon];

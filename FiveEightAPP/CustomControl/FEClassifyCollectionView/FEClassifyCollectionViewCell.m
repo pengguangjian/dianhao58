@@ -20,7 +20,8 @@
     [self.classifyLabel.layer setBorderWidth:1];
     self.classifyLabel.height = 35;
     self.classifyLabel.adjustsFontSizeToFitWidth = YES;
-    self.classifyLabel.minimumScaleFactor = 8;
+    self.classifyLabel.minimumScaleFactor = 10;
+    
     
     [self.redView.layer setMasksToBounds:YES];
     [self.redView.layer setCornerRadius:self.redView.width/2.f];

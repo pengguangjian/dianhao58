@@ -32,7 +32,7 @@
     }
     
     
-    [[NetWorkManager instance] startListen]; //程序启动要开启网络状态监听-
+//    [[NetWorkManager instance] startListen]; //程序启动要开启网络状态监听-
     
     //        // 启动图片延时: 1秒
     //        [NSThread sleepForTimeInterval:1];

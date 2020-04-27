@@ -54,9 +54,9 @@
     classNameArr = @[@[@"", @"", @"", @""], @[@"", @"", @"", @""]];
     
     
-    [ShareSDK cancelAuthorize:SSDKPlatformTypeSinaWeibo];
-    [ShareSDK cancelAuthorize:SSDKPlatformTypeQQ];
-    [ShareSDK cancelAuthorize:SSDKPlatformTypeWechat];
+//    [ShareSDK cancelAuthorize:SSDKPlatformTypeSinaWeibo];
+//    [ShareSDK cancelAuthorize:SSDKPlatformTypeQQ];
+//    [ShareSDK cancelAuthorize:SSDKPlatformTypeWechat];
     
     datacontrol = [PersonalInfoDataControl new];
 }
